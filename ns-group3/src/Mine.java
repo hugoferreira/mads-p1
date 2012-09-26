@@ -1,6 +1,8 @@
 import java.awt.Point;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 
 public class Mine {
@@ -60,7 +62,7 @@ public class Mine {
 	}
 	
 
-	public boolean robotMove(Point pos, char move){
+	public void robotMove(Point pos, char move){
 		
 		Point new_pos = (Point) pos.clone();
 		switch(move){
@@ -77,12 +79,15 @@ public class Mine {
 			case 'd':
 				new_pos.y--;
 				break;
-			default:
-				return false;
+			default: // equivalent to the 'w' (wait) movement
+				break;
 				
 		}
 		
-		return false;
+		if(validateMove(new_pos) && !pos.equals(new_pos)){
+
+			//TODO: change robots position in tab object
+		}
 	}
 	
 	public boolean validateMove(Point pos){
@@ -105,5 +110,20 @@ public class Mine {
 		return true;
 	}
 	
-
+	public void update(){
+	
+		TreeMap<Point, Character> temp_tab = new TreeMap<Point, Character> (tab.getmap());
+		for(Point p : temp_tab.keySet()){
+			
+			Point above_p = new Point(p.x, p.y-1);
+			if(validPosition(above_p) && temp_tab.get(above_p) != Constants.EMPTY){
+				
+				temp_tab.put(p, Constants.EMPTY);
+				temp_tab.put(above_p, Constants.ROCK);
+			}
+		}
+		
+		//TODO: update map with temporary one
+	}
+	
 }
