@@ -5,7 +5,7 @@ public class Player {
 	private int pos_y;
 	private int diamonds;
 	
-	Player(int x, int y) {
+	public Player(int x, int y) {
 		pos_x = x;
 		pos_y = y;
 		diamonds = 0;

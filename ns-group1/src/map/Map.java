@@ -79,9 +79,8 @@ public class Map {
 		this.m = m;
 	}
 	
-	public void pickUpDiamond(Player p, int x, int y) {
+	public void pickUpDiamond(Player p, int m, int n) {
 		if(map[m][n] == DIAMOND)
 			p.addDiamond();
 	}
-	
 }
