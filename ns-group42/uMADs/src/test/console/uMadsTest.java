@@ -6,6 +6,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 
+import console.uMads;
+
 /**
  *
  * @author ei10139
