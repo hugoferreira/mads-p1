@@ -56,6 +56,20 @@ public class TestMap {
 		assertEquals(m.getMap()[2][4], '.');
 		m.changeTerrain(2,4, ' ');
 		assertEquals(m.getMap()[2][4], ' ');
+		
+	}
+	
+	@Test
+	public void testCheckRocks() {
+		Map m = new Map();
+		m.readMap("textfile.txt");
+		
+		assertEquals(m.getMap()[3][3], '*');
+		
+		m.checkRocks();
+	
+		assertEquals(m.getMap()[4][2], '*');
+		
 	}
 	
 
