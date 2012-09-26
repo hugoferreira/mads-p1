@@ -11,6 +11,13 @@ public class Player {
 		diamonds = 0;
 	}
 	
+
+	public Player(Player old) {
+		this.pos_x = old.pos_x;
+		this.pos_y = old.pos_y;
+		this.diamonds = old.diamonds;
+	}
+	
 	public int getPos_x() {
 		return pos_x;
 	}
@@ -29,6 +36,10 @@ public class Player {
 	
 	public int getDiamonds() {
 		return diamonds;
+	}
+
+	public void setDiamonds(int d) {
+		diamonds = d;
 	}
 	
 	public void addDiamond() {
