@@ -1,11 +1,30 @@
+import java.awt.Point;
+import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-
 public class Tab {
-
+	private HashMap<Point, Character> map = new HashMap<Point, Character>();
+	
+	public void change(int x, int y, char f){
+		Point position = new Point(x, y);
+		map.put(position, f);
+	}
+	
+	public HashMap<Point, Character> getmap(){
+		return map;
+	}
+	
+	public void printTab(){
+		for(int i=1; i<=6;i++){
+			for(int j=6;j>0;j--)
+				System.out.print(map.get(new Point(i,j)));
+			System.out.println();
+		}
+	}
+	
 	public void readFromFile(String fileName)
 	{
 		try{
@@ -24,14 +43,14 @@ public class Tab {
 				tab += strLine+"\n";
 				lineCounter+=1;
 			}
-			System.out.println (tab);
+			//System.out.println (tab+"\n"+lineCounter);
 			String[] lines = tab.split("\n");
 			
-			for (int i=lineCounter; i!= 0; i--)   {
+			for (int i=6; i> 0; i--)   {
 				
-				for(int j=1; j!=lineCounter+1; j++)
+				for(int j=1; j<=6; j++)
 				{
-					//map.change(j,i,lines[lineCounter-i].charAt(j));
+					change(j,i,lines[lineCounter-i].charAt(j-1));
 				}
 			}
 			
