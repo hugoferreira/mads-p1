@@ -182,10 +182,20 @@ public class Main {
 			switch (input.toUpperCase()) {
 			case "P":
 			{
-				valid_step = execute_step();
-				for(int i = game_step; i < map_stack.size(); i++) {
-					map_stack.remove(i);
+				if(game_step < map_stack.size()){
+					for(int i = map_stack.size() - 1; i >= game_step; i--){
+						map_stack.remove(i);
+					}
+					try {
+						map = (Map)map.clone();
+						map_stack.add(map);
+					} catch (CloneNotSupportedException e) {
+						e.printStackTrace();
+					}
 				}
+				
+				valid_step = execute_step();
+				
 				break;
 			}
 			case "B":
