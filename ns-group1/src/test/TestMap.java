@@ -95,6 +95,38 @@ public class TestMap {
 		assertEquals(m.getMap()[2][3], 'x');
 		
 	}
+	@Test
+	public void testPushRocksWithFall() {
+		Map m = new Map();
+		m.readMap("textfile4.txt");
+		
+		
+		
+		assertEquals(m.getMap()[1][2], '*');
+		
+		m.moveObject(1, 3, 1, 2);
+		
+		assertEquals(m.getMap()[1][2], 'R');
+		
+		assertEquals(m.getMap()[2][1], '*');
+	
+	}
+	@Test
+	public void testPushRocks() {
+		Map m = new Map();
+		m.readMap("textfile5.txt");
+		
+		
+		
+		assertEquals(m.getMap()[1][2], '*');
+		
+		m.moveObject(1, 3, 1, 2);
+		
+		assertEquals(m.getMap()[1][2], 'R');
+		
+		assertEquals(m.getMap()[1][1], '*');
+	
+	}
 	
 
 }

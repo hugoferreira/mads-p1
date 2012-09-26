@@ -13,10 +13,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Map m = new Map();
-		m.readMap("textfile.txt");
+		m.readMap("textfile4.txt");
 		Pair<Integer, Integer> player = m.getPlayer();
 		Player p = new Player(player.getSecond(), player.getFirst());
-		m.readMap("textfile.txt");
 		m.printMap();
 		int time = 0;
 		while(true)
