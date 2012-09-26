@@ -161,11 +161,13 @@ public boolean moveObject(int i, int j, int k, int l) {
 	private void processRock(int y, int x) {
 		if(map[y+1][x] == EMPTY)
 			moveObject(y, x, y+1, x);
-		else if(map[y+1][x] == ROCK) {
+		else if(map[y+1][x] == ROCK || map[y+1][x] == DIAMOND) {
 			if(map[y+1][x+1] == EMPTY)
 				moveObject(y, x, y+1, x+1);
 			else if(map[y+1][x-1] == EMPTY)
 				moveObject(y, x, y+1, x-1);
+			else if(map[y+1][x] == ROCK)
+				map[y][x] = ' ';
 		}
 		else if(map[y+1][x] == PLAYER)
 			map[y+1][x] = 'd';
