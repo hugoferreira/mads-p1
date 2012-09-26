@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Map {
 	
@@ -15,6 +16,7 @@ public class Map {
 	private int m;
 	private char[][] map;
 	private char DIAMOND = 'x';
+	private ArrayList<Pair> visitedRocks;
 	
 	public void readMap(String filename) {
 		
@@ -97,8 +99,13 @@ public class Map {
 public boolean moveObject(int i, int j, int k, int l) {
 		
 		if(checkValidPosition(i,j,k,l)){
+			if(map[i][j] == ROCK) {
+				Pair<Integer, Integer> p = new Pair<Integer, Integer>(k,l);
+				visitedRocks.add(p);
+			}
 			map[k][l] = map[i][j];
 			map[i][j] = ' ';
+			
 			return true;
 		}
 		return false;
@@ -129,10 +136,14 @@ public boolean moveObject(int i, int j, int k, int l) {
 	}
 	
 	public void checkRocks() {
+		visitedRocks = new ArrayList<Pair>();
 		for(int i = 0; i < m; i++) {
 			for(int j = 0; j < n; j++) {
-				if(map[i][j] == ROCK)
-					processRock(i, j);
+				if(map[i][j] == ROCK) {
+					Pair<Integer, Integer> checkPair = new Pair<Integer, Integer>(i,j);
+					if(!visitedRocks.contains(checkPair))
+						processRock(i, j);
+				}
 			}
 		}
 	}
@@ -146,5 +157,7 @@ public boolean moveObject(int i, int j, int k, int l) {
 			else if(map[y+1][x-1] == EMPTY)
 				moveObject(y, x, y+1, x-1);
 		}
+		else if(map[y+1][x] == PLAYER)
+			map[y+1][x] = 'd';
 	}
 }

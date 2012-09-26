@@ -26,11 +26,10 @@ public class TestMap {
 		m.readMap("textfile.txt");
 		
 		m.moveObject(1,4,2,4);
-		assertEquals(m.getMap()[2][4], 'R');
+		assertEquals(m.getMap()[4][3], 'R');
 		assertEquals(m.getMap()[1][4], ' ');
 		
 		assertEquals(m.moveObject(1,4,2,4), false);
-		
 		
 	}
 		
@@ -39,11 +38,12 @@ public class TestMap {
 		Map m = new Map();
 		m.readMap("textfile.txt");
 		
-		Player p = new Player(1,2);
+		Player p = new Player(4,3);
 		
 		assertEquals(p.getDiamonds(), 0);
 		
-		m.pickUpDiamond(p, 2, 3);
+		m.pickUpDiamond(p, 4, 4);
+		
 		assertEquals(p.getDiamonds(), 1);
 	}
 	
@@ -52,11 +52,27 @@ public class TestMap {
 		Map m = new Map();
 		m.readMap("textfile.txt");
 		
-		assertEquals(m.getMap()[3][3], '*');
+		Player p = new Player(4,3);
+		
+		assertEquals(m.getMap()[1][3], '*');
 		
 		m.checkRocks();
+		
+		assertEquals(m.getMap()[1][3], ' ');
+		
+		assertEquals(m.getMap()[2][3], '*');
+	}
 	
-		assertEquals(m.getMap()[4][2], '*');
+	@Test
+	public void testEndByRockSmash() {
+		Map m = new Map();
+		m.readMap("textfile.txt");
+		
+		Player p = new Player(4,3);
+		
+		m.checkRocks();
+		
+		assertEquals(m.getMap()[4][3], 'd');
 		
 	}
 	
