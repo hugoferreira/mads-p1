@@ -17,7 +17,7 @@ public class Main {
 		Pair<Integer, Integer> player = m.getPlayer();
 		Player p = new Player(player.getSecond(), player.getFirst());
 		m.readMap("textfile.txt");
-		
+		m.printMap();
 		int time = 0;
 		while(true)
 		{
@@ -29,7 +29,7 @@ public class Main {
 						p.setPos_x(p.getPos_x()-1);
 					
 					
-					m.printMap();
+				
 					break;
 				}
 				case Input.RIGHT: {
@@ -37,7 +37,7 @@ public class Main {
 					if (m.moveObject(p.getPos_y(), p.getPos_x(), p.getPos_y(), p.getPos_x()+1)) 
 						p.setPos_x(p.getPos_x()+1);
 					
-					m.printMap();
+					
 					break;
 					
 				}
@@ -46,7 +46,7 @@ public class Main {
 					if (m.moveObject(p.getPos_y(), p.getPos_x(), p.getPos_y()-1, p.getPos_x())) 
 						p.setPos_y(p.getPos_y()-1);
 					
-					m.printMap();
+					
 					break;
 					
 				}
@@ -55,11 +55,12 @@ public class Main {
 					if (m.moveObject(p.getPos_y(), p.getPos_x(), p.getPos_y()+1, p.getPos_x())) 
 						p.setPos_y(p.getPos_y()+1);
 					
-					m.printMap();
+					
 					break;
 					
 				}
 			}
+			m.printMap();
 			System.out.println(time++);
 			System.out.println(p.getDiamonds());
 		}
