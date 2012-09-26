@@ -61,22 +61,12 @@ public class Mine {
 		return false;
 	}
 	
-	public boolean validateMove(Point pos, char move){
+	public boolean validateMove(Point pos){
 		
-		switch(move){
+		if(!validPosition(pos))
+			return false;
+	
 		
-			case 'l':
-				break;
-			case 'r':
-				break;
-			case 'u':
-				break;
-			case 'd':
-				break;
-			default:
-				return false;
-				
-		}
 		
 		return false;
 	}
@@ -86,7 +76,7 @@ public class Mine {
 		if(pos.x < 1 || pos.y < 1)
 			return false;
 		
-		// verify max values
+		//TODO: verify max values
 		
 		return true;
 	}
