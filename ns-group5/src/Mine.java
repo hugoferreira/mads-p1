@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Mine {
 	ArrayList<ArrayList<Character>> map = new ArrayList<ArrayList<Character>>();
+	private int diamonds = 0;
 	
 	public Mine(String s) {
 		String[] lines;
@@ -71,6 +72,7 @@ public class Mine {
 	
 	public void print(){
 		System.out.print(toString());
+		System.out.println("Diamonds: " + diamonds);
 	}
 	
 	
@@ -116,6 +118,10 @@ public class Mine {
 	public boolean move(int line, int col) {
 		
 		Position currentPosition = getRobotPosition();
+		
+		if(getCell(currentPosition.x + col, currentPosition.y + line) == 'x')
+			diamonds++;
+		
 		setCell(currentPosition.y, currentPosition.x, ' ');
 		setCell(currentPosition.y + line, currentPosition.x + col, 'R');
 		

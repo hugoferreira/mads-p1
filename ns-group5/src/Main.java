@@ -1,9 +1,10 @@
+import java.io.File;
 import java.util.Scanner;
 
 
 public class Main {
 	
-	public static Mine mine = new Mine("");
+	public static Mine mine = new Mine(new File("example1.map"));
 	public static Scanner scanner = new Scanner(System.in);
 	
 	/**
