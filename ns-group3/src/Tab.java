@@ -18,8 +18,8 @@ public class Tab {
 		
 		if(f==Constants.ROBOT) {
 			robotPos = position;
-			//if(getPoint(x,y)==Constants.DIAMOND)
-				//nDiam--;
+			if(getPoint(x,y)==Constants.DIAMOND)
+				nDiam--;
 		}
 		map.put(position, f);
 	}
@@ -78,13 +78,14 @@ public class Tab {
 					if(lines[lineCounter-i].charAt(j-1)==Constants.DIAMOND)
 						nDiam++;
 					
-					/*if(lines[lineCounter-i].charAt(j-1)==Constants.CLOSED_LIFT)
+					if(lines[lineCounter-i].charAt(j-1)==Constants.CLOSED_LIFT)
 						lPos=new Point(j,i);
 					
 					if(lines[lineCounter-i].charAt(j-1)==Constants.ROBOT)
 						robotPos=new Point(j,i);
-					*/
-					change(j,i,lines[lineCounter-i].charAt(j-1));
+					
+					//change(j,i,lines[lineCounter-i].charAt(j-1));
+					map.put(new Point(j,i), lines[lineCounter-i].charAt(j-1));
 				}
 			}
 			
