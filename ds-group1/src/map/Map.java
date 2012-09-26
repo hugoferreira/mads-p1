@@ -1,5 +1,6 @@
 package map;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -124,5 +125,67 @@ public class Map {
 		}
 			
 		return output;
+	}
+	
+public boolean makeMove(String direction){
+		
+		Point robotPosition = getRobotPosition();
+		
+		Point destination = null;
+		
+		switch (direction.toLowerCase()){
+			case "w":
+				destination =  new Point(robotPosition.x, robotPosition.y+1);
+				break;
+			case "a":
+				destination =  new Point(robotPosition.x-1, robotPosition.y);
+				break;
+			case "s":
+				destination =  new Point(robotPosition.x, robotPosition.y-1);
+				break;
+			case "d":
+				destination =  new Point(robotPosition.x+1, robotPosition.y);
+				break;
+			default:
+				break;
+		}
+		
+		Cell object = map.get(destination.x).get(destination.y);
+		
+		if(object instanceof OpenLift){
+			map.get(robotPosition.x).set(robotPosition.y, new Empty());
+			return true;
+			// mudar de mapa
+		}
+		else if(object instanceof Earth){
+			map.get(robotPosition.x).set(robotPosition.y, new Empty());
+			map.get(destination.x).set(destination.y, new Robot());
+			return true;
+		}
+		else if(object instanceof Diamond){
+			map.get(robotPosition.x).set(robotPosition.y, new Empty());
+			map.get(destination.x).set(destination.y, new Robot());
+			//TODO somar diamante
+			return true;
+		}
+		else if(object instanceof Empty){
+			map.get(robotPosition.x).set(robotPosition.y, new Empty());
+			map.get(destination.x).set(destination.y, new Robot());
+			//efectuar movimento
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+
+	public Point getRobotPosition(){
+		for(int i=0; i<map.size(); i++)
+			for(int j=0; j<map.get(i).size(); j++){
+				if(map.get(i).get(j) instanceof Robot)
+					return new Point(i,j);
+			}
+		return null;
 	}
 }
