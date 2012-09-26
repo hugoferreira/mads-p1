@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import com.sun.tools.javac.util.Pair;
+
 
 public class Mine {
 	ArrayList<ArrayList<Character>> map = new ArrayList<ArrayList<Character>>();
@@ -95,6 +97,20 @@ public class Mine {
 	
 	public boolean levelUp() {
 		return false;
+	}
+	
+	// returns robot position (l, c)
+	// when there's no robot, returns (-1, -1)
+	public Pair<Integer, Integer> getRobotPosition() {
+		for (int i=0; i<map.size(); i++) {
+			for (int j=0; j<map.get(i).size(); j++) {
+				if (map.get(i).get(j).equals('F')) {
+					return new Pair<Integer, Integer>(i, j);
+				}
+
+			}
+		}
+		return new Pair<Integer, Integer>(-1, -1);
 	}
 	
 }
