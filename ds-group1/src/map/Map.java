@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Map {
+public class Map implements Cloneable {
 
 	private ArrayList<ArrayList<Cell>> map;
 	private int diamonds = 0;
@@ -98,6 +98,8 @@ public class Map {
 	}
 	
 	public void update() throws RobotDestroyedException {
+		LinkedList<Cell> fallingRocks = new LinkedList<Cell>();
+		
 		for(int y = 1; y <= getHeight(); y++){
 			for(int x = 1; x <= getWidth(); x++) {
 				Cell cell = getXY(x, y);
@@ -107,17 +109,43 @@ public class Map {
 					Cell below = getXY(x, y - 1);
 					if(below instanceof Empty) { // the rock falls
 						setXY(x, y - 1, rock);
-						setXY(x, y, below);
+						setXY(x, y, new Empty());
 						rock.setFalling(true);
 					}
 					else if(below instanceof Robot && rock.isFalling()) { // robot destroyed
 						throw new RobotDestroyedException("The robot was destroyed!");
 					}
-					else if(below instanceof Rock && y > 1) { // rock can slip
-						if((getXY(x + 1, y) instanceof Empty) && (getXY(x + 1, y - 1) instanceof Empty)) { // slip right
-							// TODO
+					else if(((below instanceof Rock) || (below instanceof Diamond)) && y > 1) { // rock can slip
+						if(getXY(x + 1, y) instanceof Empty) { // slip right
+							Cell other = getXY(x + 1, y - 1);
+							if(other instanceof Empty) { // slip
+								setXY(x + 1, y - 1, rock);
+								setXY(x, y, new Empty());
+								rock.setFalling(true);
+								fallingRocks.add(rock);
+							}
+							else if(other instanceof Rock && fallingRocks.contains(other)) { // "fuse" rock
+								setXY(x, y, new Empty());
+							}
+							else
+								rock.setFalling(false);
 						}
-						// TODO
+						else if(getXY(x - 1, y) instanceof Empty) { // slip left
+							Cell other = getXY(x - 1, y - 1);
+							if(other instanceof Empty) { // slip
+								setXY(x - 1, y - 1, rock);
+								setXY(x, y, new Empty());
+								rock.setFalling(true);
+								fallingRocks.add(rock);
+							}
+							else if(other instanceof Rock && fallingRocks.contains(other)) { // "fuse" rock
+								setXY(x, y, new Empty());
+							}
+							else
+								rock.setFalling(false);
+						}
+						else
+							rock.setFalling(false);
 					}
 					else {
 						rock.setFalling(false);
@@ -146,10 +174,10 @@ public class Map {
 		return output;
 	}
 	
-	public boolean makeMove(String direction){
+	public boolean makeMove(String direction) throws EndOfMapException{
 		
 		Point robotPosition = getRobotPosition();
-		Robot robot = (Robot)getXY(robotPosition.x, robotPosition.y);
+		Robot robot = (Robot)getXY(robotPosition.x+1, robotPosition.y+1);
 		
 		Point destination = null;
 		
@@ -176,7 +204,7 @@ public class Map {
 		
 		if(object instanceof OpenLift){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
-			return true;
+			throw new EndOfMapException("Congratulations, map concluded!");
 			// mudar de mapa
 		}
 		else if(object instanceof Earth){
@@ -198,6 +226,37 @@ public class Map {
 			map.get(destination.y).set(destination.x, robot);
 			//efectuar movimento
 			return true;
+		} 
+		else if(object instanceof Rock){
+			/*
+			 * Push rock to left
+			 */
+			if(direction.toLowerCase().equals("l")){
+				Cell leftToRock =  map.get(robotPosition.x-2).get(robotPosition.y);
+				if(leftToRock instanceof Empty){
+					map.get(robotPosition.y).set(robotPosition.x, new Empty());
+					map.get(destination.y).set(destination.x, robot);
+					map.get(robotPosition.y).set(robotPosition.x-2, new Rock());
+					
+					return true;
+				}
+				return false;
+			}
+			
+			/*
+			 * Push rock to right
+			 */
+			else if(direction.toLowerCase().equals("r")){
+				Cell rightToRock =  map.get(robotPosition.x+2).get(robotPosition.y);
+				if(rightToRock instanceof Empty){
+					map.get(robotPosition.y).set(robotPosition.x, new Empty());
+					map.get(destination.y).set(destination.x, robot);
+					map.get(robotPosition.y).set(robotPosition.x+2, new Rock());
+					
+					return true;
+				}		
+			}
+			return false;
 		}
 		
 		return false;
@@ -226,9 +285,17 @@ public class Map {
 	}
 	
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
+	public Object clone() throws CloneNotSupportedException {
+		Map result = (Map)super.clone();
+		result.map = new ArrayList<ArrayList<Cell>>();
+		for(int i = 0; i < map.size(); i++) {
+			ArrayList<Cell> line = new ArrayList<Cell>();
+			for(int j = 0; j < map.get(i).size(); j++) {
+				line.add((Cell)map.get(i).get(j).clone());
+			}
+			result.map.add(line);
+		}
+		return result;
 	}
 	
 	public LinkedList<Point> getFromMap(Object classe){

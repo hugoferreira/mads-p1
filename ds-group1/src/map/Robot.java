@@ -1,6 +1,6 @@
 package map;
 
-public class Robot implements Cell{
+public class Robot implements Cell, Cloneable {
 	
 	private int diamonds = 0;
 	
@@ -11,5 +11,10 @@ public class Robot implements Cell{
 	@Override
 	public String print() {
 		return "R";
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

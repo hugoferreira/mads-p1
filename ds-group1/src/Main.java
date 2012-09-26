@@ -6,7 +6,7 @@ import map.Map;
 public class Main {
 
 	public static final String INPUT_FILE = "samples/example1.map";
-	public int game_step = 1;
+	public int game_step = 0;
 	
 	/**
 	 * @param args
@@ -20,10 +20,9 @@ public class Main {
 	 * Params
 	 */
 	private Map map;
-	private Stack<Map> map_stack;
+	private Stack<Map> map_stack = new Stack<Map>();
 
 	public Main() {
-		map_stack = new Stack<Map>();
 		/*
 		 * Create Map
 		 */
@@ -44,6 +43,16 @@ public class Main {
 			game_step++;
 			
 			/*
+			 * Save map
+			 */
+			try {
+				map_stack.push((Map) map.clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+				break;
+			}
+			
+			/*
 			 * Display board
 			 */
 			System.out.println("Map for step " + game_step);
@@ -52,23 +61,22 @@ public class Main {
 			/*
 			 * Ask user for undo or continue
 			 */
-			System.out.print("Do you want to continue play? (yes/no)");
-			Scanner in = new Scanner(System.in);
-		    String input = in.nextLine();
-			switch (input.toLowerCase()) {
-			case "no":
-				map = map_stack.pop();
-				continue;
-			default:
+			if (map_stack.size() >= 2) {
+				System.out.print("Do you want to continue play? (yes/no)");
+				Scanner in = new Scanner(System.in);
+			    String input = in.nextLine();
+				switch (input.toLowerCase()) {
+				case "no":
+					map_stack.pop();
+					map = map_stack.pop();
+					game_step = game_step - 2;
+					continue;
+				default:
+					valid_step = execute_step();
+				}
+			} else {
 				valid_step = execute_step();
 			}
-		    
-			//valid_step = execute_step();
-			
-			/*
-			 * Save map
-			 */
-			//map_stack.push(map);
 			
 		} while (valid_step);
 		
@@ -76,30 +84,35 @@ public class Main {
 	}
 	
 	private boolean execute_step() {
-		/*
-		 * Ask user to show and validate the move
-		 */
-		boolean valid_move = true; 
-		do {
-			System.out.print("Action?");
-			Scanner in = new Scanner(System.in);
-		    String input = in.nextLine();
-
-		    valid_move = map.makeMove(input);
-			if (!valid_move) {
-				System.out.println("Invalid move");
-			}
-			
-		} while(!valid_move);
 		
-		/*
-		 * Update map
-		 */
-		try {
+		try {		
+			
+			/*
+			 * Ask user to show and validate the move
+			 */
+			boolean valid_move = true; 
+			
+			do {
+				System.out.print("Action?");
+				Scanner in = new Scanner(System.in);
+			    String input = in.nextLine();
+	
+			    valid_move = map.makeMove(input);
+				if (!valid_move) {
+					System.out.println("Invalid move");
+				}
+				
+			} while(!valid_move);
+			
+			
+			/*
+			 * Update map
+			 */
 			map.update();
 			// TODO
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		
