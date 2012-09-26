@@ -4,14 +4,19 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+
 
 public class Mine {
 	
 	private Tab tab;
+	private boolean running, last;
 	
 	public Mine(Tab tab_incoming){
 		
 		tab = tab_incoming;
+		running = true;
+		last = false;
 		cycle();
 	}
 
@@ -23,8 +28,9 @@ public class Mine {
 		// TODO Auto-generated method stub
 
 		print_menu();
-		while(true){ // verify if there are still diamons left
+		do{ // verify if there are still diamons left
 			
+			//last = !running;
 			
 			tab.printTab();
 			System.out.println();
@@ -42,7 +48,7 @@ public class Mine {
 			update();
 			
 			
-		}
+		}while(running);// || !last);
 	}
 	
 	public static boolean checkValid(char c){
@@ -97,6 +103,8 @@ public class Mine {
 				Point lpos = tab.lPos;
 				tab.change(lpos.x, lpos.y, Constants.OPEN_LIFT);
 			}
+			if(tab.getPoint(new_pos.x, new_pos.y) == Constants.OPEN_LIFT)
+				running = false;
 		}
 	}
 	
@@ -132,26 +140,38 @@ public class Mine {
 
 				if(tab.getPoint(i,j) == Constants.ROCK){
 					
-					if(validPosition(new Point(i,j-1)) && tab.getPoint(i,j-1) == Constants.EMPTY){
+					Point new_pos = new Point();
+					
+					if(validPosition(new Point(i,j-1)) && (tab.getPoint(i,j-1) == Constants.EMPTY
+							|| tab.getPoint(i,j-1) == Constants.ROBOT)){
 
 						tab.change(i,j, Constants.EMPTY);
 						tab.change(i, j-1, Constants.ROCK);
+						new_pos.x = i;
+						new_pos.y = j-1;
 					}
 					else if(tab.getPoint(i,j-1) == Constants.ROCK || tab.getPoint(i,j-1) == Constants.DIAMOND){
 						
 						if(validPosition(new Point(i+1,j-1)) && tab.getPoint(i+1,j) == Constants.EMPTY
-								&& tab.getPoint(i+1,j-1) == Constants.EMPTY){
+								&& (tab.getPoint(i+1,j-1) == Constants.EMPTY || tab.getPoint(i+1,j-1) == Constants.ROBOT)){
 
 							tab.change(i,j, Constants.EMPTY);
 							tab.change(i+1, j-1, Constants.ROCK);
+							new_pos.x = i+1;
+							new_pos.y = j-1;
 						}
 						else if(validPosition(new Point(i-1,j-1)) && tab.getPoint(i-1,j) == Constants.EMPTY
-								&& tab.getPoint(i-1,j-1) == Constants.EMPTY){
+								&& (tab.getPoint(i-1,j-1) == Constants.EMPTY  || tab.getPoint(i-1,j-1) == Constants.ROBOT)){
 
 							tab.change(i,j, Constants.EMPTY);
 							tab.change(i-1, j-1, Constants.ROCK);
+							new_pos.x = i-1;
+							new_pos.y = j-1;
 						}
 					}
+					
+					if(tab.robotPos.equals(new_pos))
+						running = false;
 				}
 
 			}
