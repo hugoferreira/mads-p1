@@ -213,6 +213,8 @@ public class Map implements Cloneable {
 				break;
 			case "w":
 				return true;
+			case "a":
+				throw new EndOfMapException("You aborted the diamond-finding activity. Score: " + robot.getCurrentScore());
 			default:
 				return false;
 		}
@@ -221,18 +223,20 @@ public class Map implements Cloneable {
 		
 		if(object instanceof OpenLift){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
-			throw new EndOfMapException("Congratulations, map concluded!");
+			robot.addStep();
+			throw new EndOfMapException("Congratulations, map concluded!Score: " + robot.getFinalScore());
 			// mudar de mapa
 		}
 		else if(object instanceof Earth){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
 			map.get(destination.y).set(destination.x, robot);
+			robot.addStep();
 			return true;
 		}
 		else if(object instanceof Diamond){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
 			map.get(destination.y).set(destination.x, robot);
-			
+			robot.addStep();			
 			robot.addDiamond();
 			diamonds--;
 			
@@ -241,7 +245,7 @@ public class Map implements Cloneable {
 		else if(object instanceof Empty){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
 			map.get(destination.y).set(destination.x, robot);
-			//efectuar movimento
+			robot.addStep();
 			return true;
 		} 
 		else if(object instanceof Rock){
@@ -254,7 +258,7 @@ public class Map implements Cloneable {
 					map.get(robotPosition.y).set(robotPosition.x, new Empty());
 					map.get(destination.y).set(destination.x, robot);
 					map.get(robotPosition.y).set(robotPosition.x-2, new Rock());
-					
+					robot.addStep();
 					return true;
 				}
 				return false;
@@ -269,7 +273,7 @@ public class Map implements Cloneable {
 					map.get(robotPosition.y).set(robotPosition.x, new Empty());
 					map.get(destination.y).set(destination.x, robot);
 					map.get(robotPosition.y).set(robotPosition.x+2, new Rock());
-					
+					robot.addStep();
 					return true;
 				}		
 			}
@@ -325,6 +329,18 @@ public class Map implements Cloneable {
 		for(int y = 1; y <= getHeight(); y++){
 			for(int x = 1; x <= getWidth(); x++){
 				if(getXY(x, y) instanceof Diamond)
+					temp.add(new Point(x, y));
+			}
+		}
+		return temp;
+	}
+	
+	public LinkedList<Point> getOpenLifts(){
+		LinkedList<Point> temp = new LinkedList<Point>();
+		
+		for(int y = 1; y <= getHeight(); y++){
+			for(int x = 1; x <= getWidth(); x++){
+				if(getXY(x, y) instanceof OpenLift)
 					temp.add(new Point(x, y));
 			}
 		}

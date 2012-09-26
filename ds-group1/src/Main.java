@@ -58,33 +58,38 @@ public class Main {
 		System.out.println(map.print());
 		AutoPilot autoPilot = new AutoPilot(map);
 		
+		//Point robotPosition = map.convert0BasedTo1Based(map.getRobotPosition());
+		
 		while(!map.getDiamonds().isEmpty()){
-			Point robotPosition = map.convert0BasedTo1Based(map.getRobotPosition());
 			LinkedList<Point> destinations = map.getDiamonds();
-			
+			Point robotPosition = map.convert0BasedTo1Based(map.getRobotPosition());
 			LinkedList<Point> path = autoPilot.getPath(robotPosition, destinations);
-			
-			for (Point point : path) {
-				String input = AutoPilot.getDirection(robotPosition, point);
-				
-				try {
-					boolean valid = map.makeMove(input);
-					map.update();
-				} catch (EndOfMapException e) {
-					e.printStackTrace();
-				} catch (RobotDestroyedException e) {
-					e.printStackTrace();
-				}
-				robotPosition = point;
-				
-				System.out.println(map.print());
-				
-				//Scanner in = new Scanner(System.in);
-			    //String i = in.nextLine();
-			}
-			
+			play_ia_walk(robotPosition, path);
 		}
 		
+		LinkedList<Point> openLifts = map.getOpenLifts();
+		Point robotPosition = map.convert0BasedTo1Based(map.getRobotPosition());
+		LinkedList<Point> path = autoPilot.getPath(robotPosition, openLifts);
+		play_ia_walk(robotPosition, path);
+		
+	}
+	
+	private void play_ia_walk(Point robotPosition, LinkedList<Point> path) {
+		for (Point point : path) {
+			String input = AutoPilot.getDirection(robotPosition, point);
+			
+			try {
+				boolean valid = map.makeMove(input);
+				map.update();
+			} catch (EndOfMapException e) {
+				e.printStackTrace();
+			} catch (RobotDestroyedException e) {
+				e.printStackTrace();
+			}
+			robotPosition = point;
+			
+			System.out.println(map.print());
+		}
 	}
 	
 	private void play_manual() {	
