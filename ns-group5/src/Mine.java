@@ -94,20 +94,17 @@ public class Mine {
 		
 		switch (c){
 		
-		case 'L':
-			move(0, -1);
-			break;
-		case 'R':
-			move(0, 1);
-			break;
-		case 'U':
-			move(-1, 0);
-			break;
-		case 'D':
-			move(1, 0);
-			break;
+		case 'l':
+			return move(0, -1);
+		case 'r':
+			return move(0, 1);
+		case 'u':
+			return move(-1, 0);
+		case 'd':
+			return move(1, 0);
+		case 'w':
+			return true;
 		}
-		
 		return false;
 	}
 	
