@@ -39,6 +39,7 @@ public class Mine {
 			robotMove(userInput);
 			
 			// tab update
+			update();
 			
 			
 		}
@@ -119,16 +120,24 @@ public class Mine {
 	}
 	
 	public void update(){
-	
-		TreeMap<Point, Character> temp_tab = new TreeMap<Point, Character> (tab.getmap());
-		for(Point p : temp_tab.keySet()){
+
+		for(int i = 1; i <= tab.getXMax(); i++){
 			
-			Point above_p = new Point(p.x, p.y-1);
-			if(validPosition(above_p) && temp_tab.get(above_p) != Constants.EMPTY){
-				
-				temp_tab.put(p, Constants.EMPTY);
-				temp_tab.put(above_p, Constants.ROCK);
+			for(int j = 1; j <= tab.getYMax(); j++){
+
+				int bj = j-1;
+				if(validPosition(new Point(i,bj)) && tab.getPoint(i,j) == Constants.ROCK){
+					
+					if(tab.getPoint(i,bj) == Constants.EMPTY){
+
+						tab.change(i,j, Constants.EMPTY);
+						tab.change(i, bj, Constants.ROCK);
+					}
+				}
+
 			}
+			
+			
 		}
 		
 		//TODO: update map with temporary one
