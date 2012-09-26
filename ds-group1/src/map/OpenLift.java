@@ -6,4 +6,9 @@ public class OpenLift implements Cell{
 	public String print() {
 		return "O";
 	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

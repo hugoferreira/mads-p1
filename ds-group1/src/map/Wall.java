@@ -8,4 +8,9 @@ public class Wall implements Cell{
 	public String print() {
 		return "#";
 	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

@@ -6,4 +6,9 @@ public class Diamond implements Cell{
 	public String print() {
 		return "x";
 	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

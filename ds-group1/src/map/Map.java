@@ -98,7 +98,7 @@ public class Map {
 	}
 	
 	public void update() throws RobotDestroyedException {
-		for(int y = 1; y <= getHeight(); y++)
+		for(int y = 1; y <= getHeight(); y++){
 			for(int x = 1; x <= getWidth(); x++) {
 				Cell cell = getXY(x, y);
 				
@@ -124,6 +124,12 @@ public class Map {
 					}
 				}
 			}
+		}
+		
+		//If there are no diamonds, open lifts
+		if(noDiamonds()){
+			OpenLifts();
+		}
 	}
 
 	public String print() {
@@ -201,7 +207,7 @@ public class Map {
 		return diamonds == 0;
 	}
 	
-	public void OpenLifts(){
+	private void OpenLifts(){
 		for(int i = 0; i < map.size(); i++){
 			for(int j = 0; i < map.get(i).size(); j++){
 				if(map.get(i).get(j) instanceof ClosedLift)
@@ -220,8 +226,16 @@ public class Map {
 	}
 	
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
+	public Object clone() throws CloneNotSupportedException {
+		Map result = (Map)super.clone();
+		result.map = new ArrayList<ArrayList<Cell>>();
+		for(int i = 0; i < map.size(); i++) {
+			ArrayList<Cell> line = new ArrayList<Cell>();
+			for(int j = 0; j < map.get(i).size(); j++) {
+				line.add((Cell)map.get(i).get(j).clone());
+			}
+			result.map.add(line);
+		}
+		return result;
 	}
 }
