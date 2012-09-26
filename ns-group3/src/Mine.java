@@ -19,6 +19,11 @@ public class Mine {
 		last = false;
 		cycle();
 	}
+	
+	public Mine(String filename){
+		tab = new Tab();
+		tab.readFromFile(filename);
+	}
 
 	/**
 	 * @param args
