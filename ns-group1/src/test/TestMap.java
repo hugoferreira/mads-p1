@@ -43,12 +43,5 @@ public class TestMap {
 		assertEquals(p.getDiamonds(), 1);
 	}
 	
-	@Test
-	public void testPrintMap(){
-		Map m = new Map();
-		m.readMap("textfile.txt");
-		
-		
-	}
 
 }

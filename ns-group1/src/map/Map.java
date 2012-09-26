@@ -57,7 +57,7 @@ public class Map {
 			}
 	}
 	
-	public void printMap(char[][] map){
+	public void printMap(){
 		String show = "";
 		
 		for(int x = 0; x < map.length; x++){
