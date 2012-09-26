@@ -20,6 +20,7 @@ public class Mine {
 	
 	public Mine(File file) {
 		readMap(file);
+		//ytest
 	}
 	
 	public void readMap(File file){
@@ -83,15 +84,44 @@ public class Mine {
 		
 	}
 	
+	/**
+	 * Receives the command letter
+	 * @param c
+	 * @return
+	 */
 	public boolean move(Character c) {
+		c = Character.toLowerCase(c);
+		
+		switch (c){
+		
+		case 'L':
+			move(0, -1);
+			break;
+		case 'R':
+			move(0, 1);
+			break;
+		case 'U':
+			move(-1, 0);
+			break;
+		case 'D':
+			move(1, 0);
+			break;
+		}
+		
 		return false;
 	}
 	
+	/**
+	 * Receives
+	 * @param delta line
+	 * @param delta col
+	 * @return
+	 */
 	public boolean move(int line, int col) {
 		
 		Position currentPosition = getRobotPosition();
 		setCell(currentPosition.y, currentPosition.x, ' ');
-		setCell(line, col, 'R');
+		setCell(currentPosition.y + line, currentPosition.x + col, 'R');
 		
 		return true;
 	}
