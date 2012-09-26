@@ -75,12 +75,11 @@ public class Mine {
 	
 	
 	public char getCell(int line, int col) {
-		return '0';
-		
+		return (map.get(line)).get(col);
 	}
 	
-	public boolean setCell(int n, int m, Character c) {
-		return false;
+	public void setCell(int n, int m, Character c) {
+		map.get(n).set(m, c);
 		
 	}
 	
@@ -94,20 +93,17 @@ public class Mine {
 		
 		switch (c){
 		
-		case 'L':
-			move(0, -1);
-			break;
-		case 'R':
-			move(0, 1);
-			break;
-		case 'U':
-			move(-1, 0);
-			break;
-		case 'D':
-			move(1, 0);
-			break;
+		case 'l':
+			return move(0, -1);
+		case 'r':
+			return move(0, 1);
+		case 'u':
+			return move(-1, 0);
+		case 'd':
+			return move(1, 0);
+		case 'w':
+			return true;
 		}
-		
 		return false;
 	}
 	
@@ -127,11 +123,18 @@ public class Mine {
 	}
 	
 	public void updateMap() {
-		
+		for(int i = 0 ; i < map.size(); i++) {
+			for(int j = map.get(i).size() - 1; j >= 0; j--) {
+				if(getCell(i, j) == '*' && getCell(i, j+1) == ' ') {
+					setCell(i, j, ' ');
+					setCell(i, j+1, '*');
+				}
+			}
+		}
 	}
 	
 	public boolean levelUp() {
-		return false;
+		return (map.toString().indexOf("x") == -1);
 	}
 	
 	// returns robot position (l, c)
@@ -139,7 +142,7 @@ public class Mine {
 	public Position getRobotPosition() {
 		for (int i=0; i<map.size(); i++) {
 			for (int j=0; j<map.get(i).size(); j++) {
-				if (map.get(i).get(j).equals('F')) {
+				if (map.get(i).get(j).equals('R')) {
 					return new Position(i, j);
 				}
 
