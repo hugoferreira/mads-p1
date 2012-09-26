@@ -275,13 +275,17 @@ public class Map implements Cloneable {
 		}
 	}
 
-	private Point getRobotPosition(){
+	public Point getRobotPosition(){
 		for(int i=0; i < map.size(); i++)
 			for(int j=0; j < map.get(i).size(); j++){
 				if(map.get(i).get(j) instanceof Robot)
 					return new Point(j,i);
 			}
 		return null;
+	}
+	
+	public Point convert0BasedTo1Based(Point p){
+		return new Point(p.x + 1, p.y + 1);
 	}
 	
 	@Override

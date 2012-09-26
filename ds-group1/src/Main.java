@@ -1,5 +1,10 @@
+import ia.AutoPilot;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
+import java.awt.Point;
 import java.io.FileNotFoundException;
 
 import map.EndOfMapException;
@@ -23,7 +28,7 @@ public class Main {
 	 * Params
 	 */
 	private Map map;
-	private Stack<Map> map_stack = new Stack<Map>();
+	private ArrayList<Map> map_stack = new ArrayList<Map>();
 
 	public Main() {
 		/*
@@ -35,6 +40,54 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+		System.out.print("Manual or IA? (M or I) ");
+		Scanner in = new Scanner(System.in);
+	    String input = in.nextLine();
+		switch (input.toUpperCase()) {
+		case "M":
+			play_manual();
+			break;
+		case "I":
+			play_ia();
+			break;
+		}
+	}
+	
+	private void play_ia() {
+		System.out.println("Map for ia");
+		System.out.println(map.print());
+		AutoPilot autoPilot = new AutoPilot(map);
+		
+		while(!map.getDiamonds().isEmpty()){
+			Point robotPosition = map.convert0BasedTo1Based(map.getRobotPosition());
+			LinkedList<Point> destinations = map.getDiamonds();
+			
+			LinkedList<Point> path = autoPilot.getPath(robotPosition, destinations);
+			
+			for (Point point : path) {
+				String input = AutoPilot.getDirection(robotPosition, point);
+				
+				try {
+					boolean valid = map.makeMove(input);
+					map.update();
+				} catch (EndOfMapException e) {
+					e.printStackTrace();
+				} catch (RobotDestroyedException e) {
+					e.printStackTrace();
+				}
+				robotPosition = point;
+				
+				System.out.println(map.print());
+				
+				//Scanner in = new Scanner(System.in);
+			    //String i = in.nextLine();
+			}
+			
+		}
+		
+	}
+	
+	private void play_manual() {	
 		/*
 		 * Start the game cycle
 		 */
@@ -49,10 +102,13 @@ public class Main {
 			 * Save map
 			 */
 			try {
-				map_stack.push((Map) map.clone());
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-				break;
+				map = map_stack.get(game_step-1);
+			} catch (IndexOutOfBoundsException e) {
+				try {
+					map_stack.add((Map) map.clone());
+					System.out.println("### New Map");
+				} catch (CloneNotSupportedException e1) {
+				}
 			}
 			
 			/*
@@ -64,21 +120,39 @@ public class Main {
 			/*
 			 * Ask user for undo or continue
 			 */
-			if (map_stack.size() >= 2) {
-				System.out.print("Do you want to continue play? (yes/no)");
-				Scanner in = new Scanner(System.in);
-			    String input = in.nextLine();
-				switch (input.toLowerCase()) {
-				case "no":
-					map_stack.pop();
-					map = map_stack.pop();
-					game_step = game_step - 2;
-					continue;
-				default:
-					valid_step = execute_step();
-				}
-			} else {
+			System.out.print("Back, Next or Play? (B,N,P) ");
+			Scanner in = new Scanner(System.in);
+		    String input = in.nextLine();
+			switch (input.toUpperCase()) {
+			case "P":
+			{
 				valid_step = execute_step();
+				for(int i = game_step; i < map_stack.size(); i++) {
+					map_stack.remove(i);
+				}
+				break;
+			}
+			case "B":
+			{
+				System.out.println("B");
+				if (game_step < 2) {
+					System.out.println("Sorry, there are no previous moves");
+					game_step = game_step - 1;
+					continue;
+				}
+				game_step = game_step - 2;
+				continue;
+			}
+			case "N":
+			{
+				System.out.println("N");
+				if (map_stack.size() == game_step) {
+					System.out.println("Sorry, there are no next moves");
+					game_step = game_step - 1;
+					continue;
+				}
+				continue;
+			}
 			}
 			
 		} while (valid_step);
@@ -96,13 +170,13 @@ public class Main {
 			boolean valid_move = true; 
 			
 			do {
-				System.out.print("Action?");
+				System.out.print("Action (Up, Down, Left, Right)? ");
 				Scanner in = new Scanner(System.in);
 			    String input = in.nextLine();
 	
 			    valid_move = map.makeMove(input);
 				if (!valid_move) {
-					System.out.println("Invalid move");
+					System.out.println("Oooops! Invalid move! Try U, D, L or R");
 				}
 				
 			} while(!valid_move);
