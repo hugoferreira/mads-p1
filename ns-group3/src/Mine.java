@@ -86,12 +86,17 @@ public class Mine {
 				
 		}
 
-		System.out.println(pos + " - " + new_pos);
 		if(validateMove(new_pos) && !pos.equals(new_pos)){
 
 			tab.change(pos.x, pos.y, Constants.EMPTY);
 			tab.change(new_pos.x, new_pos.y, Constants.ROBOT);
 			tab.robotPos = new_pos;
+			
+			if(tab.nDiam <= 0){
+				
+				Point lpos = tab.lPos;
+				tab.change(lpos.x, lpos.y, Constants.OPEN_LIFT);
+			}
 		}
 	}
 	
@@ -125,22 +130,33 @@ public class Mine {
 			
 			for(int j = 1; j <= tab.getYMax(); j++){
 
-				int bj = j-1;
-				if(validPosition(new Point(i,bj)) && tab.getPoint(i,j) == Constants.ROCK){
+				if(tab.getPoint(i,j) == Constants.ROCK){
 					
-					if(tab.getPoint(i,bj) == Constants.EMPTY){
+					if(validPosition(new Point(i,j-1)) && tab.getPoint(i,j-1) == Constants.EMPTY){
 
 						tab.change(i,j, Constants.EMPTY);
-						tab.change(i, bj, Constants.ROCK);
+						tab.change(i, j-1, Constants.ROCK);
+					}
+					else if(tab.getPoint(i,j-1) == Constants.ROCK || tab.getPoint(i,j-1) == Constants.DIAMOND){
+						
+						if(validPosition(new Point(i+1,j-1)) && tab.getPoint(i+1,j) == Constants.EMPTY
+								&& tab.getPoint(i+1,j-1) == Constants.EMPTY){
+
+							tab.change(i,j, Constants.EMPTY);
+							tab.change(i+1, j-1, Constants.ROCK);
+						}
+						else if(validPosition(new Point(i-1,j-1)) && tab.getPoint(i-1,j) == Constants.EMPTY
+								&& tab.getPoint(i-1,j-1) == Constants.EMPTY){
+
+							tab.change(i,j, Constants.EMPTY);
+							tab.change(i-1, j-1, Constants.ROCK);
+						}
 					}
 				}
 
 			}
-			
-			
+
 		}
-		
-		//TODO: update map with temporary one
 	}
 	
 }
