@@ -17,21 +17,25 @@ This exercise takes place at room B215, with the following distribution:
 * Day Shift Groups (14h - 21h)
 ```
     14:30 Sprint 1
-    16:00 Sprint 2
-    17:30 Pause (Snacks)
+    16:00 Pause (30 min)
+    16:30 Sprint 2
+    18:00 Pause (30 min)
     18:30 Sprint 3
-    20:00 Sprint 4
-    21:30 End
+    20:00 Pause (30 min)
+    20:30 Sprint 4
+    22:00 End (Go Home!)
 ```
 
 * Night Shift Groups (17h - 00h)
 ```
     18:00 Sprint 1
-    19:30 Sprint 2
-    21:00 Pause (Dinner)
+    19:30 Pause (30 min)
+    20:00 Sprint 2
+    21:30 Pause (30 min)
     22:00 Sprint 3
-    23:30 Sprint 4
-    01:00 End
+    23:30 Pause (30 min)
+    00:00 Sprint 4
+    01:30 End (Go Home!)
 ```
 
 # Tools
