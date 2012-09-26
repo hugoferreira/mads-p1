@@ -10,6 +10,7 @@ public class Map {
 	private int n;
 	private int m;
 	private char[][] map;
+	private char DIAMOND = 'x';
 	
 	public void readMap(String filename) {
 		
@@ -104,5 +105,9 @@ public class Map {
 		}
 		return false;
 	}
-
+	
+	public void pickUpDiamond(Player p, int m, int n) {
+		if(map[m][n] == DIAMOND)
+			p.addDiamond();
+	}
 }
