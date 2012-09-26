@@ -10,6 +10,14 @@ public class Map {
 
 	private ArrayList<ArrayList<Cell>> map;
 	
+	/**
+	 * Constructor
+	 * @param path Path to filename
+	 */
+	public Map(String path) {
+		this.load(path);
+	}
+	
 	public Cell getXY(int x, int y){
 		return map.get(x - 1).get(y - 1);
 	}
