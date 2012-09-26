@@ -15,8 +15,11 @@ public class Tab {
 	public void change(int x, int y, char f){
 		Point position = new Point(x, y);
 		
-		if(f==Constants.ROBOT)
+		if(f==Constants.ROBOT) {
 			robotPos = position;
+			if(getPoint(x,y)==Constants.DIAMOND)
+				nDiam--;
+		}
 		map.put(position, f);
 	}
 	
