@@ -3,12 +3,12 @@ import ia.AutoPilot;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Stack;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 
 import map.EndOfMapException;
 import map.Map;
+import map.Robot;
 import map.RobotDestroyedException;
 
 public class Main {
@@ -21,6 +21,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
+		@SuppressWarnings("unused")
 		Main main = new Main();
 	}
 	
@@ -30,6 +31,7 @@ public class Main {
 	private Map map;
 	private ArrayList<Map> map_stack = new ArrayList<Map>();
 
+	@SuppressWarnings("resource")
 	public Main() {
 		/*
 		 * Create Map
@@ -69,9 +71,29 @@ public class Main {
 		LinkedList<Point> openLifts = map.getOpenLifts();
 		Point robotPosition = map.convert0BasedTo1Based(map.getRobotPosition());
 		LinkedList<Point> path = autoPilot.getPath(robotPosition, openLifts);
+		
 		if(path.isEmpty()){
 			System.out.println("No path to exit found...");
+			try {
+				path_str += "A";
+				map.makeMove("A");
+				map.update();
+			} catch (EndOfMapException | RobotDestroyedException e) {
+				System.out.println(e.getMessage());
+			}
+			
 		}else{
+			//Check if it is rewarding get to exit;
+			Robot robot = (Robot)map.getXY(robotPosition.x, robotPosition.y);
+			if((robot.getFinalScore() - path.size()) - robot.getCurrentScore() <= 0){
+				try {
+					path_str += "A";
+					map.makeMove("A");
+					map.update();
+				} catch (EndOfMapException | RobotDestroyedException e) {
+					System.out.println(e.getMessage());
+				}
+			}
 			path_str += play_ia_walk(robotPosition, path);
 		}
 		
@@ -101,6 +123,7 @@ public class Main {
 		return path_str;
 	}
 	
+	@SuppressWarnings("resource")
 	private void play_manual() {	
 		/*
 		 * Start the game cycle
@@ -174,6 +197,7 @@ public class Main {
 		System.out.println("GAME OVER");
 	}
 	
+	@SuppressWarnings("resource")
 	private boolean execute_step() {
 		
 		try {		
