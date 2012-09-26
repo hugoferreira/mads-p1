@@ -36,15 +36,34 @@ public class Main {
 		/*
 		 * Create Map
 		 */
-		try {
-			map = new Map(INPUT_FILE);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 		
-		System.out.print("Manual or IA? (M or I) ");
+		
+		System.out.print("File / STDIN ? (F or S) ");
 		Scanner in = new Scanner(System.in);
 	    String input = in.nextLine();
+		switch (input.toUpperCase()) {
+		case "F":
+			try {
+				map = new Map(INPUT_FILE);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			break;
+		case "S":
+			ArrayList<String> lines = new ArrayList<String>();
+			while(!(input = in.nextLine()).equals("")){
+				lines.add(input);
+			}
+			map = new Map(lines);
+			
+			break;
+		}
+		
+		
+		System.out.print("Manual / IA? (M or I) ");
+		in = new Scanner(System.in);
+	    input = in.nextLine();
 		switch (input.toUpperCase()) {
 		case "M":
 			play_manual();

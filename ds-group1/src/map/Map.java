@@ -23,6 +23,11 @@ public class Map implements Cloneable {
 		this.load(path);
 	}
 	
+	public Map(ArrayList<String> lines) {
+		map = new ArrayList<ArrayList<Cell>>();
+		this.load(lines);
+	}
+	
 	public Cell getXY(int x, int y){
 		return map.get(y - 1).get(x - 1);
 	}
@@ -42,7 +47,7 @@ public class Map implements Cloneable {
 		return map.size();
 	}
 	
-	public void load(String path) throws FileNotFoundException {
+	private void load(String path) throws FileNotFoundException{
 		BufferedReader in = new BufferedReader(new FileReader(path));
 		
 		ArrayList<String> maporig = new ArrayList<String>();
@@ -55,6 +60,11 @@ public class Map implements Cloneable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		load(maporig);
+	}
+	
+	public void load(ArrayList<String> maporig) {
 		
 		int x = 0;
 		for(int i = maporig.size() - 1; i >= 0; i--){	
