@@ -11,7 +11,6 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		
 		// MAIN CICLE
 		while(true) {
 			
@@ -21,9 +20,11 @@ public class Main {
 			mine.print();
 			
 			// ask user for a command
-			String command = scanner.nextLine();
+			//String command = scanner.nextLine();
+			//mine.move(command.)
 			
 			// update map
+			mine.updateMap();
 			
 		}
 
