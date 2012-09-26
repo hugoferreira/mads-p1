@@ -7,9 +7,16 @@ import java.io.InputStreamReader;
 
 public class Tab {
 	private HashMap<Point, Character> map = new HashMap<Point, Character>();
+	private int Xmax;
+	private int Ymax;
+	public int nDiam;
+	public Point robotPos;
 	
 	public void change(int x, int y, char f){
 		Point position = new Point(x, y);
+		
+		if(f==Constants.ROBOT)
+			robotPos = position;
 		map.put(position, f);
 	}
 	
@@ -21,10 +28,18 @@ public class Tab {
 		return map.get(new Point(x,y));
 	}
 	
+	public int getXMax(){
+		return Xmax;
+	}
+	
+	public int getYMax(){
+		return Ymax;
+	}
+	
 	public void printTab(){
-		for(int i=1; i<=6;i++){
-			for(int j=6;j>0;j--)
-				System.out.print(map.get(new Point(i,j)));
+		for(int j=Ymax;j>0;j--){
+			for(int i=1; i<=Xmax;i++)
+				System.out.print(getPoint(i,j));
 			System.out.println();
 		}
 	}
@@ -47,13 +62,20 @@ public class Tab {
 				tab += strLine+"\n";
 				lineCounter+=1;
 			}
+			
+			Ymax = lineCounter;
 			//System.out.println (tab+"\n"+lineCounter);
 			String[] lines = tab.split("\n");
-			
-			for (int i=6; i> 0; i--)   {
+			Xmax = lines[0].length();
+			for (int i=lineCounter; i> 0; i--)   {
 				
-				for(int j=1; j<=6; j++)
+				for(int j=1; j<=lines[lineCounter-i].length(); j++)
 				{
+					if(lines[lineCounter-i].charAt(j-1)==Constants.DIAMOND)
+						nDiam++;
+					
+					if(lines[lineCounter-i].charAt(j-1)==Constants.ROBOT)
+						robotPos=new Point(j,i);
 					change(j,i,lines[lineCounter-i].charAt(j-1));
 				}
 			}
