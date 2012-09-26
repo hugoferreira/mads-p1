@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class Mine {
-	ArrayList<ArrayList<Character>> map;
+	ArrayList<ArrayList<Character>> map = new ArrayList<ArrayList<Character>>();
 	
 	public Mine(String s) {
 		String[] lines;
