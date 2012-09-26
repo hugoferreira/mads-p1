@@ -20,6 +20,7 @@ public class Mine {
 	
 	public Mine(File file) {
 		readMap(file);
+		//ytest
 	}
 	
 	public void readMap(File file){
