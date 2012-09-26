@@ -79,7 +79,7 @@ public class Mine {
 	}
 	
 	public void setCell(int n, int m, Character c) {
-		map.get(n).set(m, c);
+		map.get(m).set(n, c);
 		
 	}
 	
@@ -93,13 +93,13 @@ public class Mine {
 		
 		switch (c){
 		
-		case 'l':
-			return move(0, -1);
-		case 'r':
-			return move(0, 1);
 		case 'u':
-			return move(-1, 0);
+			return move(0, -1);
 		case 'd':
+			return move(0, 1);
+		case 'l':
+			return move(-1, 0);
+		case 'r':
 			return move(1, 0);
 		case 'w':
 			return true;
