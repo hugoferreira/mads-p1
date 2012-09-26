@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Map {
+public class Map implements Cloneable {
 
 	private ArrayList<ArrayList<Cell>> map;
 	private int diamonds = 0;
@@ -178,7 +178,7 @@ public class Map {
 	public boolean makeMove(String direction) throws EndOfMapException{
 		
 		Point robotPosition = getRobotPosition();
-		Robot robot = (Robot)getXY(robotPosition.x, robotPosition.y);
+		Robot robot = (Robot)getXY(robotPosition.x+1, robotPosition.y+1);
 		
 		Point destination = null;
 		
@@ -227,6 +227,37 @@ public class Map {
 			map.get(destination.y).set(destination.x, robot);
 			//efectuar movimento
 			return true;
+		} 
+		else if(object instanceof Rock){
+			/*
+			 * Push rock to left
+			 */
+			if(direction.toLowerCase().equals("l")){
+				Cell leftToRock =  map.get(robotPosition.x-2).get(robotPosition.y);
+				if(leftToRock instanceof Empty){
+					map.get(robotPosition.y).set(robotPosition.x, new Empty());
+					map.get(destination.y).set(destination.x, robot);
+					map.get(robotPosition.y).set(robotPosition.x-2, new Rock());
+					
+					return true;
+				}
+				return false;
+			}
+			
+			/*
+			 * Push rock to right
+			 */
+			else if(direction.toLowerCase().equals("r")){
+				Cell rightToRock =  map.get(robotPosition.x+2).get(robotPosition.y);
+				if(rightToRock instanceof Empty){
+					map.get(robotPosition.y).set(robotPosition.x, new Empty());
+					map.get(destination.y).set(destination.x, robot);
+					map.get(robotPosition.y).set(robotPosition.x+2, new Rock());
+					
+					return true;
+				}		
+			}
+			return false;
 		}
 		
 		return false;

@@ -1,6 +1,6 @@
 package map;
 
-public class Diamond implements Cell{
+public class Diamond implements Cell, Cloneable {
 	
 	@Override
 	public String print() {
