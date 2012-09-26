@@ -95,6 +95,23 @@ public class Map implements Cloneable {
 			}
 			x++;
 		}
+		
+		normalizeMap();
+	}
+	
+	public void normalizeMap() {
+		int maxWidth = 0;
+		
+		// Find longest line
+		for(int l = 0; l < map.size(); l++)
+			if(map.get(l).size() > maxWidth)
+				maxWidth = map.get(l).size();
+		
+		// Add empty cells to short lines
+		for(int l = 0; l < map.size(); l++) {
+			while(map.get(l).size() < maxWidth)
+				map.get(l).add(new Empty());
+		}
 	}
 	
 	public void update() throws RobotDestroyedException {
@@ -196,6 +213,8 @@ public class Map implements Cloneable {
 				break;
 			case "w":
 				return true;
+			case "a":
+				throw new EndOfMapException("You aborted the diamond-finding activity. Score: " + robot.getCurrentScore());
 			default:
 				return false;
 		}
@@ -204,18 +223,20 @@ public class Map implements Cloneable {
 		
 		if(object instanceof OpenLift){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
-			throw new EndOfMapException("Congratulations, map concluded!");
+			robot.addStep();
+			throw new EndOfMapException("Congratulations, map concluded!Score: " + robot.getFinalScore());
 			// mudar de mapa
 		}
 		else if(object instanceof Earth){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
 			map.get(destination.y).set(destination.x, robot);
+			robot.addStep();
 			return true;
 		}
 		else if(object instanceof Diamond){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
 			map.get(destination.y).set(destination.x, robot);
-			
+			robot.addStep();			
 			robot.addDiamond();
 			diamonds--;
 			
@@ -224,7 +245,7 @@ public class Map implements Cloneable {
 		else if(object instanceof Empty){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
 			map.get(destination.y).set(destination.x, robot);
-			//efectuar movimento
+			robot.addStep();
 			return true;
 		} 
 		else if(object instanceof Rock){
@@ -237,7 +258,7 @@ public class Map implements Cloneable {
 					map.get(robotPosition.y).set(robotPosition.x, new Empty());
 					map.get(destination.y).set(destination.x, robot);
 					map.get(robotPosition.y).set(robotPosition.x-2, new Rock());
-					
+					robot.addStep();
 					return true;
 				}
 				return false;
@@ -252,7 +273,7 @@ public class Map implements Cloneable {
 					map.get(robotPosition.y).set(robotPosition.x, new Empty());
 					map.get(destination.y).set(destination.x, robot);
 					map.get(robotPosition.y).set(robotPosition.x+2, new Rock());
-					
+					robot.addStep();
 					return true;
 				}		
 			}
