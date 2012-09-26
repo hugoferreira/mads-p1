@@ -93,20 +93,17 @@ public class Mine {
 		
 		switch (c){
 		
-		case 'L':
-			move(0, -1);
-			break;
-		case 'R':
-			move(0, 1);
-			break;
-		case 'U':
-			move(-1, 0);
-			break;
-		case 'D':
-			move(1, 0);
-			break;
+		case 'l':
+			return move(0, -1);
+		case 'r':
+			return move(0, 1);
+		case 'u':
+			return move(-1, 0);
+		case 'd':
+			return move(1, 0);
+		case 'w':
+			return true;
 		}
-		
 		return false;
 	}
 	
@@ -137,7 +134,7 @@ public class Mine {
 	}
 	
 	public boolean levelUp() {
-		return false;
+		return (map.toString().indexOf("x") == -1);
 	}
 	
 	// returns robot position (l, c)
@@ -145,7 +142,7 @@ public class Mine {
 	public Position getRobotPosition() {
 		for (int i=0; i<map.size(); i++) {
 			for (int j=0; j<map.get(i).size(); j++) {
-				if (map.get(i).get(j).equals('F')) {
+				if (map.get(i).get(j).equals('R')) {
 					return new Position(i, j);
 				}
 
