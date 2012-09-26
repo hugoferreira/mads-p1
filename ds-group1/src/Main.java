@@ -76,7 +76,8 @@ public class Main {
 					e.printStackTrace();
 				}
 				robotPosition = point;
-				map.print();
+				
+				System.out.println(map.print());
 				
 				//Scanner in = new Scanner(System.in);
 			    //String i = in.nextLine();
