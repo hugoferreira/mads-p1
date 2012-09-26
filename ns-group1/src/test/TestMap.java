@@ -17,6 +17,8 @@ public class TestMap {
 		assertEquals(m.getN(),6);
 		assertEquals(m.getM(),6);
 		assertEquals(m.getMap()[2][2], ' ');
+		
+		m.printMap();
 	}
 	
 	@Test
@@ -30,7 +32,7 @@ public class TestMap {
 		assertEquals(m.getMap()[1][4], ' ');
 		
 		assertEquals(m.moveObject(1,4,2,4), false);
-		
+
 	}
 		
 	@Test
@@ -45,6 +47,17 @@ public class TestMap {
 		m.pickUpDiamond(p, 4, 4);
 		
 		assertEquals(p.getDiamonds(), 1);
+	}
+	
+	@Test
+	public void testChangeTerrain() {
+		Map m = new Map();
+		m.readMap("textfile.txt");
+		
+		assertEquals(m.getMap()[2][4], '.');
+		m.changeTerrain(2,4, ' ');
+		assertEquals(m.getMap()[2][4], ' ');
+		
 	}
 	
 	@Test

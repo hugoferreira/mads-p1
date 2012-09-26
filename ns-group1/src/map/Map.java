@@ -135,6 +135,11 @@ public boolean moveObject(int i, int j, int k, int l) {
 			p.addDiamond();
 	}
 	
+
+	public void changeTerrain(int x, int y, char to) {
+		map[x][y] = to;
+	}
+	
 	public void checkRocks() {
 		visitedRocks = new ArrayList<Pair>();
 		for(int i = 0; i < m; i++) {
