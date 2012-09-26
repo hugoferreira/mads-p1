@@ -13,7 +13,15 @@ public class Mine {
 	}
 	
 	public String toString(){
-		return null;
+		String s = "";
+		
+		for (ArrayList<Character> line : map){
+			for (Character character : line)
+				s += character;
+			s += "\n";
+		}
+		
+		return s;
 	}
 	
 	public Character getCell() {
@@ -38,4 +46,7 @@ public class Mine {
 		return false;
 	}
 	
+	public void print(){
+		System.out.print(toString());
+	}
 }
