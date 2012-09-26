@@ -81,18 +81,20 @@ public class Map {
 		this.m = m;
 	}
 
-public void moveObject(int i, int j, int k, int l) {
+public boolean moveObject(int i, int j, int k, int l) {
 		
 		if(checkValidPosition(i,j,k,l)){
 			map[k][l] = map[i][j];
 			map[i][j] = ' ';
+			return true;
 		}
+		return false;
 		
 	}
 
 	private boolean checkValidPosition(int i, int j, int k, int l) {
 	
-		if(k-i != 1 || l-j != 1)
+		if(k-i > 1 || l-j > 1)
 			return false;
 		char thing = map[i][j];
 		switch(thing){
