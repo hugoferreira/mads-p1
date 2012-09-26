@@ -7,6 +7,10 @@ import java.io.InputStreamReader;
 
 public class Map {
 	
+	private static final char PLAYER = 'R';
+	private static final char ROCK = '*';
+	private static final char WALL = '#';
+	private static final char EMPTY = ' ';
 	private int n;
 	private int m;
 	private char[][] map;
@@ -35,17 +39,15 @@ public class Map {
 			  }
 				  
 			  setMap(new char[getN()][getM()]);
-			  
-			  int temp;
+			 
 			  int i = 0, j = 0;
-			  while ((temp = br.read()) != -1)   {
-				  if( temp == 13){
-					  br.read();
-					j=0;
-					i++;
+			  String line;
+			  while ((line = br.readLine()) != null)   {
+				  while(line.length() > j) {				  
+					  getMap()[i][j] = line.charAt(j++);  				  
 				  }
-				  else
-					  getMap()[i][j++] = (char) temp;
+				  j=0;
+				  i++;  
 			  }
 			  
 			  in.close();
@@ -92,7 +94,7 @@ public class Map {
 		this.m = m;
 	}
 
-	public void moveObject(int i, int j, int k, int l) {
+public void moveObject(int i, int j, int k, int l) {
 		
 		if(checkValidPosition(i,j,k,l)){
 			map[k][l] = map[i][j];
@@ -107,17 +109,19 @@ public class Map {
 			return false;
 		char thing = map[i][j];
 		switch(thing){
-		case 'R' : 
-			if(map[k][l]== '#' || map[k][l] == '*')
+		case PLAYER : 
+			if(map[k][l]== WALL || map[k][l] == ROCK)
 				return false;
 			return true;
-		case '*' : 
-			if(map[k][l] == ' ')
+		case ROCK : 
+			if(map[k][l] == EMPTY)
 				return true;
 			return false;
 		}
 		return false;
 	}
+
+
 	
 	public void pickUpDiamond(Player p, int m, int n) {
 		if(map[m][n] == DIAMOND)
