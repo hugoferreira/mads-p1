@@ -21,6 +21,7 @@ public class Main {
 			mine.print();
 			
 			// ask user for a command
+			System.out.print("Input: ");
 			String command = scanner.nextLine();
 			if (!(command.toLowerCase().charAt(0) == 'w')) {
 				if (!mine.move(command.charAt(0))) {

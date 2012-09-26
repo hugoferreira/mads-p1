@@ -63,7 +63,15 @@ public class MineTest {
 
 	@Test
 	public void testLevelUp() {
-		fail("Not yet implemented");
+		String mine = "###\n#*#\n# #\n###";
+		String mine2 = "######\n#.  R#\n#  x.#\n#x * #\nL  .x#\n######";
+		
+		Mine m = new Mine(mine);
+		Mine m2 = new Mine(mine2);
+		
+		assertEquals(m.levelUp(), true);
+		assertEquals(m2.levelUp(), false);
+		
 	}
 
 }
