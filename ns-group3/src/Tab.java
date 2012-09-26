@@ -17,21 +17,26 @@ public class Tab {
 		Point position = new Point(x, y);
 		
 		if(f==Constants.ROBOT) {
-			robotPos = position;
+			
 			if(getPoint(x,y)==Constants.DIAMOND)
 				nDiam--;
 			//still needs to be tested
 			if(getPoint(x,y)==Constants.ROCK){
+
+				System.out.println("ROCK");
 				if(x > robotPos.x){
+					System.out.println("esquerda");
 					if(((x+1) <= Xmax) && getPoint(x+1,y)==Constants.EMPTY)
 						map.put(new Point(x+1,y), '*');
 				}
 				if(x < robotPos.x){
-					if(((x+1) > 1) && getPoint(x-1,y)==Constants.EMPTY)
+
+					System.out.println("direita");
+					if(((x-1) > 1) && getPoint(x-1,y)==Constants.EMPTY)
 						map.put(new Point(x-1,y), '*');
 				}
 			}
-				
+			robotPos = position;
 		}
 		map.put(position, f);
 	}
