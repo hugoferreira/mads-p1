@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Map {
 
 	private ArrayList<ArrayList<Cell>> map;
+	private int diamonds = 0;
 	
 	/**
 	 * Constructor
@@ -74,6 +75,7 @@ public class Map {
 					break;
 				case 'x':
 					map.get(x).add(new Diamond());
+					diamonds++;
 					break;
 				case 'L':
 					map.get(x).add(new ClosedLift());
@@ -127,50 +129,52 @@ public class Map {
 		return output;
 	}
 	
-public boolean makeMove(String direction){
+	public boolean makeMove(String direction){
 		
 		Point robotPosition = getRobotPosition();
 		
 		Point destination = null;
 		
 		switch (direction.toLowerCase()){
-			case "w":
+			case "u":
 				destination =  new Point(robotPosition.x, robotPosition.y+1);
 				break;
-			case "a":
+			case "l":
 				destination =  new Point(robotPosition.x-1, robotPosition.y);
 				break;
-			case "s":
+			case "d":
 				destination =  new Point(robotPosition.x, robotPosition.y-1);
 				break;
-			case "d":
+			case "r":
 				destination =  new Point(robotPosition.x+1, robotPosition.y);
 				break;
+			case "w":
+				return true;
 			default:
-				break;
+				return false;
 		}
 		
-		Cell object = map.get(destination.x).get(destination.y);
+		Cell object = map.get(destination.y).get(destination.x);
 		
 		if(object instanceof OpenLift){
-			map.get(robotPosition.x).set(robotPosition.y, new Empty());
+			map.get(robotPosition.y).set(robotPosition.x, new Empty());
 			return true;
 			// mudar de mapa
 		}
 		else if(object instanceof Earth){
-			map.get(robotPosition.x).set(robotPosition.y, new Empty());
-			map.get(destination.x).set(destination.y, new Robot());
+			map.get(robotPosition.y).set(robotPosition.x, new Empty());
+			map.get(destination.y).set(destination.x, new Robot());
 			return true;
 		}
 		else if(object instanceof Diamond){
-			map.get(robotPosition.x).set(robotPosition.y, new Empty());
-			map.get(destination.x).set(destination.y, new Robot());
+			map.get(robotPosition.y).set(robotPosition.x, new Empty());
+			map.get(destination.y).set(destination.x, new Robot());
 			//TODO somar diamante
 			return true;
 		}
 		else if(object instanceof Empty){
-			map.get(robotPosition.x).set(robotPosition.y, new Empty());
-			map.get(destination.x).set(destination.y, new Robot());
+			map.get(robotPosition.y).set(robotPosition.x, new Empty());
+			map.get(destination.y).set(destination.x, new Robot());
 			//efectuar movimento
 			return true;
 		}
@@ -178,13 +182,15 @@ public boolean makeMove(String direction){
 		return false;
 	}
 	
-	
+	private void ClosedToOpenLifts(){
+		
+	}
 
-	public Point getRobotPosition(){
-		for(int i=0; i<map.size(); i++)
-			for(int j=0; j<map.get(i).size(); j++){
+	private Point getRobotPosition(){
+		for(int i=0; i < map.size(); i++)
+			for(int j=0; j < map.get(i).size(); j++){
 				if(map.get(i).get(j) instanceof Robot)
-					return new Point(i,j);
+					return new Point(j,i);
 			}
 		return null;
 	}
