@@ -19,16 +19,20 @@ public class TestMap {
 		assertEquals(m.getMap()[2][2], ' ');
 	}
 	
-	/*@Test
+	@Test
 	public void testMoveObject() {
 		
 		Map m = new Map();
 		m.readMap("textfile.txt");
 		
-		m.moveObject(2,2,2,3);
-		assertEquals(m.getMap()[2][3], 'R');
-		assertEquals(m.getMap()[2][2], ' ');
-	}*/
+		m.moveObject(1,4,2,4);
+		assertEquals(m.getMap()[2][4], 'R');
+		assertEquals(m.getMap()[1][4], ' ');
+		
+		assertEquals(m.moveObject(1,4,2,4), false);
+		
+		
+	}
 		
 	@Test
 	public void testPickUpDiamond() {
@@ -42,5 +46,19 @@ public class TestMap {
 		m.pickUpDiamond(p, 2, 3);
 		assertEquals(p.getDiamonds(), 1);
 	}
+	
+	@Test
+	public void testCheckRocks() {
+		Map m = new Map();
+		m.readMap("textfile.txt");
+		
+		assertEquals(m.getMap()[3][3], '*');
+		
+		m.checkRocks();
+	
+		assertEquals(m.getMap()[4][2], '*');
+		
+	}
+	
 
 }

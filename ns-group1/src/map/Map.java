@@ -56,6 +56,19 @@ public class Map {
 			  System.err.println("Error: " + e.getMessage());
 			}
 	}
+	
+	public void printMap(){
+		String show = "";
+		
+		for(int x = 0; x < map.length; x++){
+			
+			for(int y = 0; y < map[x].length; y++){
+				show += map[x][y];
+			}
+			show += "\n";
+		}
+		System.out.print(show);
+	}
 
 	public char[][] getMap() {
 		return map;
@@ -81,18 +94,20 @@ public class Map {
 		this.m = m;
 	}
 
-public void moveObject(int i, int j, int k, int l) {
+public boolean moveObject(int i, int j, int k, int l) {
 		
 		if(checkValidPosition(i,j,k,l)){
 			map[k][l] = map[i][j];
 			map[i][j] = ' ';
+			return true;
 		}
+		return false;
 		
 	}
 
 	private boolean checkValidPosition(int i, int j, int k, int l) {
 	
-		if(k-i != 1 || l-j != 1)
+		if(k-i > 1 || l-j > 1)
 			return false;
 		char thing = map[i][j];
 		switch(thing){
