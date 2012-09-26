@@ -4,6 +4,7 @@
  */
 package demo;
 
+import java.awt.geom.Point2D;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -12,7 +13,9 @@ import java.util.ArrayList;
  * @author Rúben Veloso
  */
 public class Map {
+    public int nDiamons = 0;
     public char[][] map = null;
+    public char[][] lastMap = null;
     
     public void loadMap(String file) throws FileNotFoundException, IOException
     {
@@ -29,12 +32,17 @@ public class Map {
             cols = strLine.length();
         }
         map = new char[lines.size()][cols];
+        lastMap = new char[lines.size()][cols];
         for (int i = 0; i < map.length; i++) {
             strLine = lines.get(i);
             for (int j = 0; j < cols; j++) {
                 map[i][j] = strLine.charAt(j);
+                if(map[i][j] == '*'){
+                    nDiamons++;
+                }
             }
         }
+        nDiamons++;
         
     }
     

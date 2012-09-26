@@ -88,6 +88,11 @@ public class NewJFrame extends javax.swing.JFrame {
         btnDo.setText("Do");
 
         btnUnDo.setText("unDo");
+        btnUnDo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnDoActionPerformed(evt);
+            }
+        });
 
         btnReDo.setText("reDo");
 
@@ -179,6 +184,15 @@ public class NewJFrame extends javax.swing.JFrame {
     public static void btnEscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscActionPerformed
         ((Canvas)canvas).operation = Canvas.OperationType.ESCAVATING;
     }//GEN-LAST:event_btnEscActionPerformed
+
+    private void btnUnDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnDoActionPerformed
+        Canvas c = ((Canvas)canvas);
+        for (int i = 0; i < c.map.map.length; i++) {
+            for (int j = 0; j < c.map.map[0].length; j++) {
+                c.map.map[i][j] = c.map.lastMap[i][j];
+            }
+        }
+    }//GEN-LAST:event_btnUnDoActionPerformed
 
     /**
      * @param args the command line arguments
