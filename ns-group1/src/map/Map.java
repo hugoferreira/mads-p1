@@ -42,12 +42,13 @@ public class Map {
 			  
 			  setN(firstLine.length());
 			  setM(1);
-			  while(br2.readLine() != null) {
-				  
+			  while((firstLine = br2.readLine()) != null) {
+				  if(firstLine.length()> n)
+					  n = firstLine.length();
 				  setM(getM() + 1);
 			  }
 				  
-			  setMap(new char[getN()][getM()]);
+			  setMap(new char[getM()][getN()]);
 			 
 			  int i = 0, j = 0;
 			  String line;
@@ -58,6 +59,8 @@ public class Map {
 					  
 					  getMap()[i][j] = line.charAt(j++);  				  
 				  }
+				  while(j<n)
+					  getMap()[i][j++] = ' '; 
 				  j=0;
 				  i++;  
 			  }
@@ -234,7 +237,6 @@ public boolean moveObject(int i, int j, int k, int l) {
 	}
 
 	public boolean isGameEnd() {
-		// TODO Auto-generated method stub
 		return end;
 	}
 }
