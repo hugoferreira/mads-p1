@@ -123,10 +123,33 @@ public boolean moveObject(int i, int j, int k, int l) {
 		return false;
 	}
 
-
-	
 	public void pickUpDiamond(Player p, int m, int n) {
 		if(map[m][n] == DIAMOND)
 			p.addDiamond();
+	}
+	
+
+	public void changeTerrain(int x, int y, char to) {
+		map[x][y] = to;
+	}
+	
+	public void checkRocks() {
+		for(int i = 0; i < m; i++) {
+			for(int j = 0; j < n; j++) {
+				if(map[i][j] == ROCK)
+					processRock(i, j);
+			}
+		}
+	}
+
+	private void processRock(int y, int x) {
+		if(map[y+1][x] == EMPTY)
+			moveObject(y, x, y+1, x);
+		else if(map[y+1][x] == ROCK) {
+			if(map[y+1][x+1] == EMPTY)
+				moveObject(y, x, y+1, x+1);
+			else if(map[y+1][x-1] == EMPTY)
+				moveObject(y, x, y+1, x-1);
+		}
 	}
 }
