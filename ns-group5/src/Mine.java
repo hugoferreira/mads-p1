@@ -44,20 +44,26 @@ public class Mine {
 	}
 	
 	private ArrayList<Character> parseString(String s) {
-		String[] chararray = s.split("\\a");
+		char[] chararray = s.toCharArray();
 		ArrayList<Character> r = new ArrayList<Character>();
 		for(int i = 0; i < chararray.length; i++) {
-			r.add(chararray[i].charAt(i));
+			if(chararray[i] != '\n')
+				r.add(chararray[i]);
 		}
 		return r;
 	}
 	
 	public String toString(){
 		String s = "";
-		for (ArrayList<Character> line : map){
-		  for (Character character : line)
-		    s += character;
-		s += "\n";
+		ArrayList<Character> line;
+		for (int i = 0; i < map.size(); i++){
+			if (i != 0)
+				s += "\n";
+			
+			line = map.get(i);
+			
+			for (Character character : line)
+				s += character;
 		}
 		return s;
 	}
