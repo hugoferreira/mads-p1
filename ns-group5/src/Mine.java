@@ -152,6 +152,17 @@ public class Mine {
 	}
 	
 	public boolean levelUp() {
+		if(map.toString().indexOf("x") == -1)
+		{
+			for (int i=0; i<map.size(); i++) {
+				for (int j=0; j<map.get(i).size(); j++) {
+					if (getCell(i, j) == 'L') {
+						setCell(i, j, 'O');
+					}
+				}
+			}
+		}
+		
 		return (map.toString().indexOf("x") == -1);
 	}
 	
