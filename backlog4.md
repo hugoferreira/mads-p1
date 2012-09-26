@@ -8,6 +8,8 @@ A new study promoted by the government shows that mining robots consume a lot of
 * 1 point lost for every move made
 * 50 extra points per diamond collected on reaching the open lift (`O`)
 
+This also means that the Robot can choose not to take all the diamonds before taking them to the lift. To issue that preference, a new command (`A`) Aborts the diamond-finding activity, but preserves the score so far.
+
 ## 2. "Finding the Best Contractor"
 
 In order to test the AI of each contractors' implementation, submitted programs should read a map description from standard input, and send a sequence of commands to standard output. The map description consists of `m` lines of up to `n` characters, describing the mine from top to bottom (i.e. the first line in the file is the row `m`, the last line is row `1`) then left to right (i.e. the first character in each line is column `1`). Characters represent the contents of cells as described above, i.e.:
