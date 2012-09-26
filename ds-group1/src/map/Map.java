@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Map {
 
@@ -98,6 +99,8 @@ public class Map {
 	}
 	
 	public void update() throws RobotDestroyedException {
+		LinkedList<Cell> fallingRocks = new LinkedList<Cell>();
+		
 		for(int y = 1; y <= getHeight(); y++){
 			for(int x = 1; x <= getWidth(); x++) {
 				Cell cell = getXY(x, y);
@@ -114,15 +117,33 @@ public class Map {
 						throw new RobotDestroyedException("The robot was destroyed!");
 					}
 					else if(((below instanceof Rock) || (below instanceof Diamond)) && y > 1) { // rock can slip
-						if((getXY(x + 1, y) instanceof Empty) && (getXY(x + 1, y - 1) instanceof Empty)) { // slip right
-							setXY(x + 1, y - 1, rock);
-							setXY(x, y, new Empty());
-							rock.setFalling(true);
+						if(getXY(x + 1, y) instanceof Empty) { // slip right
+							Cell other = getXY(x + 1, y - 1);
+							if(other instanceof Empty) { // slip
+								setXY(x + 1, y - 1, rock);
+								setXY(x, y, new Empty());
+								rock.setFalling(true);
+								fallingRocks.add(rock);
+							}
+							else if(other instanceof Rock && fallingRocks.contains(other)) { // "fuse" rock
+								setXY(x, y, new Empty());
+							}
+							else
+								rock.setFalling(false);
 						}
-						else if((getXY(x - 1, y) instanceof Empty) && (getXY(x - 1, y - 1) instanceof Empty)) { // slip right
-							setXY(x - 1, y - 1, rock);
-							setXY(x, y, new Empty());
-							rock.setFalling(true);
+						else if(getXY(x - 1, y) instanceof Empty) { // slip left
+							Cell other = getXY(x - 1, y - 1);
+							if(other instanceof Empty) { // slip
+								setXY(x - 1, y - 1, rock);
+								setXY(x, y, new Empty());
+								rock.setFalling(true);
+								fallingRocks.add(rock);
+							}
+							else if(other instanceof Rock && fallingRocks.contains(other)) { // "fuse" rock
+								setXY(x, y, new Empty());
+							}
+							else
+								rock.setFalling(false);
 						}
 						else
 							rock.setFalling(false);
