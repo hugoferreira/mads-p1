@@ -12,6 +12,30 @@ public class Mine {
 		tab = new Tab();
 	}
 
+	/**
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+		
+		while(true){ // verify if there are still diamons left
+			
+			System.out.print("Direction to move:");
+			// wait for input
+			Scanner scan = new Scanner (System.in);
+			char userInput = scan.next().charAt(0);
+			
+			// robot's movement
+			
+			// tab update
+			
+			
+		}
+	}
+	
+
 	public boolean robotMove(Point pos, char move){
 		
 		Point new_pos = (Point) pos.clone();
@@ -67,27 +91,5 @@ public class Mine {
 		return true;
 	}
 	
-	/**
-	 * @param args
-	 * @throws IOException 
-	 */
-	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-
-		
-		while(true){ // verify if there are still diamons left
-			
-			System.out.print("Direction to move:");
-			// wait for input
-			Scanner scan = new Scanner (System.in);
-			char userInput = scan.next().charAt(0);
-			
-			// robot's movement
-			
-			// tab update
-			
-			
-		}
-	}
 
 }
