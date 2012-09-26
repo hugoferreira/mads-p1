@@ -95,7 +95,11 @@ public class Map {
 				if(cell instanceof Rock && y > 1) {
 					Cell below = getXY(x, y - 1);
 					if(below instanceof Empty) { // rocha cai
-						// TODO
+						setXY(x, y - 1, cell);
+						setXY(x, y, new Empty());
+					}
+					else if(below instanceof Robot) { // robô destruido
+						
 					}
 				}
 			}
