@@ -52,23 +52,30 @@ public class Main {
 			/*
 			 * Ask user for undo or continue
 			 */
-			System.out.print("Do you want to continue play? (yes/no)");
-			Scanner in = new Scanner(System.in);
-		    String input = in.nextLine();
-			switch (input.toLowerCase()) {
-			case "no":
-				map = map_stack.pop();
-				continue;
-			default:
+			if (map_stack.size() >= 1) {
+				System.out.print("Do you want to continue play? (yes/no)");
+				Scanner in = new Scanner(System.in);
+			    String input = in.nextLine();
+				switch (input.toLowerCase()) {
+				case "no":
+					map = map_stack.pop();
+					continue;
+				default:
+					valid_step = execute_step();
+				}
+			} else {
 				valid_step = execute_step();
 			}
-		    
-			//valid_step = execute_step();
 			
 			/*
 			 * Save map
 			 */
-			//map_stack.push(map);
+			try {
+				map_stack.push((Map) map.clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+				break;
+			}
 			
 		} while (valid_step);
 		

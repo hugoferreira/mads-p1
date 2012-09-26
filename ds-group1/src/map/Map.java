@@ -196,8 +196,16 @@ public class Map {
 	}
 	
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
+	public Object clone() throws CloneNotSupportedException {
+		Map result = (Map)super.clone();
+		result.map = new ArrayList<ArrayList<Cell>>();
+		for(int i = 0; i < map.size(); i++) {
+			ArrayList<Cell> line = new ArrayList<Cell>();
+			for(int j = 0; j < map.get(i).size(); j++) {
+				line.add((Cell)map.get(i).get(j).clone());
+			}
+			result.map.add(line);
+		}
+		return result;
 	}
 }
