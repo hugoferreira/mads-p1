@@ -13,12 +13,15 @@ public class Map {
 	private static final char WALL = '#';
 	private static final char EMPTY = ' ';
 	private static final char LIFT = 'L';
+	private static final char LIFTO = 'O';
 	private int n;
 	private int m;
 	private char[][] map;
 	private Pair<Integer, Integer> lift;
 	private char DIAMOND = 'x';
 	private ArrayList<Pair> visitedRocks;
+	private boolean dead = false;
+	private int diamonds = 0;
 	
 	public void readMap(String filename) {
 		
@@ -162,15 +165,15 @@ public boolean moveObject(int i, int j, int k, int l) {
 		if(map[y+1][x] == EMPTY)
 			moveObject(y, x, y+1, x);
 		else if(map[y+1][x] == ROCK || map[y+1][x] == DIAMOND) {
-			if(map[y+1][x+1] == EMPTY)
+			if(map[y+1][x+1] == EMPTY && map[y][x+1] == EMPTY)
 				moveObject(y, x, y+1, x+1);
-			else if(map[y+1][x-1] == EMPTY)
+			else if(map[y+1][x-1] == EMPTY && map[y][x-1] == EMPTY)
 				moveObject(y, x, y+1, x-1);
 			else if(map[y+1][x] == ROCK)
 				map[y][x] = ' ';
 		}
 		else if(map[y+1][x] == PLAYER)
-			map[y+1][x] = 'd';
+			dead = true;
 	}
 	
 	public Pair<Integer, Integer> getPlayer() {
@@ -181,5 +184,28 @@ public boolean moveObject(int i, int j, int k, int l) {
 			}
 		}
 		return null;
+	}
+	
+	public boolean isPlayerDead() {
+		return dead;
+	}
+	
+	public void countDiamonds() {
+		
+		for(int i = 0; i < m; i++) {
+			for(int j = 0; j < n; j++) {
+				if(map[i][j] == DIAMOND) {
+					diamonds++;
+				}
+			}
+		}
+	}
+	
+	public void checkLiftStatus(Player p) {
+		
+		if(diamonds == p.getDiamonds())
+		{
+			changeTerrain(lift.getSecond(), lift.getFirst(), LIFTO);
+		}
 	}
 }

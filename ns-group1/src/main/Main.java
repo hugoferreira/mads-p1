@@ -16,12 +16,19 @@ public class Main {
 		m.readMap("textfile.txt");
 		Pair<Integer, Integer> player = m.getPlayer();
 		Player p = new Player(player.getSecond(), player.getFirst());
-		m.readMap("textfile.txt");
+		m.countDiamonds();
 		m.printMap();
 		int time = 0;
 		while(true)
 		{
 			m.checkRocks();
+			
+			if(m.isPlayerDead())
+			{
+				System.out.println("XAUUUU!");
+				System.exit(0);
+			}
+			
 			switch(Input.checkInput()) {
 				case Input.LEFT: {
 					m.pickUpDiamond(p, p.getPos_y(), p.getPos_x()-1);
