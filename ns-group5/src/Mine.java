@@ -141,8 +141,8 @@ public class Mine {
 	}
 	
 	public void updateMap() {
-		for(int i = 0 ; i < map.size(); i++) {
-			for(int j = map.get(i).size() - 1; j >= 0; j--) {
+		for(int i = map.size() - 1 ; i >= 0; i--) {
+			for(int j = 0; j < map.get(i).size(); j++) {
 				if(getCell(i, j) == '*' && getCell(i+1, j) == ' ') {
 					setCell(i, j, ' ');
 					setCell(i+1, j, '*');
@@ -150,6 +150,23 @@ public class Mine {
 				else if(getCell(i, j) == '*' && getCell(i+1, j) == 'R') {
 					System.out.println("Your Robot is dead...");
 					System.exit(0);
+				}
+				else if(getCell(i, j) == '*' && (getCell(i+1, j) == '*' || getCell(i+1, j) == 'x')) {
+					if(getCell(i+1, j+1) == ' ') {
+						setCell(i, j, ' ');
+						setCell(i+1, j+1, '*');
+						if(getCell(i, j+2) == '*' && (getCell(i+1, j+2) == '*' || getCell(i+1, j+2) == 'x')) {
+							setCell(i, j+2, ' ');
+						}
+						
+					} else if(getCell(i+1, j-1) == ' ') {
+						setCell(i, j, ' ');
+						setCell(i+1, j-1, '*');
+						if(getCell(i, j-2) == '*' && (getCell(i+1, j-2) == '*' || getCell(i+1, j-2) == 'x')) {
+							setCell(i, j-2, ' ');
+						}
+					}
+						
 				}
 			}
 		}
