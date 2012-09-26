@@ -111,4 +111,17 @@ public class Map {
 			}
 	}
 
+	public String print() {
+		String output = "";
+		for(int y = 1; y <= getHeight(); y++) {
+			String output_line = "";
+			for(int x = 1; x <= getWidth(); x++) {
+				Cell cell = getXY(x, y);
+				output_line += cell.print();
+			}
+			output = output_line + "\n" + output;
+		}
+			
+		return output;
+	}
 }
