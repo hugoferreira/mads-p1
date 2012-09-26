@@ -53,8 +53,19 @@ public class Mine {
 	}
 	
 	public String toString(){
-		return null;
+		String s = "";
+		for (ArrayList<Character> line : map){
+		  for (Character character : line)
+		    s += character;
+		s += "\n";
+		}
+		return s;
 	}
+	
+	public void print(){
+		System.out.print(toString());
+	}
+	
 	
 	public char getCell(int line, int col) {
 		return '0';
