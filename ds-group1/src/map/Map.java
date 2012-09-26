@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
-public class Map {
+public class Map implements Cloneable {
 
 	private ArrayList<ArrayList<Cell>> map;
 	private int diamonds = 0;
@@ -108,17 +108,25 @@ public class Map {
 					Cell below = getXY(x, y - 1);
 					if(below instanceof Empty) { // the rock falls
 						setXY(x, y - 1, rock);
-						setXY(x, y, below);
+						setXY(x, y, new Empty());
 						rock.setFalling(true);
 					}
 					else if(below instanceof Robot && rock.isFalling()) { // robot destroyed
 						throw new RobotDestroyedException("The robot was destroyed!");
 					}
-					else if(below instanceof Rock && y > 1) { // rock can slip
+					else if(((below instanceof Rock) || (below instanceof Diamond)) && y > 1) { // rock can slip
 						if((getXY(x + 1, y) instanceof Empty) && (getXY(x + 1, y - 1) instanceof Empty)) { // slip right
-							// TODO
+							setXY(x + 1, y - 1, rock);
+							setXY(x, y, new Empty());
+							rock.setFalling(true);
 						}
-						// TODO
+						else if((getXY(x - 1, y) instanceof Empty) && (getXY(x - 1, y - 1) instanceof Empty)) { // slip right
+							setXY(x - 1, y - 1, rock);
+							setXY(x, y, new Empty());
+							rock.setFalling(true);
+						}
+						else
+							rock.setFalling(false);
 					}
 					else {
 						rock.setFalling(false);
@@ -150,7 +158,7 @@ public class Map {
 	public boolean makeMove(String direction) throws EndOfMapException{
 		
 		Point robotPosition = getRobotPosition();
-		Robot robot = (Robot)getXY(robotPosition.x, robotPosition.y);
+		Robot robot = (Robot)getXY(robotPosition.x+1, robotPosition.y+1);
 		
 		Point destination = null;
 		

@@ -1,6 +1,6 @@
 package map;
 
-public class Empty implements Cell{
+public class Empty implements Cell, Cloneable {
 	
 	@Override
 	public String print() {

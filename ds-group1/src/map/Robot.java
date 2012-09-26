@@ -1,6 +1,6 @@
 package map;
 
-public class Robot implements Cell{
+public class Robot implements Cell, Cloneable {
 	
 	private int diamonds = 0;
 	

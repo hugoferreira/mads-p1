@@ -1,6 +1,6 @@
 package map;
 
-public class Earth implements Cell{
+public class Earth implements Cell, Cloneable {
 	
 	@Override
 	public String print() {
