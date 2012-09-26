@@ -66,7 +66,6 @@ public class Map {
 				x++;
 			}
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
 	}
