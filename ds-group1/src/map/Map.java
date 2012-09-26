@@ -140,7 +140,7 @@ public class Map {
 		return output;
 	}
 	
-	public boolean makeMove(String direction){
+	public boolean makeMove(String direction) throws EndOfMapException{
 		
 		Point robotPosition = getRobotPosition();
 		Robot robot = (Robot)getXY(robotPosition.x, robotPosition.y);
@@ -170,7 +170,7 @@ public class Map {
 		
 		if(object instanceof OpenLift){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
-			return true;
+			throw new EndOfMapException("Congratulations, map concluded!");
 			// mudar de mapa
 		}
 		else if(object instanceof Earth){
