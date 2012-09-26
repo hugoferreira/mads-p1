@@ -78,7 +78,7 @@ public class Map {
 		for(int y = 1; y <= getHeight(); y++)
 			for(int x = 1; x <= getWidth(); x++) {
 				Cell cell = getXY(x, y);
-				if(cell instanceof Rock) {
+				if(cell instanceof map.Rock) {
 					// TODO
 				}
 			}
