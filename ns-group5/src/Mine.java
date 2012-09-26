@@ -147,6 +147,10 @@ public class Mine {
 					setCell(i, j, ' ');
 					setCell(i+1, j, '*');
 				}
+				else if(getCell(i, j) == '*' && getCell(i+1, j) == 'R') {
+					System.out.println("Your Robot is dead...");
+					System.exit(0);
+				}
 			}
 		}
 	}
