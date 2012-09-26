@@ -46,5 +46,6 @@ public class TestMap {
 		m.pickUpDiamond(p, 2, 3);
 		assertEquals(p.getDiamonds(), 1);
 	}
+	
 
 }

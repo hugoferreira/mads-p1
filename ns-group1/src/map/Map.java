@@ -56,6 +56,19 @@ public class Map {
 			  System.err.println("Error: " + e.getMessage());
 			}
 	}
+	
+	public void printMap(){
+		String show = "";
+		
+		for(int x = 0; x < map.length; x++){
+			
+			for(int y = 0; y < map[x].length; y++){
+				show += map[x][y];
+			}
+			show += "\n";
+		}
+		System.out.print(show);
+	}
 
 	public char[][] getMap() {
 		return map;
