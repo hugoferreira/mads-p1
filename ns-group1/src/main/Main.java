@@ -13,20 +13,26 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Map m = new Map();
-		m.readMap("textfile.txt");
+		m.readMap("textfile6.txt");
 		Pair<Integer, Integer> player = m.getPlayer();
 		Player p = new Player(player.getSecond(), player.getFirst());
-		m.readMap("textfile.txt");
+		m.countDiamonds();
 		boolean validMove = true;
-		int time = 0;
+		
+		m.back.add(new Pair<Map, Player>(new Map(m), new Player(p)));
+		
 		while(true)
 		{
-			
-			m.back.add(new Pair<Map, Player>(new Map(m), new Player(p)));
-			if(validMove)
-					m.checkRocks();
+
+	
 			m.printMap();
-			validMove = true;
+			
+			
+			if(m.isPlayerDead())
+			{
+				System.out.println("XAUUUU!");
+				System.exit(0);
+			}
 			switch(Input.checkInput()) {
 				case Input.LEFT: {
 					m.pickUpDiamond(p, p.getPos_y(), p.getPos_x()-1);
@@ -38,26 +44,18 @@ public class Main {
 					m.pickUpDiamond(p, p.getPos_y(), p.getPos_x()+1);
 					if (m.moveObject(p.getPos_y(), p.getPos_x(), p.getPos_y(), p.getPos_x()+1)) 
 						p.setPos_x(p.getPos_x()+1);
-					
-					
 					break;
-					
 				}
 				case Input.UP: {
 					m.pickUpDiamond(p, p.getPos_y()-1, p.getPos_x());
 					if (m.moveObject(p.getPos_y(), p.getPos_x(), p.getPos_y()-1, p.getPos_x())) 
 						p.setPos_y(p.getPos_y()-1);
-					
-					
 					break;
-					
 				}
 				case Input.DOWN: {
 					m.pickUpDiamond(p, p.getPos_y()+1, p.getPos_x());
 					if (m.moveObject(p.getPos_y(), p.getPos_x(), p.getPos_y()+1, p.getPos_x())) 
-						p.setPos_y(p.getPos_y()+1);
-					
-					
+						p.setPos_y(p.getPos_y()+1);			
 					break;
 				}
 				case Input.UNDO: {
@@ -86,12 +84,36 @@ public class Main {
 				default:
 					validMove = true;
 					break;
+					
+					
+			}
+
+			m.checkLiftStatus(p);
+			
+			if(m.isGameEnd()) {
+				System.out.println("GANHOU!");
+				System.exit(0);
 			}
 			
-			System.out.println(time++);
-			System.out.println(p.getDiamonds());
+			if (validMove) {
+				m.checkRocks();
+			}
+			m.back.add(new Pair<Map, Player>(new Map(m), new Player(p)));
 			
-		
+				
+			/*
+			if(validMove)
+					m.checkRocks();
+			m.printMap();
+			validMove = true; */
+			
+			if(m.isGameEnd()) {
+				System.out.println("GANHOU!");
+				System.exit(0);
+			}
+			
+			m.cleanEmptySpaceStatus();
+			
 		}
 	}
 
