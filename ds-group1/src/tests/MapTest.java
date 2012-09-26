@@ -21,8 +21,7 @@ public class MapTest {
 		}
 		
 		assertEquals(map.getXY(1, 1).getClass(), Wall.class);  
-		
-		
+	
 	}
 
 }
