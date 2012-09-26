@@ -43,7 +43,7 @@ public class MineTest {
 
 		Mine m = new Mine(mine);
 		
-	
+		fail("Not yet implemented");
 		
 		
 	}
