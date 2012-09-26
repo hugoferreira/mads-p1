@@ -116,12 +116,25 @@ public class Mine {
 	 * @return
 	 */
 	public boolean move(int line, int col) {
-		
 		Position currentPosition = getRobotPosition();
+		char z = '#';
 		
-		if(getCell(currentPosition.x + col, currentPosition.y + line) == 'x')
+		// verifica se se vai mover para fora das array lists	
+		try {
+			getCell(currentPosition.y, currentPosition.x);
+			z = getCell(currentPosition.y + line, currentPosition.x + col);
+		} catch (IndexOutOfBoundsException e){
+			return false;
+		}
+		
+		z = Character.toLowerCase(z);
+		
+		if(z == 'x')
 			diamonds++;
+		else if(!(z == ' ' || z == '.' || z== ' '))
+			return false;
 		
+		//se o movimento for valido executa-o!
 		setCell(currentPosition.y, currentPosition.x, ' ');
 		setCell(currentPosition.y + line, currentPosition.x + col, 'R');
 		
