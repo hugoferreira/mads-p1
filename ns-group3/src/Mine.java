@@ -14,6 +14,11 @@ public class Mine {
 		tab = tab_incoming;
 		cycle();
 	}
+	
+	public Mine(String filename){
+		tab = new Tab();
+		tab.readFromFile(filename);
+	}
 
 	/**
 	 * @param args
