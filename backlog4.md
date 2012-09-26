@@ -6,7 +6,7 @@ A new study promoted by the government shows that mining robots consume a lot of
 
 * 25 points gained for every diamond collected
 * 1 point lost for every move made
-* 50 extra points per diamond collected on reaching the open lift (`L`)
+* 50 extra points per diamond collected on reaching the open lift (`O`)
 
 ## 2. "Finding the Best Contractor"
 
