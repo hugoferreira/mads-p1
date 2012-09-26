@@ -16,7 +16,7 @@ public class Mine {
 		return null;
 	}
 	
-	public Character getCell() {
+	public Character getCell(int line, int col) {
 		return null;
 		
 	}
