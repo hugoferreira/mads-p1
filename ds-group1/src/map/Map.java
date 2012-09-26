@@ -14,6 +14,17 @@ public class Map {
 		return map.get(x - 1).get(y - 1);
 	}
 	
+	public int getWidth() {
+		if(map.isEmpty())
+			return 0;
+		else
+			return map.get(0).size();
+	}
+	
+	public int getHeight() {
+		return map.size();
+	}
+	
 	public void load(String path) throws FileNotFoundException {
 		BufferedReader in = new BufferedReader(new FileReader(path));
 		
@@ -52,6 +63,10 @@ public class Map {
 			
 			e.printStackTrace();
 		}
+	}
+	
+	public void update() {
+		// TODO
 	}
 
 }
