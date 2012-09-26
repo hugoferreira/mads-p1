@@ -98,8 +98,16 @@ public class Map {
 		for(int y = 1; y <= getHeight(); y++)
 			for(int x = 1; x <= getWidth(); x++) {
 				Cell cell = getXY(x, y);
-				if(cell instanceof map.Rock) {
-					// TODO
+				
+				if(cell instanceof Rock && y > 1) {
+					Cell below = getXY(x, y - 1);
+					if(below instanceof Empty) { // rocha cai
+						setXY(x, y - 1, cell);
+						setXY(x, y, new Empty());
+					}
+					else if(below instanceof Robot) { // robô destruido
+						
+					}
 				}
 			}
 	}
