@@ -32,9 +32,9 @@ public class MineTest {
 
 		Mine m = new Mine(mine);
 		
-		assertEquals(m.getCell(0,0), '#');
-		m.setCell(0, 0, ' ');
-		assertEquals(m.getCell(0,0), ' ');
+		assertEquals(Character.toString(m.getCell(1,4)), Character.toString('R'));
+		m.setCell(1, 4, ' ');
+		assertEquals(Character.toString(m.getCell(1,4)), " ");
 	}
 
 	@Test
