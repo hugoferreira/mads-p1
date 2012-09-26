@@ -183,7 +183,6 @@ public class Mine {
 				}
 			}
 		}
-		
 		return (map.toString().indexOf("x") == -1);
 	}
 	
