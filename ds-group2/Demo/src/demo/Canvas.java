@@ -73,6 +73,14 @@ public class Canvas extends javax.swing.JPanel {
                                     map.map[i+1][j] = 'R';
                                 }
                                 operation = OperationType.WAITING;
+                                break;
+                            case MOVE_LEFT:
+                                if(map.map[i][j-1] == ' '){
+                                    map.map[i][j] = ' ';
+                                    map.map[i][j-1] = 'R';
+                                }
+                                operation = OperationType.WAITING;
+                                break;
                             default:
                                 Robot.drawNormal(g2, j*15, i*15);
                         }
