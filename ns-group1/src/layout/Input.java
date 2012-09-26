@@ -6,12 +6,12 @@ public class Input {
 	private static Scanner scanner = new Scanner(System.in);
 	
 	// KEY CODES
-	public static int LEFT = 0;
-	public static int UP = 1;
-	public static int RIGHT = 2;
-	public static int DOWN = 3;
-	public static int WAIT = 4;
-	public static int INVALID_MOVE = -1;
+	public static final int LEFT = 0;
+	public static final int UP = 1;
+	public static final int RIGHT = 2;
+	public static final int DOWN = 3;
+	public static final int WAIT = 4;
+	public static final int INVALID_MOVE = -1;
 	
 	// AVAILABLE KEYBOARD KEYS
 	public static String LEFT_KEY = "l";

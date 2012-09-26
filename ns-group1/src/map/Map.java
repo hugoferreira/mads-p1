@@ -152,4 +152,14 @@ public boolean moveObject(int i, int j, int k, int l) {
 				moveObject(y, x, y+1, x-1);
 		}
 	}
+	
+	public Pair<Integer, Integer> getPlayer() {
+		for(int i = 0; i < m; i++) {
+			for(int j = 0; j < n; j++) {
+				if(map[i][j] == PLAYER)
+					return new Pair<Integer, Integer>(i,j);
+			}
+		}
+		return null;
+	}
 }
