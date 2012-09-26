@@ -12,6 +12,7 @@ import map.Diamond;
 import map.Earth;
 import map.Empty;
 import map.Map;
+import map.OpenLift;
 
 public class AutoPilot {
 	
@@ -22,7 +23,7 @@ public class AutoPilot {
 	}
 	
 	private boolean isWalkable(Cell cell){
-		return (cell instanceof Empty || cell instanceof Earth || cell instanceof Diamond);
+		return (cell instanceof Empty || cell instanceof Earth || cell instanceof Diamond || cell instanceof OpenLift);
 	}
 	
 	/**
