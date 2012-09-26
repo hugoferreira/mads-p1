@@ -26,6 +26,36 @@ public class AutoPilot {
 	}
 	
 	/**
+	 * Get the best path between the Robot (origin) and a list of destinations (destination is chosen by minDistance)
+	 * 
+	 * @param origin
+	 * @param destinations
+	 * @return List of points (path)
+	 */
+	public LinkedList<Point> getPath(Point origin, LinkedList<Point> destinations){
+		
+		ArrayList<Double> tempPoints = new ArrayList<Double>(destinations.size());
+		for (Point point : destinations) {
+			tempPoints.add(point.distance(origin));
+		}
+		
+		double minDistance = Collections.min(tempPoints);
+		ArrayList<Integer> nearPointsIndex = new ArrayList<Integer>();
+
+		for(int i = 0; i < tempPoints.size(); i++){
+			if(tempPoints.get(i) == minDistance){
+				nearPointsIndex.add(i);
+			}
+		}
+		
+		Random r = new Random();
+		int minDistancePointIndex = nearPointsIndex.get(r.nextInt(nearPointsIndex.size()));
+		Point destination = destinations.get(minDistancePointIndex);
+		
+		return getPath(origin, destination);
+	}
+	
+	/**
 	 * Calculates a path between 2 points.
 	 * Avoids obstacles.
 	 * @param origin

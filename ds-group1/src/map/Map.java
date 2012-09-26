@@ -300,12 +300,13 @@ public class Map implements Cloneable {
 	
 	public LinkedList<Point> getDiamonds(){
 		LinkedList<Point> temp = new LinkedList<Point>();
-		for(int i = 0; i < map.size(); i++){
-			for(int j = 0; j < map.get(i).size(); j++){
-				if(map.get(i).get(j) instanceof Diamond){
-					
-				}
+		
+		for(int y = 1; y <= getHeight(); y++){
+			for(int x = 1; x <= getWidth(); x++){
+				if(getXY(x, y) instanceof Diamond)
+					temp.add(new Point(x, y));
 			}
 		}
+		return temp;
 	}
 }
