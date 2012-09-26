@@ -16,5 +16,7 @@ public class Constants {
     public static char LEFT = 'l';
     public static char RIGHT = 'r';
     public static char WAIT = 'w';
+    public static char UNDO = '1';
+    public static char REDO = '2';
 	
 }

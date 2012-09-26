@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -7,11 +8,13 @@ import java.io.InputStreamReader;
 
 public class Tab {
 	private HashMap<Point, Character> map = new HashMap<Point, Character>();
+	private ArrayList<HashMap<Point, Character>> queue = new ArrayList<HashMap<Point, Character>>();
 	private int Xmax;
 	private int Ymax;
-	public int nDiam;
+	public int nDiam = 0;
 	public Point robotPos;
 	public Point lPos;
+	public int actualState;
 	
 	public void change(int x, int y, char f){
 		Point position = new Point(x, y);
@@ -20,25 +23,67 @@ public class Tab {
 			robotPos = position;
 			if(getPoint(x,y)==Constants.DIAMOND)
 				nDiam--;
-			//still needs to be tested
-			if(getPoint(x,y)==Constants.ROCK){
-				if(x > robotPos.x){
-					if(((x+1) <= Xmax) && getPoint(x+1,y)==Constants.EMPTY)
-						map.put(new Point(x+1,y), '*');
-				}
-				if(x < robotPos.x){
-					if(((x+1) > 1) && getPoint(x-1,y)==Constants.EMPTY)
-						map.put(new Point(x-1,y), '*');
-				}
-			}
-				
 		}
 		map.put(position, f);
+		
 	}
+	
+	public void updateHistory(){
+		
+		if(actualState<queue.size()-1){
+			for(int i = queue.size(); i > actualState; i--){
+				queue.remove(queue.size()-1);
+			}
+		}
+		actualState++;
+		HashMap<Point, Character> map2 = new HashMap<Point, Character>(map);
+		queue.add(map2);
+	}
+	
+/*	public void printHistory(){
+		for(int i = 0; i < queue.size(); i++){
+			map = queue.get(i);
+			printTab();
+		}
+	}*/
 	
 	public HashMap<Point, Character> getmap(){
 		return map;
 	}
+	
+	public void undo(){
+		if(actualState>0){
+			actualState--;
+			//System.out.println("--------------------");
+			//printTab();
+			map=new HashMap<Point, Character>(queue.get(actualState));
+			updateRobotAndDiamonds();
+		}
+		
+		System.out.println("MARI!" + actualState);
+		
+	}
+	public void redo(){
+		if(actualState<queue.size()-1){
+			actualState++;
+			map=queue.get(actualState);
+			updateRobotAndDiamonds();
+		}
+	}
+	
+	public void updateRobotAndDiamonds(){
+		nDiam=0;
+		for(int j=Ymax;j>0;j--){
+			for(int i=1; i<=Xmax;i++){
+				if(getPoint(i,j)==Constants.ROBOT)
+					robotPos = new Point(i,j);
+				
+				if(getPoint(i,j)==Constants.DIAMOND)
+					nDiam++;
+			}
+		}
+	}
+	
 	
 	public char getPoint(int x, int y){
 		return map.get(new Point(x,y));
@@ -108,6 +153,9 @@ public class Tab {
 		}catch (Exception e){//Catch exception if any
 			System.out.println("Error: " + e.getMessage());
 		}
+		
+		queue.add(new HashMap<Point, Character>(map));
+		actualState=0;
 			  
 	}
 }

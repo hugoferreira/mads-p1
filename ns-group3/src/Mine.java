@@ -62,7 +62,7 @@ public class Mine {
 		char opt = Character.toLowerCase(c);
 		if(opt!=Constants.UP && opt!=Constants.DOWN && 
 				opt!=Constants.LEFT && opt!=Constants.RIGHT && 
-				opt!=Constants.WAIT)
+				opt!=Constants.WAIT && opt!=Constants.UNDO && opt!=Constants.REDO)
 			return false;
 		
 		return true;
@@ -76,6 +76,7 @@ public class Mine {
 	
 
 	public void robotMove(char move){
+		boolean flag = false;
 		
 		Point pos = tab.robotPos;
 		Point new_pos = (Point) pos.clone();
@@ -93,24 +94,36 @@ public class Mine {
 			case 'd':
 				new_pos.y--;
 				break;
+			case '1':
+				tab.undo();
+				flag = true;
+				break;
+			case '2':
+				flag = true;
+				tab.redo();
+				break;
 			default: // equivalent to the 'w' (wait) movement
 				break;
 				
 		}
 
-		if(validateMove(new_pos) && !pos.equals(new_pos)){
-
-			tab.change(pos.x, pos.y, Constants.EMPTY);
-			tab.change(new_pos.x, new_pos.y, Constants.ROBOT);
-			tab.robotPos = new_pos;
-			
-			if(tab.nDiam <= 0){
+		if(!flag) {
+			if(validateMove(new_pos) && !pos.equals(new_pos)){
+	
+				tab.change(pos.x, pos.y, Constants.EMPTY);
+				tab.change(new_pos.x, new_pos.y, Constants.ROBOT);
+				tab.robotPos = new_pos;
 				
-				Point lpos = tab.lPos;
-				tab.change(lpos.x, lpos.y, Constants.OPEN_LIFT);
+				if(tab.nDiam <= 0){
+					
+					Point lpos = tab.lPos;
+					tab.change(lpos.x, lpos.y, Constants.OPEN_LIFT);
+				}
+				if(tab.getPoint(new_pos.x, new_pos.y) == Constants.OPEN_LIFT)
+					running = false;
+				
+				tab.updateHistory();
 			}
-			if(tab.getPoint(new_pos.x, new_pos.y) == Constants.OPEN_LIFT)
-				running = false;
 		}
 	}
 	
