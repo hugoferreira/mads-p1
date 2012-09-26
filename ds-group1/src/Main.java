@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 import map.Map;
 
 
@@ -21,7 +23,11 @@ public class Main {
 		/*
 		 * Create Map
 		 */
-		//map = new Map(INPUT_FILE);
+		try {
+			map = new Map(INPUT_FILE);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		/*
 		 * Start the game cycle

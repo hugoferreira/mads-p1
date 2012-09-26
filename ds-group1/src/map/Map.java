@@ -42,6 +42,7 @@ public class Map {
 		try {
 			int x = 0, y = 0;
 			while((line = in.readLine()) != null){
+				map.add(new ArrayList<Cell>());
 				
 				char[] lineChars = line.toCharArray();
 				y = 0;
@@ -49,28 +50,28 @@ public class Map {
 					
 					switch (c) {
 					case '#':
-						map.get(x).set(y, new Wall());
+						map.get(x).add(new Wall());
 						break;
 					case '.':
-						map.get(x).set(y, new Earth());
+						map.get(x).add(new Earth());
 						break;
 					case 'R':
-						map.get(x).set(y, new Robot());
+						map.get(x).add(new Robot());
 						break;
 					case 'x':
-						map.get(x).set(y, new Diamond());
+						map.get(x).add(new Diamond());
 						break;
 					case 'L':
-						map.get(x).set(y, new ClosedLift());
+						map.get(x).add(new ClosedLift());
 						break;
 					case 'O':
-						map.get(x).set(y, new OpenLift());
+						map.get(x).add(new OpenLift());
 						break;
 					case '*':
-						map.get(x).set(y, new Rock());
+						map.get(x).add(new Rock());
 						break;
 					case ' ':
-						map.get(x).set(y, new Empty());
+						map.get(x).add(new Empty());
 						break;
 					default:
 						break;
