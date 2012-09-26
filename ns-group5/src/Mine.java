@@ -101,7 +101,7 @@ public class Mine {
 	}
 	
 	public boolean levelUp() {
-		return false;
+		return (map.toString().indexOf("x") == -1);
 	}
 	
 	// returns robot position (l, c)
@@ -109,7 +109,7 @@ public class Mine {
 	public Position getRobotPosition() {
 		for (int i=0; i<map.size(); i++) {
 			for (int j=0; j<map.get(i).size(); j++) {
-				if (map.get(i).get(j).equals('F')) {
+				if (map.get(i).get(j).equals('R')) {
 					return new Position(i, j);
 				}
 
