@@ -1,9 +1,42 @@
+import java.awt.Point;
 import java.io.IOException;
 import java.util.Scanner;
 
 
 public class Mine {
+	
+	private static Tab tab;
+	
+	public Mine(){
+		
+		tab = new Tab();
+	}
 
+	public boolean robotMove(Point pos, char move){
+		
+		Point new_pos = (Point) pos.clone();
+		switch(move){
+		
+			case 'l':
+				new_pos.x--;
+				break;
+			case 'r':
+				new_pos.x++;
+				break;
+			case 'u':
+				new_pos.y++;
+				break;
+			case 'd':
+				new_pos.y--;
+				break;
+			default:
+				return false;
+				
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * @param args
 	 * @throws IOException 
