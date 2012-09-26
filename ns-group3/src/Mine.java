@@ -36,7 +36,7 @@ public class Mine {
 			if(!checkValid(userInput))
 				continue;
 			
-			// robot's movement
+			robotMove(userInput);
 			
 			// tab update
 			
@@ -62,8 +62,9 @@ public class Mine {
 	}
 	
 
-	public void robotMove(Point pos, char move){
+	public void robotMove(char move){
 		
+		Point pos = tab.robotPos;
 		Point new_pos = (Point) pos.clone();
 		switch(move){
 		
@@ -83,10 +84,13 @@ public class Mine {
 				break;
 				
 		}
-		
+
+		System.out.println(pos + " - " + new_pos);
 		if(validateMove(new_pos) && !pos.equals(new_pos)){
 
-			//TODO: change robots position in tab object
+			tab.change(pos.x, pos.y, Constants.EMPTY);
+			tab.change(new_pos.x, new_pos.y, Constants.ROBOT);
+			tab.robotPos = new_pos;
 		}
 	}
 	
@@ -94,8 +98,11 @@ public class Mine {
 		
 		if(!validPosition(pos))
 			return false;
-	
 		
+		char item = tab.getPoint(pos.x, pos.y);
+        if(item == Constants.DIAMOND || item == Constants.EMPTY ||
+                        item == Constants.EARTH || item == Constants.OPEN_LIFT)
+                return true;
 		
 		return false;
 	}
@@ -105,7 +112,8 @@ public class Mine {
 		if(pos.x < 1 || pos.y < 1)
 			return false;
 		
-		//TODO: verify max values
+		if(pos.x > tab.getXMax() || pos.y > tab.getYMax())
+			return false;
 		
 		return true;
 	}
