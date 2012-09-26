@@ -123,10 +123,12 @@ public boolean moveObject(int i, int j, int k, int l) {
 		return false;
 	}
 
-
-	
 	public void pickUpDiamond(Player p, int m, int n) {
 		if(map[m][n] == DIAMOND)
 			p.addDiamond();
+	}
+	
+	public void changeTerrain(int x, int y, char to) {
+		map[x][y] = to;
 	}
 }
