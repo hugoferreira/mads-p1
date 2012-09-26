@@ -10,6 +10,7 @@ public class Mine {
 	public Mine(){
 		
 		tab = new Tab();
+		//try
 	}
 
 	/**
