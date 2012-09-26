@@ -1,5 +1,12 @@
-ns-group5/bin
+/ns-group5/bin
+<<<<<<< HEAD
+=======
+*.class
+>>>>>>> 583a1600b0e193014437b36ec1a5160048292c35
 
-ns-group5/bin/Main.class
-
-ns-group5/bin/MineTest.class
+/ns-group5/bin
+=======
+ns-group5/bin/Mine.class
+>>>>>>> 7c1c79ce322c3964281592d6bab2e716348912cc
+/ns-group5/bin
+bin

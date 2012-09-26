@@ -39,13 +39,12 @@ public class MineTest {
 
 	@Test
 	public void testMove() {
-		String mine = "######\n#. *R#\n#  x.#\n#x * #\nL  .x#\n######";
-
+		String mine = "######\n#.  R#\n#  x.#\n#x * #\nL  .x#\n######";
 		Mine m = new Mine(mine);
 		
-		fail("Not yet implemented");
+		m.move('l');
 		
-		
+		assertEquals(m.toString(), "######\n#. R #\n#  x.#\n#x * #\nL  .x#\n######");
 	}
 
 	@Test
@@ -54,12 +53,12 @@ public class MineTest {
 
 		Mine m = new Mine(mine);
 		
-		assertEquals(m.getCell(1,1), '*');
-		assertEquals(m.getCell(2,1), ' ');
+		assertEquals(Character.toString(m.getCell(1,1)), "*");
+		assertEquals(Character.toString(m.getCell(2,1)), " ");
 		m.updateMap();
 		
-		assertEquals(m.getCell(1,1), ' ');
-		assertEquals(m.getCell(2,1), '*');
+		assertEquals(Character.toString(m.getCell(1,1)), " ");
+		assertEquals(Character.toString(m.getCell(2,1)), "*");
 	}
 
 	@Test
