@@ -20,8 +20,12 @@ public class Main {
 			mine.print();
 			
 			// ask user for a command
-			//String command = scanner.nextLine();
-			//mine.move(command.)
+			String command = scanner.nextLine();
+			if (!(command.toLowerCase().charAt(0) == 'w')) {
+				if (!mine.move(command.charAt(0))) {
+					System.out.println("Invalid Command");
+				}
+			}
 			
 			// update map
 			mine.updateMap();

@@ -96,7 +96,6 @@ public class Mine {
 		return true;
 	}
 	
-	
 	public void updateMap() {
 		
 	}
