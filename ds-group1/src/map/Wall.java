@@ -1,6 +1,6 @@
 package map;
 
-public class Wall implements Cell{
+public class Wall implements Cell, Cloneable {
 	
 	public static char IDENTIFIER = '#';
 	

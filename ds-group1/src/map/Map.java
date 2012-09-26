@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Map {
+public class Map implements Cloneable {
 
 	private ArrayList<ArrayList<Cell>> map;
 	private int diamonds = 0;
@@ -149,7 +149,7 @@ public class Map {
 	public boolean makeMove(String direction) throws EndOfMapException{
 		
 		Point robotPosition = getRobotPosition();
-		Robot robot = (Robot)getXY(robotPosition.x, robotPosition.y);
+		Robot robot = (Robot)getXY(robotPosition.x+1, robotPosition.y+1);
 		
 		Point destination = null;
 		
