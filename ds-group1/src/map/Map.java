@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Map {
 
@@ -38,7 +39,6 @@ public class Map {
 	}
 	
 	public int getHeight() {
-		
 		return map.size();
 	}
 	
@@ -229,5 +229,16 @@ public class Map {
 	protected Object clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
 		return super.clone();
+	}
+	
+	public LinkedList<Point> getFromMap(Object classe){
+		LinkedList<Point> temp = new LinkedList<Point>()))
+		for(int i = 0; i < map.size(); i++){
+			for(int j = 0; j < map.get(i).size(); j++){
+				if(map.get(i).get(j) instanceof classe){
+					
+				}
+			}
+		}
 	}
 }
