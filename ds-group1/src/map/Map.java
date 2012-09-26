@@ -317,4 +317,16 @@ public class Map implements Cloneable {
 		}
 		return temp;
 	}
+	
+	public LinkedList<Point> getOpenLifts(){
+		LinkedList<Point> temp = new LinkedList<Point>();
+		
+		for(int y = 1; y <= getHeight(); y++){
+			for(int x = 1; x <= getWidth(); x++){
+				if(getXY(x, y) instanceof OpenLift)
+					temp.add(new Point(x, y));
+			}
+		}
+		return temp;
+	}
 }
