@@ -45,7 +45,7 @@ The use of the following tools are compulsory for all groups:
 * Continuous Integration: [Travis](http://about.travis-ci.org/docs/user/languages/java/) with [Github Integration](http://about.travis-ci.org/docs/user/getting-started/)
 * Operating System: Any
 
-The github project **should be initialized as a fork of this project** (yes, the one you're reading). One member of the group should click the button (on the top right) that says "Fork". Then, choose your group folder and start developing there. **Do not make pull requests until after midnight**. After all merge requests, this repository will act as a unified host to all projects.
+The github project [should be initialized as a fork of this project](https://help.github.com/articles/fork-a-repo) (yes, the one you're reading). One member of the group should click the button (on the top right) that says "Fork". Then, choose your group folder and start developing there. **Do not make pull requests until after midnight**. After all merge requests, this repository will act as a unified host to all projects.
 
 If you don't know how to use git, you can download the excellent github graphical utilities:
 
