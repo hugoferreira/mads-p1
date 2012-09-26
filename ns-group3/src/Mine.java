@@ -38,7 +38,7 @@ public class Mine {
 	}
 	
 
-	public boolean robotMove(Point pos, char move){
+	public void robotMove(Point pos, char move){
 		
 		Point new_pos = (Point) pos.clone();
 		switch(move){
@@ -56,16 +56,13 @@ public class Mine {
 				new_pos.y--;
 				break;
 			default:
-				return false;
+				break;
 				
 		}
 		
-		if(!validateMove(new_pos))
-			return false;
-		else{
-			
+		if(validateMove(new_pos) && !pos.equals(new_pos)){
+
 			//TODO: change robots position in tab object
-			return true;
 		}
 	}
 	
