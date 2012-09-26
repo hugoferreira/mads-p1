@@ -9,4 +9,8 @@ public class Tab {
 		Point position = new Point(x, y);
 		map.put(position, f);
 	}
+	
+	public HashMap<Point, Character> getmap(){
+		return map;
+	}
 }
