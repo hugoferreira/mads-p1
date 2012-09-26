@@ -19,7 +19,7 @@ public class Map {
 		
 		String line = null;
 		try {
-			int x, y = 0;
+			int x = 0, y = 0;
 			while((line = in.readLine()) != null){
 				char[] lineChars = line.toCharArray();
 				y = 0;
