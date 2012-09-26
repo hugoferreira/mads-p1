@@ -87,6 +87,14 @@ public class Mine {
 		return false;
 	}
 	
+	public boolean move(int line, int col) {
+		
+		Position currentPosition = getRobotPosition();
+		setCell(currentPosition.y, currentPosition.x, ' ');
+		setCell(line, col, 'R');
+		
+		return true;
+	}
 	
 	
 	public void updateMap() {
