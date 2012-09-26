@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import com.sun.corba.se.impl.orbutil.closure.Constant;
-
 
 public class Mine {
 	
@@ -23,20 +21,43 @@ public class Mine {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
-		
+		print_menu();
 		while(true){ // verify if there are still diamons left
 			
+			
+			//tab.printTab();
+			System.out.println();
 			System.out.print("Direction to move:");
 			// wait for input
 			Scanner scan = new Scanner (System.in);
 			char userInput = scan.next().charAt(0);
 			
-			//TODO: robot's movement
+			if(!checkValid(userInput))
+				continue;
 			
-			//TODO: tab update
+			// robot's movement
+			
+			// tab update
 			
 			
 		}
+	}
+	
+	public static boolean checkValid(char c){
+		
+		char opt = Character.toLowerCase(c);
+		if(opt!=Constants.UP && opt!=Constants.DOWN && 
+				opt!=Constants.LEFT && opt!=Constants.RIGHT && 
+				opt!=Constants.WAIT)
+			return false;
+		
+		return true;
+	}
+	
+	public static void print_menu(){
+		System.out.println("*************");
+		System.out.println("* NS-GROUP3 *");
+		System.out.println("*************");
 	}
 	
 
@@ -72,11 +93,8 @@ public class Mine {
 		
 		if(!validPosition(pos))
 			return false;
+	
 		
-		char item = tab.getPoint(pos.x, pos.y);
-		if(item == Constants.DIAMOND || item == Constants.EMPTY ||
-				item == Constants.EARTH || item == Constants.OPEN_LIFT)
-			return true;
 		
 		return false;
 	}
