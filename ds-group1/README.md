@@ -1,4 +1,4 @@
-Your project should go into this folder.
+Membros do grupo:
 
 Bruno Nova - ei08109
 Francisca Teixeira - ei09139
