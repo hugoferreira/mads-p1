@@ -21,21 +21,22 @@ public class Map {
 	}
 	
 	public Cell getXY(int x, int y){
-		return map.get(x - 1).get(y - 1);
+		return map.get(y - 1).get(x - 1);
 	}
 	
 	public Cell setXY(int x, int y, Cell cell){
-		return map.get(x - 1).set(y - 1, cell);
+		return map.get(y - 1).set(x - 1, cell);
 	}
 	
 	public int getWidth() {
-		if(map.isEmpty())
+		if(map.isEmpty()){
 			return 0;
-		else
+		}else
 			return map.get(0).size();
 	}
 	
 	public int getHeight() {
+		
 		return map.size();
 	}
 	
@@ -53,8 +54,8 @@ public class Map {
 			e.printStackTrace();
 		}
 		
-		for(int i = maporig.size() - 1; i >= 0; i--){
-			int x = 0;
+		int x = 0;
+		for(int i = maporig.size() - 1; i >= 0; i--){	
 			map.add(new ArrayList<Cell>());
 			
 			char[] lineChars = maporig.get(i).toCharArray();

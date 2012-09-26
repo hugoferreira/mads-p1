@@ -54,7 +54,7 @@ public class Main {
 				Scanner in = new Scanner(System.in);
 			    String input = in.nextLine();
 
-			    valid_move = map.validate(input);
+			    //valid_move = map.validate(input);
 				if (!valid_move) {
 					System.out.println("Invalid move");
 				}
