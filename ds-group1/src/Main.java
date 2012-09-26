@@ -131,9 +131,9 @@ public class Main {
 				map.makeMove(input);
 				map.update();
 			} catch (EndOfMapException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			} catch (RobotDestroyedException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			robotPosition = point;
 			
@@ -246,7 +246,7 @@ public class Main {
 			// TODO
 		}
 		catch (EndOfMapException e) {
-			System.out.println("You finished the map!");
+			System.out.println(e.getMessage());
 			return false;
 		}
 		catch (RobotDestroyedException e) {
