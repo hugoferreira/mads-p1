@@ -116,21 +116,35 @@ public class Mine {
 	 */
 	public boolean move(int line, int col) {
 		Position currentPosition = getRobotPosition();
-		char z = '#';
+		char next = '#';
 		
 		// verifica se se vai mover para fora das array lists	
 		try {
 			getCell(currentPosition.x, currentPosition.y);
-			z = getCell(currentPosition.x + line, currentPosition.y + col);
+			next = getCell(currentPosition.x + line, currentPosition.y + col);
 		} catch (IndexOutOfBoundsException e){
 			return false;
 		}
 		
-		z = Character.toLowerCase(z);
+		next = Character.toLowerCase(next);
 		
-		if(z == 'x')
+		if(next == 'x'){
+			//incrementa os diamantes
 			diamonds++;
-		else if(!(z == ' ' || z == '.' || z== ' '))
+		} else if ( next == '*'){
+			//verifica se pode impurrar a pedra
+			char rockNext = '#';
+			try {
+				rockNext = getCell(currentPosition.x + 2 * line, currentPosition.y + 2 * col);
+			} catch (IndexOutOfBoundsException e){
+				return false;
+			}
+			if(rockNext != ' ')
+				return false;
+			
+			setCell(currentPosition.x + 2 * line, currentPosition.y + 2 * col, '*');
+			
+		} else if(!(next == ' ' || next == '.' || next== ' '))
 			return false;
 		
 		//se o movimento for valido executa-o!
