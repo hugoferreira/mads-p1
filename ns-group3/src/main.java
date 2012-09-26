@@ -6,7 +6,7 @@ public class main {
 	 */
 	public static void main(String[] args) {
 		Tab tab = new Tab();
-		tab.readFromFile("example2.map");
+		tab.readFromFile("example1.map");
 		Mine mine = new Mine(tab);
 		return;
 	}
