@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 public class Main {
 	
+<<<<<<< HEAD
 	public static Mine mine = new Mine(new File("example1.map"));
+=======
+	public static Mine mine = new Mine("######\n#. *R#\n#  x.#\n#x * #\nL  .x#\n######");
+>>>>>>> 7b42250f5796139b45febb55ef4f15cf7f22e444
 	public static Scanner scanner = new Scanner(System.in);
 	
 	/**
