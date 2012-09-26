@@ -13,8 +13,9 @@ public class Map {
 	/**
 	 * Constructor
 	 * @param path Path to filename
+	 * @throws FileNotFoundException 
 	 */
-	public Map(String path) {
+	public Map(String path) throws FileNotFoundException {
 		this.load(path);
 	}
 	
