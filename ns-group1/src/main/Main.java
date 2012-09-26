@@ -15,7 +15,6 @@ public class Main {
 		Map m = new Map();
 		m.readMap("textfile.txt");
 		Pair<Integer, Integer> player = m.getPlayer();
-		Pair<Integer, Integer> lift = m.getLift();
 		Player p = new Player(player.getSecond(), player.getFirst());
 		m.readMap("textfile.txt");
 		
