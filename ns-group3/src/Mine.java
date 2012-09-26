@@ -37,6 +37,36 @@ public class Mine {
 		return false;
 	}
 	
+	public boolean validateMove(Point pos, char move){
+		
+		switch(move){
+		
+			case 'l':
+				break;
+			case 'r':
+				break;
+			case 'u':
+				break;
+			case 'd':
+				break;
+			default:
+				return false;
+				
+		}
+		
+		return false;
+	}
+	
+	public boolean validPosition(Point pos){
+		
+		if(pos.x < 1 || pos.y < 1)
+			return false;
+		
+		// verify max values
+		
+		return true;
+	}
+	
 	/**
 	 * @param args
 	 * @throws IOException 
