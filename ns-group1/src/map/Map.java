@@ -22,6 +22,7 @@ public class Map {
 	private boolean dead = false;
 	private boolean end = false;
 	private int diamonds = 0;
+	private boolean emptySpace = false;
 	private ArrayList<Pair> visitedRocks = new ArrayList<Pair>();
 	
 	public void readMap(String filename) {
@@ -112,13 +113,16 @@ public boolean moveObject(int i, int j, int k, int l) {
 				Pair<Integer, Integer> p = new Pair<Integer, Integer>(k,l);
 				visitedRocks.add(p);
 			}
+			if(map[i][j] == PLAYER && map[k][l] == EMPTY)
+				emptySpace = true;
+			
 			map[k][l] = map[i][j];
 			map[i][j] = ' ';
 			
 			return true;
 		}
+		emptySpace = true;
 		return false;
-		
 	}
 
 	private boolean checkValidPosition(int i, int j, int k, int l) {
@@ -131,15 +135,21 @@ public boolean moveObject(int i, int j, int k, int l) {
 			if(map[k][l]== WALL || map[k][l] == LIFT)
 				return false;
 			if(map[k][l] == ROCK){
-				if(map[k+(k-i)][l+(l-j)]== EMPTY)
+				if(map[k+(k-i)][l+(l-j)]== EMPTY) {
 					moveObject(k,l,k+(k-i),l+(l-j));
 					processRock(k+(k-i), l+(l-j));
 					return true;		
+				}
+				else return false;
 			}
 			if(map[k][l] == LIFTO) {
 				end = true;
 				return true;
 			}
+			
+			if(k == i+1 && map[i-1][j] == ROCK && map[i+1][j] == EMPTY)
+				dead = true;
+			
 			return true;
 		case ROCK : 
 			if(map[k][l] == EMPTY)
@@ -183,8 +193,12 @@ public boolean moveObject(int i, int j, int k, int l) {
 			else if(map[y+1][x] == ROCK)
 				map[y][x] = ' ';
 		}
-		else if(map[y+1][x] == PLAYER)
+		else if(map[y+1][x] == PLAYER && emptySpace) 
 			dead = true;
+	}
+	
+	public void cleanEmptySpaceStatus() {
+		emptySpace = false;
 	}
 	
 	public Pair<Integer, Integer> getPlayer() {
