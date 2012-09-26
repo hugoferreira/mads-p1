@@ -1,7 +1,10 @@
 import java.util.Scanner;
 import java.util.Stack;
 import java.io.FileNotFoundException;
+
+import map.EndOfMapException;
 import map.Map;
+import map.RobotDestroyedException;
 
 public class Main {
 
@@ -110,6 +113,14 @@ public class Main {
 			 */
 			map.update();
 			// TODO
+		}
+		catch (EndOfMapException e) {
+			System.out.println("You finished the map!");
+			return false;
+		}
+		catch (RobotDestroyedException e) {
+			System.out.println("Your robot was destroyed!");
+			return false;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
