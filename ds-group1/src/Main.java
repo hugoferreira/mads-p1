@@ -21,7 +21,7 @@ public class Main {
 		/*
 		 * Create Map
 		 */
-		map = new Map(INPUT_FILE);
+		//map = new Map(INPUT_FILE);
 		
 		/*
 		 * Start the game cycle
@@ -35,7 +35,7 @@ public class Main {
 			/*
 			 * Validate move and do it
 			 */
-			map.validate();
+			//map.validate();
 			
 			/*
 			 * Update map

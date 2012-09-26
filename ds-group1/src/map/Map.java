@@ -10,21 +10,14 @@ public class Map {
 
 	private ArrayList<ArrayList<Cell>> map;
 	
-<<<<<<< HEAD
-	public Map(int sizex, int sizey){
-		map = new ArrayList<ArrayList<Cell>>(sizex);
-		for(int i = 0; i < sizex; i++){
-			map.set(i, new ArrayList<Cell>(sizey));
-		}
-=======
 	/**
 	 * Constructor
 	 * @param path Path to filename
 	 * @throws FileNotFoundException 
 	 */
 	public Map(String path) throws FileNotFoundException {
+		map = new ArrayList<ArrayList<Cell>>();
 		this.load(path);
->>>>>>> e3db20f42b525419da7da25491e48847af1a16c5
 	}
 	
 	public Cell getXY(int x, int y){
