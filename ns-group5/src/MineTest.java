@@ -43,14 +43,23 @@ public class MineTest {
 
 		Mine m = new Mine(mine);
 		
-	
+		fail("Not yet implemented");
 		
 		
 	}
 
 	@Test
 	public void testUpdateMap() {
-		fail("Not yet implemented");
+		String mine = "###\n#*#\n# #\n###";
+
+		Mine m = new Mine(mine);
+		
+		assertEquals(m.getCell(1,1), '*');
+		assertEquals(m.getCell(2,1), ' ');
+		m.updateMap();
+		
+		assertEquals(m.getCell(1,1), ' ');
+		assertEquals(m.getCell(2,1), '*');
 	}
 
 	@Test
