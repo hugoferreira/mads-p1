@@ -78,4 +78,31 @@ public class Map {
 		this.m = m;
 	}
 
+	public void moveObject(int i, int j, int k, int l) {
+		
+		if(checkValidPosition(i,j,k,l)){
+			map[k][l] = map[i][j];
+			map[i][j] = ' ';
+		}
+		
+	}
+
+	private boolean checkValidPosition(int i, int j, int k, int l) {
+	
+		if(k-i != 1 || l-j != 1)
+			return false;
+		char thing = map[i][j];
+		switch(thing){
+		case 'R' : 
+			if(map[k][l]== '#' || map[k][l] == '*')
+				return false;
+			return true;
+		case '*' : 
+			if(map[k][l] == ' ')
+				return true;
+			return false;
+		}
+		return false;
+	}
+
 }
