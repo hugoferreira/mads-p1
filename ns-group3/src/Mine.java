@@ -2,6 +2,8 @@ import java.awt.Point;
 import java.io.IOException;
 import java.util.Scanner;
 
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+
 
 public class Mine {
 	
@@ -27,9 +29,9 @@ public class Mine {
 			Scanner scan = new Scanner (System.in);
 			char userInput = scan.next().charAt(0);
 			
-			// robot's movement
+			//TODO: robot's movement
 			
-			// tab update
+			//TODO: tab update
 			
 			
 		}
@@ -58,15 +60,24 @@ public class Mine {
 				
 		}
 		
-		return false;
+		if(!validateMove(new_pos))
+			return false;
+		else{
+			
+			//TODO: change robots position in tab object
+			return true;
+		}
 	}
 	
 	public boolean validateMove(Point pos){
 		
 		if(!validPosition(pos))
 			return false;
-	
 		
+		char item = tab.getPoint(pos.x, pos.y);
+		if(item == Constants.DIAMOND || item == Constants.EMPTY ||
+				item == Constants.EARTH || item == Constants.OPEN_LIFT)
+			return true;
 		
 		return false;
 	}
