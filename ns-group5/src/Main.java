@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
 	
-	public static Mine mine = new Mine("");
+	public static Mine mine = new Mine("######\n#. *R#\n#  x.#\n#x * #\nL  .x#\n######");
 	public static Scanner scanner = new Scanner(System.in);
 	
 	/**
