@@ -5,25 +5,26 @@ import java.util.Scanner;
 
 public class Mine {
 	
-	private static Tab tab;
+	private Tab tab;
 	
-	public Mine(){
+	public Mine(Tab tab_incoming){
 		
-		tab = new Tab();
+		tab = tab_incoming;
+		cycle();
 	}
 
 	/**
 	 * @param args
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public void cycle(){
 		// TODO Auto-generated method stub
 
 		print_menu();
 		while(true){ // verify if there are still diamons left
 			
 			
-			//tab.printTab();
+			tab.printTab();
 			System.out.println();
 			System.out.print("Direction to move:");
 			// wait for input
