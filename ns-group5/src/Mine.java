@@ -75,12 +75,11 @@ public class Mine {
 	
 	
 	public char getCell(int line, int col) {
-		return '0';
-		
+		return (map.get(line)).get(col);
 	}
 	
-	public boolean setCell(int n, int m, Character c) {
-		return false;
+	public void setCell(int n, int m, Character c) {
+		map.get(n).set(m, c);
 		
 	}
 	
@@ -127,7 +126,14 @@ public class Mine {
 	}
 	
 	public void updateMap() {
-		
+		for(int i = 0 ; i < map.size(); i++) {
+			for(int j = map.get(i).size() - 1; j >= 0; j--) {
+				if(getCell(i, j) == '*' && getCell(i, j+1) == ' ') {
+					setCell(i, j, ' ');
+					setCell(i, j+1, '*');
+				}
+			}
+		}
 	}
 	
 	public boolean levelUp() {
