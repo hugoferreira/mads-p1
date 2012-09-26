@@ -147,8 +147,7 @@ public class Mine {
 					
 					Point new_pos = new Point();
 					
-					if(validPosition(new Point(i,j-1)) && (tab.getPoint(i,j-1) == Constants.EMPTY
-							|| tab.getPoint(i,j-1) == Constants.ROBOT)){
+					if(validPosition(new Point(i,j-1)) && tab.getPoint(i,j-1) == Constants.EMPTY){
 
 						tab.change(i,j, Constants.EMPTY);
 						tab.change(i, j-1, Constants.ROCK);
@@ -158,7 +157,7 @@ public class Mine {
 					else if(tab.getPoint(i,j-1) == Constants.ROCK || tab.getPoint(i,j-1) == Constants.DIAMOND){
 						
 						if(validPosition(new Point(i+1,j-1)) && tab.getPoint(i+1,j) == Constants.EMPTY
-								&& (tab.getPoint(i+1,j-1) == Constants.EMPTY || tab.getPoint(i+1,j-1) == Constants.ROBOT)){
+								&& tab.getPoint(i+1,j-1) == Constants.EMPTY){
 
 							tab.change(i,j, Constants.EMPTY);
 							tab.change(i+1, j-1, Constants.ROCK);
@@ -166,7 +165,7 @@ public class Mine {
 							new_pos.y = j-1;
 						}
 						else if(validPosition(new Point(i-1,j-1)) && tab.getPoint(i-1,j) == Constants.EMPTY
-								&& (tab.getPoint(i-1,j-1) == Constants.EMPTY  || tab.getPoint(i-1,j-1) == Constants.ROBOT)){
+								&& tab.getPoint(i-1,j-1) == Constants.EMPTY){
 
 							tab.change(i,j, Constants.EMPTY);
 							tab.change(i-1, j-1, Constants.ROCK);
