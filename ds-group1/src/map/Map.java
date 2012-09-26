@@ -98,7 +98,7 @@ public class Map {
 	}
 	
 	public void update() throws RobotDestroyedException {
-		for(int y = 1; y <= getHeight(); y++)
+		for(int y = 1; y <= getHeight(); y++){
 			for(int x = 1; x <= getWidth(); x++) {
 				Cell cell = getXY(x, y);
 				
@@ -132,6 +132,12 @@ public class Map {
 					}
 				}
 			}
+		}
+		
+		//If there are no diamonds, open lifts
+		if(noDiamonds()){
+			OpenLifts();
+		}
 	}
 
 	public String print() {
@@ -148,9 +154,10 @@ public class Map {
 		return output;
 	}
 	
-	public boolean makeMove(String direction){
+	public boolean makeMove(String direction) throws EndOfMapException{
 		
 		Point robotPosition = getRobotPosition();
+		Robot robot = (Robot)getXY(robotPosition.x, robotPosition.y);
 		
 		Point destination = null;
 		
@@ -177,23 +184,26 @@ public class Map {
 		
 		if(object instanceof OpenLift){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
-			return true;
+			throw new EndOfMapException("Congratulations, map concluded!");
 			// mudar de mapa
 		}
 		else if(object instanceof Earth){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
-			map.get(destination.y).set(destination.x, new Robot());
+			map.get(destination.y).set(destination.x, robot);
 			return true;
 		}
 		else if(object instanceof Diamond){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
-			map.get(destination.y).set(destination.x, new Robot());
-			//TODO somar diamante
+			map.get(destination.y).set(destination.x, robot);
+			
+			robot.addDiamond();
+			diamonds--;
+			
 			return true;
 		}
 		else if(object instanceof Empty){
 			map.get(robotPosition.y).set(robotPosition.x, new Empty());
-			map.get(destination.y).set(destination.x, new Robot());
+			map.get(destination.y).set(destination.x, robot);
 			//efectuar movimento
 			return true;
 		}
@@ -201,8 +211,17 @@ public class Map {
 		return false;
 	}
 	
-	private void ClosedToOpenLifts(){
-		
+	public boolean noDiamonds(){
+		return diamonds == 0;
+	}
+	
+	private void OpenLifts(){
+		for(int i = 0; i < map.size(); i++){
+			for(int j = 0; i < map.get(i).size(); j++){
+				if(map.get(i).get(j) instanceof ClosedLift)
+					map.get(i).set(j, new OpenLift());
+			}
+		}
 	}
 
 	private Point getRobotPosition(){
@@ -215,8 +234,16 @@ public class Map {
 	}
 	
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
+	public Object clone() throws CloneNotSupportedException {
+		Map result = (Map)super.clone();
+		result.map = new ArrayList<ArrayList<Cell>>();
+		for(int i = 0; i < map.size(); i++) {
+			ArrayList<Cell> line = new ArrayList<Cell>();
+			for(int j = 0; j < map.get(i).size(); j++) {
+				line.add((Cell)map.get(i).get(j).clone());
+			}
+			result.map.add(line);
+		}
+		return result;
 	}
 }

@@ -9,6 +9,11 @@ public class Rock implements Cell{
 		return "*";
 	}
 	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
 	public boolean isFalling() {
 		return falling;
 	}
