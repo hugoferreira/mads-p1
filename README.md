@@ -12,7 +12,7 @@ Note, however, that the surveying technology is probably not perfect. It is poss
 
 # Schedule
 
-This exercise takes place at room B215, with the following distribution:
+This exercise takes place at room [B215](https://sigarra.up.pt/feup/SALAS_GERAL.FormView?P_EDIFICIO=B&P_SALA=215), with the following distribution:
 
 * Day Shift Groups (14h30 - 22h)
 ```
