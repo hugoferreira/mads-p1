@@ -23,6 +23,7 @@ public class Main {
 	private Stack<Map> map_stack;
 
 	public Main() {
+		map_stack = new Stack<Map>();
 		/*
 		 * Create Map
 		 */
@@ -67,7 +68,7 @@ public class Main {
 			/*
 			 * Save map
 			 */
-			map_stack.push(map);
+			//map_stack.push(map);
 			
 		} while (valid_step);
 		
@@ -84,7 +85,7 @@ public class Main {
 			Scanner in = new Scanner(System.in);
 		    String input = in.nextLine();
 
-		    valid_move = map.validate(input);
+		    valid_move = map.makeMove(input);
 			if (!valid_move) {
 				System.out.println("Invalid move");
 			}
