@@ -64,9 +64,10 @@ public class Tab {
 		
 	}
 	public void redo(){
+		System.out.println("REDO!" + actualState + "  -  "+queue.size());
 		if(actualState<queue.size()-1){
 			actualState++;
-			map=queue.get(actualState);
+			map=new HashMap<Point, Character>(queue.get(actualState));
 			updateRobotAndDiamonds();
 		}
 	}
@@ -154,7 +155,8 @@ public class Tab {
 			System.out.println("Error: " + e.getMessage());
 		}
 		
-		queue.add(new HashMap<Point, Character>(map));
+		HashMap<Point, Character> map2 = new HashMap<Point, Character>(map);
+		queue.add(map2);
 		actualState=0;
 			  
 	}
