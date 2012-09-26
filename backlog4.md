@@ -8,7 +8,7 @@ A new study promoted by the government shows that mining robots consume a lot of
 * 1 point lost for every move made
 * 50 extra points per diamond collected on reaching the open lift (`O`)
 
-This also means that the Robot can choose not to take all the diamonds before taking them to the lift. To issue that preference, a new command (`A`) Aborts the diamond-finding activity, but preserves the score so far.
+This also means that the Robot can choose not to take all the diamonds before taking them to the lift. To issue that preference, a new command (`A`) Aborts the diamond-finding activity, but preserves the score so far. Once an Abort ('A') is issued, the mining activity is over, and the Robot will ignore further commands.
 
 ## 2. "Finding the Best Contractor"
 
