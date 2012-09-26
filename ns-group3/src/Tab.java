@@ -20,6 +20,18 @@ public class Tab {
 			robotPos = position;
 			if(getPoint(x,y)==Constants.DIAMOND)
 				nDiam--;
+			//still needs to be tested
+			if(getPoint(x,y)==Constants.ROCK){
+				if(x > robotPos.x){
+					if(((x+1) <= Xmax) && getPoint(x+1,y)==Constants.EMPTY)
+						map.put(new Point(x+1,y), '*');
+				}
+				if(x < robotPos.x){
+					if(((x+1) > 1) && getPoint(x-1,y)==Constants.EMPTY)
+						map.put(new Point(x-1,y), '*');
+				}
+			}
+				
 		}
 		map.put(position, f);
 	}
