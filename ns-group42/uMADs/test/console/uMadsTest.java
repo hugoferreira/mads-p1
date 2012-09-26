@@ -1,4 +1,4 @@
-package tests.console;
+package console;
 
 import console.uMads;
 import org.junit.AfterClass;
