@@ -83,26 +83,30 @@ public class Main {
 	}
 	
 	private boolean execute_step() {
-		/*
-		 * Ask user to show and validate the move
-		 */
-		boolean valid_move = true; 
-		do {
-			System.out.print("Action?");
-			Scanner in = new Scanner(System.in);
-		    String input = in.nextLine();
-
-		    valid_move = map.makeMove(input);
-			if (!valid_move) {
-				System.out.println("Invalid move");
-			}
-			
-		} while(!valid_move);
 		
-		/*
-		 * Update map
-		 */
-		try {
+		try {		
+			
+			/*
+			 * Ask user to show and validate the move
+			 */
+			boolean valid_move = true; 
+			
+			do {
+				System.out.print("Action?");
+				Scanner in = new Scanner(System.in);
+			    String input = in.nextLine();
+	
+			    valid_move = map.makeMove(input);
+				if (!valid_move) {
+					System.out.println("Invalid move");
+				}
+				
+			} while(!valid_move);
+			
+			
+			/*
+			 * Update map
+			 */
 			map.update();
 			// TODO
 		}
