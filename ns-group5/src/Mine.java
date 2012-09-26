@@ -141,8 +141,8 @@ public class Mine {
 	}
 	
 	public void updateMap() {
-		for(int i = 0 ; i < map.size(); i++) {
-			for(int j = map.get(i).size() - 1; j >= 0; j--) {
+		for(int i = map.size() - 1 ; i >= 0; i--) {
+			for(int j = 0; j < map.get(i).size(); j++) {
 				if(getCell(i, j) == '*' && getCell(i+1, j) == ' ') {
 					setCell(i, j, ' ');
 					setCell(i+1, j, '*');
@@ -210,6 +210,4 @@ public class Mine {
 			this.y = y;
 		}
 	}
-	
-	// TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 }
