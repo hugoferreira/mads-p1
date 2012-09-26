@@ -11,6 +11,7 @@ public class Tab {
 	private int Ymax;
 	public int nDiam;
 	public Point robotPos;
+	public Point lPos;
 	
 	public void change(int x, int y, char f){
 		Point position = new Point(x, y);
@@ -76,6 +77,9 @@ public class Tab {
 				{
 					if(lines[lineCounter-i].charAt(j-1)==Constants.DIAMOND)
 						nDiam++;
+					
+					if(lines[lineCounter-i].charAt(j-1)==Constants.CLOSED_LIFT)
+						lPos=new Point(j,i);
 					
 					if(lines[lineCounter-i].charAt(j-1)==Constants.ROBOT)
 						robotPos=new Point(j,i);
