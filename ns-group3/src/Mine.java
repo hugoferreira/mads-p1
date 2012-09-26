@@ -60,7 +60,13 @@ public class Mine {
 				
 		}
 		
-		return false;
+		if(!validateMove(new_pos))
+			return false;
+		else{
+			
+			//TODO: change robots position in tab object
+			return true;
+		}
 	}
 	
 	public boolean validateMove(Point pos){
