@@ -20,7 +20,6 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hello World!");
 		@SuppressWarnings("unused")
 		Main main = new Main();
 	}
@@ -125,7 +124,7 @@ public class Main {
 		String path_str = ""; 
 		for (Point point : path) {
 			String input = AutoPilot.getDirection(robotPosition, point);
-			path_str += input + ", ";
+			path_str += input + "";
 			
 			try {
 				map.makeMove(input);
