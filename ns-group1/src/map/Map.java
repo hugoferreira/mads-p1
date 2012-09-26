@@ -5,8 +5,10 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Map {
+	
 	
 	private static final char PLAYER = 'R';
 	private static final char ROCK = '*';
@@ -19,7 +21,31 @@ public class Map {
 	private Pair<Integer, Integer> lift;
 	private char DIAMOND = 'x';
 	private ArrayList<Pair> visitedRocks;
+	public Stack<Pair<Map, Player>> back = new Stack<Pair<Map, Player>>();
+	public Stack<Pair<Map, Player>> forward = new Stack<Pair<Map, Player>>();
 	
+	public Map(Map oldMap){
+		
+		this.back = (Stack<Pair<Map, Player>>) oldMap.back.clone();
+		this.forward = (Stack<Pair<Map, Player>>) oldMap.forward.clone();
+		
+		this.lift = oldMap.lift;
+		this.m = oldMap.getM();
+		this.n = oldMap.getN();
+		this.map = new char[n][m];
+		for(int i = 0; i<n; i++)
+			for(int j=0;j<m;j++)
+				map[i][j]=oldMap.getMap()[i][j];
+				
+	
+		
+		
+	}
+	
+	public Map() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void readMap(String filename) {
 		
 		try{

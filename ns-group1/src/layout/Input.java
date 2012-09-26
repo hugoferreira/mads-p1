@@ -11,6 +11,8 @@ public class Input {
 	public static final int RIGHT = 2;
 	public static final int DOWN = 3;
 	public static final int WAIT = 4;
+	public static final int UNDO = 5;
+	public static final int REDO = 6;
 	public static final int INVALID_MOVE = -1;
 	
 	// AVAILABLE KEYBOARD KEYS
@@ -19,6 +21,8 @@ public class Input {
 	public static String RIGHT_KEY = "r";
 	public static String DOWN_KEY = "d";
 	public static String WAIT_KEY = "w";
+	public static String UNDO_KEY = "z";
+	public static String REDO_KEY = "x";
 	
 	// READS INPUT FROM KEYBOARD AND RETURNS KEY CODE
 	public static int checkInput()
@@ -34,6 +38,10 @@ public class Input {
 			return DOWN;
 		else if(input.equals(WAIT_KEY))
 			return WAIT;
+		else if(input.equals(UNDO_KEY))
+			return UNDO;
+		else if(input.equals(REDO_KEY))
+			return REDO;
 		
 		return INVALID_MOVE;	
 	}
