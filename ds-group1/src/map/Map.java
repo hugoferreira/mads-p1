@@ -97,19 +97,30 @@ public class Map {
 		}
 	}
 	
-	public void update() {
+	public void update() throws RobotDestroyedException {
 		for(int y = 1; y <= getHeight(); y++)
 			for(int x = 1; x <= getWidth(); x++) {
 				Cell cell = getXY(x, y);
 				
 				if(cell instanceof Rock && y > 1) {
+					Rock rock = (Rock)cell;
 					Cell below = getXY(x, y - 1);
-					if(below instanceof Empty) { // rocha cai
-						setXY(x, y - 1, cell);
-						setXY(x, y, new Empty());
+					if(below instanceof Empty) { // the rock falls
+						setXY(x, y - 1, rock);
+						setXY(x, y, below);
+						rock.setFalling(true);
 					}
-					else if(below instanceof Robot) { // robô destruido
-						
+					else if(below instanceof Robot && rock.isFalling()) { // robot destroyed
+						throw new RobotDestroyedException("The robot was destroyed!");
+					}
+					else if(below instanceof Rock && y > 1) { // rock can slip
+						if((getXY(x + 1, y) instanceof Empty) && (getXY(x + 1, y - 1) instanceof Empty)) { // slip right
+							// TODO
+						}
+						// TODO
+					}
+					else {
+						rock.setFalling(false);
 					}
 				}
 			}
@@ -206,5 +217,11 @@ public class Map {
 					return new Point(j,i);
 			}
 		return null;
+	}
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
 	}
 }
