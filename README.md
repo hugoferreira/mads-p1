@@ -69,4 +69,9 @@ Groups should edit this file and add their group name, members, and github URL t
 * Team Members:
 * Project (Github) URL:
 
+## Night Shift Group 1
+
+* Team Members: Tiago Babo, Bruno Ferreira, Hélder Moreira, José Pedro Marques
+* Project (Github) URL: https://github.com/tiagobabo/mads-p1.git
+
 ## ...
