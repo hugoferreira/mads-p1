@@ -39,7 +39,6 @@ public class Map implements Cloneable {
 	}
 	
 	public int getHeight() {
-		
 		return map.size();
 	}
 	
@@ -297,5 +296,17 @@ public class Map implements Cloneable {
 			result.map.add(line);
 		}
 		return result;
+	}
+	
+	public LinkedList<Point> getDiamonds(){
+		LinkedList<Point> temp = new LinkedList<Point>();
+		
+		for(int y = 1; y <= getHeight(); y++){
+			for(int x = 1; x <= getWidth(); x++){
+				if(getXY(x, y) instanceof Diamond)
+					temp.add(new Point(x, y));
+			}
+		}
+		return temp;
 	}
 }
