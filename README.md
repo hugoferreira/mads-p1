@@ -61,12 +61,12 @@ Groups should edit this file and add their group name, members, and github URL t
 
 ## Day Shift Group 1
 
-* Team Members:
-* Project (Github) URL:
+* Team Members: 
+* Project (Github) URL: 
 
 ## Day Shift Group 2
 
-* Team Members:
-* Project (Github) URL:
+* Team Members: Ivo Rodrigues, Ruben Veloso, Liliana Vilela e Sofia Rodrigues
+* Project (Github) URL: https://github.com/ruben-veloso/mads-p1
 
 ## ...
