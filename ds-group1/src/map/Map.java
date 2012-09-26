@@ -1,5 +1,6 @@
 package map;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 public class Map {
 
 	private ArrayList<ArrayList<Cell>> map;
+	private int diamonds = 0;
 	
 	/**
 	 * Constructor
@@ -21,21 +23,22 @@ public class Map {
 	}
 	
 	public Cell getXY(int x, int y){
-		return map.get(x - 1).get(y - 1);
+		return map.get(y - 1).get(x - 1);
 	}
 	
 	public Cell setXY(int x, int y, Cell cell){
-		return map.get(x - 1).set(y - 1, cell);
+		return map.get(y - 1).set(x - 1, cell);
 	}
 	
 	public int getWidth() {
-		if(map.isEmpty())
+		if(map.isEmpty()){
 			return 0;
-		else
+		}else
 			return map.get(0).size();
 	}
 	
 	public int getHeight() {
+		
 		return map.size();
 	}
 	
@@ -53,8 +56,8 @@ public class Map {
 			e.printStackTrace();
 		}
 		
-		for(int i = maporig.size() - 1; i >= 0; i--){
-			int x = 0;
+		int x = 0;
+		for(int i = maporig.size() - 1; i >= 0; i--){	
 			map.add(new ArrayList<Cell>());
 			
 			char[] lineChars = maporig.get(i).toCharArray();
@@ -72,6 +75,7 @@ public class Map {
 					break;
 				case 'x':
 					map.get(x).add(new Diamond());
+					diamonds++;
 					break;
 				case 'L':
 					map.get(x).add(new ClosedLift());
@@ -97,8 +101,16 @@ public class Map {
 		for(int y = 1; y <= getHeight(); y++)
 			for(int x = 1; x <= getWidth(); x++) {
 				Cell cell = getXY(x, y);
-				if(cell instanceof map.Rock) {
-					// TODO
+				
+				if(cell instanceof Rock && y > 1) {
+					Cell below = getXY(x, y - 1);
+					if(below instanceof Empty) { // rocha cai
+						setXY(x, y - 1, cell);
+						setXY(x, y, new Empty());
+					}
+					else if(below instanceof Robot) { // robô destruido
+						
+					}
 				}
 			}
 	}
@@ -115,6 +127,72 @@ public class Map {
 		}
 			
 		return output;
+	}
+	
+	public boolean makeMove(String direction){
+		
+		Point robotPosition = getRobotPosition();
+		
+		Point destination = null;
+		
+		switch (direction.toLowerCase()){
+			case "u":
+				destination =  new Point(robotPosition.x, robotPosition.y+1);
+				break;
+			case "l":
+				destination =  new Point(robotPosition.x-1, robotPosition.y);
+				break;
+			case "d":
+				destination =  new Point(robotPosition.x, robotPosition.y-1);
+				break;
+			case "r":
+				destination =  new Point(robotPosition.x+1, robotPosition.y);
+				break;
+			case "w":
+				return true;
+			default:
+				return false;
+		}
+		
+		Cell object = map.get(destination.y).get(destination.x);
+		
+		if(object instanceof OpenLift){
+			map.get(robotPosition.y).set(robotPosition.x, new Empty());
+			return true;
+			// mudar de mapa
+		}
+		else if(object instanceof Earth){
+			map.get(robotPosition.y).set(robotPosition.x, new Empty());
+			map.get(destination.y).set(destination.x, new Robot());
+			return true;
+		}
+		else if(object instanceof Diamond){
+			map.get(robotPosition.y).set(robotPosition.x, new Empty());
+			map.get(destination.y).set(destination.x, new Robot());
+			//TODO somar diamante
+			return true;
+		}
+		else if(object instanceof Empty){
+			map.get(robotPosition.y).set(robotPosition.x, new Empty());
+			map.get(destination.y).set(destination.x, new Robot());
+			//efectuar movimento
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private void ClosedToOpenLifts(){
+		
+	}
+
+	private Point getRobotPosition(){
+		for(int i=0; i < map.size(); i++)
+			for(int j=0; j < map.get(i).size(); j++){
+				if(map.get(i).get(j) instanceof Robot)
+					return new Point(j,i);
+			}
+		return null;
 	}
 	
 	@Override
