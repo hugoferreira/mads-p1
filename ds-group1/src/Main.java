@@ -193,6 +193,10 @@ public class Main {
 			map.update();
 			// TODO
 		}
+		catch(EndOfMapException em){
+			System.out.println(em.getMessage());
+			return false;
+		}
 		catch (Exception e) {
 			e.printStackTrace();
 			return false;
