@@ -93,4 +93,7 @@ Groups should edit this file and add their group name, members, and github URL t
 * Team Members: João Figueiredo ([@lucalanca](https://twitter.com/lucalanca)), Tiago Varela ([@tiagovarela](https://twitter.com/tiagovarela)), Joel Ferreira ([@joelfferreira](https://twitter.com/joelfferreira)), Pedro Pontes ([@pedrotiagopontes](https://twitter.com/pedrotiagopontes)), João Correia
 * Project (Github) URL: https://github.com/lucalanca/mads-p1.git
 
-## ...
+## Night Shift Group 5
+
+* Team Members: Ricardo Graça ([@ricardogsgraca](https://twitter.com/ricardogsgraca)), Nuno Matos ([@nuno__matos](https://twitter.com/nuno__matos)), José Silva ([@joelfferreira](https://twitter.com/joelfferreira)), Carlos Gouveia , Pedro Lemos  [@pedrohslemos](https://twitter.com/pedrohslemos)), Aline Gonçalves  [@S2AlineS2](https://twitter.com/S2AlineS2))
+* Project (Github) URL: https://github.com/ricardogsgraca/mads-p1.git
