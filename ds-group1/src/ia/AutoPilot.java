@@ -147,51 +147,51 @@ public class AutoPilot {
 			openPoints.clear();
 
 			
-			Cell left, down, up, right = null; 
+			Cell left = null, down = null, up = null, right = null; 
 			try{
-				left = map.getXY(origin.x - 1, origin.y);
+				left = map.getXY(minDistancePoint.x - 1, minDistancePoint.y);
 				left = isWalkable(left) ? left : null;
 			}catch(IndexOutOfBoundsException e){
 				left = null;
 			}
 			
 			try{
-				up = map.getXY(origin.x, origin.y + 1);
+				up = map.getXY(minDistancePoint.x, minDistancePoint.y + 1);
 				up = isWalkable(up) ? up : null;
 			}catch(IndexOutOfBoundsException e){
 				up = null;
 			}
 			
 			try{
-				down = map.getXY(origin.x, origin.y - 1);
+				down = map.getXY(minDistancePoint.x, minDistancePoint.y - 1);
 				down = isWalkable(down) ? down : null;
 			}catch(IndexOutOfBoundsException e){
 				down = null;
 			}
 			
 			try{
-				right = map.getXY(origin.x + 1, origin.y);
+				right = map.getXY(minDistancePoint.x + 1, minDistancePoint.y);
 				right = isWalkable(right) ? right : null;
 			}catch(IndexOutOfBoundsException e){
 				right = null;
 			}
 			
-			Point leftPoint = new Point(origin.x - 1, origin.y);
+			Point leftPoint = new Point(minDistancePoint.x - 1, minDistancePoint.y);
 			if(left != null && !closedPoints.contains(leftPoint) && !openPoints.contains(leftPoint)){
 				openPoints.add(leftPoint);
 			}
 			
-			Point upPoint = new Point(origin.x, origin.y + 1);
+			Point upPoint = new Point(minDistancePoint.x, minDistancePoint.y + 1);
 			if(up != null && !closedPoints.contains(upPoint) && !openPoints.contains(upPoint)){
 				openPoints.add(upPoint);
 			}
 			
-			Point downPoint = new Point(origin.x, origin.y - 1);
+			Point downPoint = new Point(minDistancePoint.x, minDistancePoint.y - 1);
 			if(down != null && !closedPoints.contains(downPoint) && !openPoints.contains(downPoint)){
 				openPoints.add(downPoint);
 			}
 			
-			Point rightPoint = new Point(origin.x + 1, origin.y);
+			Point rightPoint = new Point(minDistancePoint.x + 1, minDistancePoint.y);
 			if(right != null && !closedPoints.contains(rightPoint) && !openPoints.contains(rightPoint)){
 				openPoints.add(rightPoint);
 			}
@@ -201,6 +201,22 @@ public class AutoPilot {
 		
 		return closedPoints;
 		
+	}
+	
+	public static String getDirection(Point current, Point destination){
+		if(current.getX() == destination.getX()){
+			if(current.getY() > destination.getY()){
+				return "D";
+			}else{
+				return "U";
+			}
+		}else{
+			if(current.getX() > destination.getX()){
+				return "L";
+			}else{
+				return "R";
+			}
+		}
 	}
 
 }
