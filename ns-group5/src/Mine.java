@@ -151,6 +151,23 @@ public class Mine {
 					System.out.println("Your Robot is dead...");
 					System.exit(0);
 				}
+				else if(getCell(i, j) == '*' && (getCell(i+1, j) == '*' || getCell(i+1, j) == 'x')) {
+					if(getCell(i+1, j+1) == ' ') {
+						setCell(i, j, ' ');
+						setCell(i+1, j+1, '*');
+						if(getCell(i, j+2) == '*' && (getCell(i+1, j+2) == '*' || getCell(i+1, j+2) == 'x')) {
+							setCell(i, j+2, ' ');
+						}
+						
+					} else if(getCell(i+1, j-1) == ' ') {
+						setCell(i, j, ' ');
+						setCell(i+1, j-1, '*');
+						if(getCell(i, j-2) == '*' && (getCell(i+1, j-2) == '*' || getCell(i+1, j-2) == 'x')) {
+							setCell(i, j-2, ' ');
+						}
+					}
+						
+				}
 			}
 		}
 	}
