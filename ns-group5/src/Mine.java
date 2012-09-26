@@ -4,6 +4,10 @@ import java.util.ArrayList;
 public class Mine {
 	ArrayList<ArrayList<Character>> map;
 	
+	public Mine(ArrayList<ArrayList<Character>> map) {
+		this.map = map;
+	}
+	
 	public void readMap(){
 		
 	}
