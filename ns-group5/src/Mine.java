@@ -81,8 +81,7 @@ public class Mine {
 	}
 	
 	public void setCell(int n, int m, Character c) {
-		map.get(m).set(n, c);
-		
+		map.get(n).set(m, c);
 	}
 	
 	/**
@@ -95,13 +94,13 @@ public class Mine {
 		
 		switch (c){
 		
-		case 'u':
-			return move(0, -1);
-		case 'd':
-			return move(0, 1);
 		case 'l':
-			return move(-1, 0);
+			return move(0, -1);
 		case 'r':
+			return move(0, 1);
+		case 'd':
+			return move(-1, 0);
+		case 'u':
 			return move(1, 0);
 		case 'w':
 			return true;
@@ -121,8 +120,8 @@ public class Mine {
 		
 		// verifica se se vai mover para fora das array lists	
 		try {
-			getCell(currentPosition.y, currentPosition.x);
-			z = getCell(currentPosition.y + line, currentPosition.x + col);
+			getCell(currentPosition.x, currentPosition.y);
+			z = getCell(currentPosition.x + line, currentPosition.y + col);
 		} catch (IndexOutOfBoundsException e){
 			return false;
 		}
@@ -135,8 +134,8 @@ public class Mine {
 			return false;
 		
 		//se o movimento for valido executa-o!
-		setCell(currentPosition.y, currentPosition.x, ' ');
-		setCell(currentPosition.y + line, currentPosition.x + col, 'R');
+		setCell(currentPosition.x, currentPosition.y, ' ');
+		setCell(currentPosition.x + line, currentPosition.y + col, 'R');
 		
 		return true;
 	}
@@ -144,9 +143,9 @@ public class Mine {
 	public void updateMap() {
 		for(int i = 0 ; i < map.size(); i++) {
 			for(int j = map.get(i).size() - 1; j >= 0; j--) {
-				if(getCell(i, j) == '*' && getCell(i, j+1) == ' ') {
+				if(getCell(i, j) == '*' && getCell(i+1, j) == ' ') {
 					setCell(i, j, ' ');
-					setCell(i, j+1, '*');
+					setCell(i+1, j, '*');
 				}
 			}
 		}
