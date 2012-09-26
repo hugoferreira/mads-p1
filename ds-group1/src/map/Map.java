@@ -268,10 +268,10 @@ public class Map implements Cloneable {
 	}
 	
 	private void OpenLifts(){
-		for(int i = 0; i < map.size(); i++){
-			for(int j = 0; i < map.get(i).size(); j++){
-				if(map.get(i).get(j) instanceof ClosedLift)
-					map.get(i).set(j, new OpenLift());
+		for(int y = 1; y <= getHeight(); y++){
+			for(int x = 1; x <= getWidth(); x++){
+				if(getXY(x, y) instanceof ClosedLift)
+					setXY(x, y, new OpenLift());
 			}
 		}
 	}
