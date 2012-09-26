@@ -193,6 +193,4 @@ public class Mine {
 			this.y = y;
 		}
 	}
-	
-	// TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 }
