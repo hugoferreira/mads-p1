@@ -16,6 +16,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,14 +35,16 @@ public class Canvas extends javax.swing.JPanel {
             map = new Map();
             map.loadMap("example1.map");
             map.printmsp();
+            last = new Date();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    enum OperationType{
+
+    public static enum OperationType {
+
         MOVE_UP,
         MOVE_DOWN,
         MOVE_LEFT,
@@ -49,75 +52,89 @@ public class Canvas extends javax.swing.JPanel {
         WAITING,
         ESCAVATING
     }
-    
+    private Date last;
     public OperationType operation = OperationType.WAITING;
-    
+
     @Override
-    public void paint(Graphics g){
-        try {
+    public void paint(Graphics g) {
+        Date d2 = new Date();
+        long d3 = d2.getTime() - last.getTime();
+        
+
+        if (d3 > 1000) {
+            last = d2;
             Graphics2D g2 = (Graphics2D) g;
             g2.setColor(Color.LIGHT_GRAY);
             g2.fillRect(0, 0, getWidth(), getHeight());
             for (int i = 0; i < map.map.length; i++) {
                 for (int j = 0; j < map.map[0].length; j++) {
-                    if(map.map[i][j] == '#'){
-                        Wall.draw(g2, j*15, i*15);
-                    }else if(map.map[i][j] == 'R'){
-                        switch(operation){
-                            case ESCAVATING:
-                                Robot.drawEscavating(g2, j*15, i*15);
-                                break;
+                    if (map.map[i][j] == '#') {
+                        Wall.draw(g2, j * 15, i * 15);
+                    } else if (map.map[i][j] == 'R') {
+                        switch (operation) {
                             case MOVE_DOWN:
-                                if(map.map[i+1][j] == ' '){
+                                if (map.map[i + 1][j] == ' ') {
                                     map.map[i][j] = ' ';
-                                    map.map[i+1][j] = 'R';
+                                    map.map[i + 1][j] = 'R';                                    
+                                }else if(true){
+                                    
                                 }
                                 operation = OperationType.WAITING;
                                 break;
                             case MOVE_LEFT:
-                                if(map.map[i][j-1] == ' '){
+                                if (map.map[i][j - 1] == ' ') {
                                     map.map[i][j] = ' ';
-                                    map.map[i][j-1] = 'R';
+                                    map.map[i][j - 1] = 'R';
+                                }
+                                operation = OperationType.WAITING;
+                                break;
+                            case MOVE_RIGHT:
+                                if (map.map[i][j + 1] == ' ') {
+                                    map.map[i][j] = ' ';
+                                    map.map[i][j + 1] = 'R';
+                                }
+                                operation = OperationType.WAITING;
+                                break;
+                            case MOVE_UP:
+                                if (map.map[i - 1][j] == ' ') {
+                                    map.map[i][j] = ' ';
+                                    map.map[i - 1][j] = 'R';
                                 }
                                 operation = OperationType.WAITING;
                                 break;
                             default:
-                                Robot.drawNormal(g2, j*15, i*15);
+                                Robot.drawNormal(g2, j * 15, i * 15);
                         }
-                    }else if(map.map[i][j] == 'L'){
-                        Lift.drawClosed(g2, j*15, i*15);
-                    }else if(map.map[i][j] == 'O'){
-                        Lift.drawOpen(g2, j*15, i*15);
-                    }else if(map.map[i][j] == '.'){
-                        Earth.draw(g2, j*15, i*15);
-                    }else if(map.map[i][j] == '*'){
-                        Rock.draw(g2, j*15, i*15);
-                        char c = map.map[i+1][j];
-                        if(map.map[i+1][j] == ' ' ){
+                    } else if (map.map[i][j] == 'L') {
+                        Lift.drawClosed(g2, j * 15, i * 15);
+                    } else if (map.map[i][j] == 'O') {
+                        Lift.drawOpen(g2, j * 15, i * 15);
+                    } else if (map.map[i][j] == '.') {
+                        Earth.draw(g2, j * 15, i * 15);
+                    } else if (map.map[i][j] == '*') {
+                        Rock.draw(g2, j * 15, i * 15);
+                        char c = map.map[i + 1][j];
+                        if (map.map[i + 1][j] == ' ') {
                             map.map[i][j] = ' ';
-                            map.map[i+1][j] = '*';
-                        }else if(map.map[i+1][j] == '*'){
-                            if(map.map[i+1][j+1] == ' ' && map.map[i][j+1] == ' '){
+                            map.map[i + 1][j] = '*';
+                        } else if (map.map[i + 1][j] == '*') {
+                            if (map.map[i + 1][j + 1] == ' ' && map.map[i][j + 1] == ' ') {
                                 map.map[i][j] = ' ';
-                                map.map[i+1][j+1] = '*';
-                            }else if(map.map[i+1][j-1] == ' ' && map.map[i][j-1] == ' '){
+                                map.map[i + 1][j + 1] = '*';
+                            } else if (map.map[i + 1][j - 1] == ' ' && map.map[i][j - 1] == ' ') {
                                 map.map[i][j] = ' ';
-                                map.map[i+1][j-1] = '*';
+                                map.map[i + 1][j - 1] = '*';
                             }
                         }
-                    }else if(map.map[i][j] == 'x'){
-                        Diamond.draw(g2, j*15, i*15);
+                    } else if (map.map[i][j] == 'x') {
+                        Diamond.draw(g2, j * 15, i * 15);
                     }
                 }
             }
-            Thread.sleep(1000);
-            repaint();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
         }
+        repaint();
     }
-    
-    private Map map;
+    public Map map;
 
     /**
      * This method is called from within the constructor to initialize the form.
