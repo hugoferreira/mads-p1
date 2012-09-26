@@ -71,7 +71,7 @@ public class Mine {
 	}
 	
 	public void print(){
-		System.out.print(toString());
+		System.out.println(toString());
 		System.out.println("Diamonds: " + diamonds);
 	}
 	
@@ -98,9 +98,9 @@ public class Mine {
 			return move(0, -1);
 		case 'r':
 			return move(0, 1);
-		case 'd':
-			return move(-1, 0);
 		case 'u':
+			return move(-1, 0);
+		case 'd':
 			return move(1, 0);
 		case 'w':
 			return true;
@@ -156,6 +156,17 @@ public class Mine {
 	}
 	
 	public boolean levelUp() {
+		if(map.toString().indexOf("x") == -1)
+		{
+			for (int i=0; i<map.size(); i++) {
+				for (int j=0; j<map.get(i).size(); j++) {
+					if (getCell(i, j) == 'L') {
+						setCell(i, j, 'O');
+					}
+				}
+			}
+		}
+		
 		return (map.toString().indexOf("x") == -1);
 	}
 	
