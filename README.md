@@ -14,7 +14,7 @@ Note, however, that the surveying technology is probably not perfect. It is poss
 
 This exercise takes place at room B215, with the following distribution:
 
-* Day Shift Groups (14h - 21h)
+* Day Shift Groups (14h30 - 22h)
 ```
     14:30 Sprint 1
     16:00 Pause (30 min)
@@ -26,7 +26,7 @@ This exercise takes place at room B215, with the following distribution:
     22:00 End (Go Home!)
 ```
 
-* Night Shift Groups (17h - 00h)
+* Night Shift Groups (18h - 01h30)
 ```
     18:00 Sprint 1
     19:30 Pause (30 min)
