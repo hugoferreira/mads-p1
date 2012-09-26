@@ -13,7 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Map m = new Map();
-		m.readMap("textfile.txt");
+		m.readMap("textfile4.txt");
 		Pair<Integer, Integer> player = m.getPlayer();
 		Player p = new Player(player.getSecond(), player.getFirst());
 		m.countDiamonds();
@@ -67,9 +67,15 @@ public class Main {
 					
 				}
 			}
+			
+			m.checkLiftStatus(p);
 			m.printMap();
 			System.out.println(time++);
 			System.out.println(p.getDiamonds());
+			if(m.isGameEnd()) {
+				System.out.println("GANHOU!");
+				System.exit(0);
+			}
 		}
 	}
 

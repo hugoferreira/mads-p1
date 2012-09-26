@@ -19,9 +19,10 @@ public class Map {
 	private char[][] map;
 	private Pair<Integer, Integer> lift;
 	private char DIAMOND = 'x';
-	private ArrayList<Pair> visitedRocks;
 	private boolean dead = false;
+	private boolean end = false;
 	private int diamonds = 0;
+	private ArrayList<Pair> visitedRocks = new ArrayList<Pair>();
 	
 	public void readMap(String filename) {
 		
@@ -127,8 +128,18 @@ public boolean moveObject(int i, int j, int k, int l) {
 		char thing = map[i][j];
 		switch(thing){
 		case PLAYER : 
-			if(map[k][l]== WALL || map[k][l] == ROCK)
+			if(map[k][l]== WALL || map[k][l] == LIFT)
 				return false;
+			if(map[k][l] == ROCK){
+				if(map[k+(k-i)][l+(l-j)]== EMPTY)
+					moveObject(k,l,k+(k-i),l+(l-j));
+					processRock(k+(k-i), l+(l-j));
+					return true;		
+			}
+			if(map[k][l] == LIFTO) {
+				end = true;
+				return true;
+			}
 			return true;
 		case ROCK : 
 			if(map[k][l] == EMPTY)
@@ -203,9 +214,13 @@ public boolean moveObject(int i, int j, int k, int l) {
 	
 	public void checkLiftStatus(Player p) {
 		
-		if(diamonds == p.getDiamonds())
-		{
-			changeTerrain(lift.getSecond(), lift.getFirst(), LIFTO);
+		if(diamonds == p.getDiamonds()) {
+			changeTerrain(lift.getFirst(), lift.getSecond(), LIFTO);
 		}
+	}
+
+	public boolean isGameEnd() {
+		// TODO Auto-generated method stub
+		return end;
 	}
 }
