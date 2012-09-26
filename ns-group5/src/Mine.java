@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import com.sun.tools.javac.util.Pair;
-
 
 public class Mine {
 	ArrayList<ArrayList<Character>> map = new ArrayList<ArrayList<Character>>();
@@ -89,6 +87,14 @@ public class Mine {
 		return false;
 	}
 	
+	public boolean move(int line, int col) {
+		
+		Position currentPosition = getRobotPosition();
+		setCell(currentPosition.y, currentPosition.x, ' ');
+		setCell(line, col, 'R');
+		
+		return true;
+	}
 	
 	
 	public void updateMap() {
@@ -101,16 +107,27 @@ public class Mine {
 	
 	// returns robot position (l, c)
 	// when there's no robot, returns (-1, -1)
-	public Pair<Integer, Integer> getRobotPosition() {
+	public Position getRobotPosition() {
 		for (int i=0; i<map.size(); i++) {
 			for (int j=0; j<map.get(i).size(); j++) {
 				if (map.get(i).get(j).equals('F')) {
-					return new Pair<Integer, Integer>(i, j);
+					return new Position(i, j);
 				}
 
 			}
 		}
-		return new Pair<Integer, Integer>(-1, -1);
+		return new Position(-1, -1);
+	}
+	
+	public class Position {
+	
+		public final int x;
+		public final int y;
+		
+		Position(int x, int y){
+			this.x = x;
+			this.y = y;
+		}
 	}
 	
 	// TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
