@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -138,6 +139,9 @@ public class Mine {
 	}
 	
 	public void update(){
+		
+
+		ArrayList<Point> new_positions = new ArrayList<Point>();
 
 		for(int i = 1; i <= tab.getXMax(); i++){
 			
@@ -157,20 +161,22 @@ public class Mine {
 					else if(tab.getPoint(i,j-1) == Constants.ROCK || tab.getPoint(i,j-1) == Constants.DIAMOND){
 						
 						if(validPosition(new Point(i+1,j-1)) && tab.getPoint(i+1,j) == Constants.EMPTY
-								&& tab.getPoint(i+1,j-1) == Constants.EMPTY){
+								&& (tab.getPoint(i+1,j-1) == Constants.EMPTY || new_positions.contains(new Point(i+1,j-1)))){
 
 							tab.change(i,j, Constants.EMPTY);
 							tab.change(i+1, j-1, Constants.ROCK);
 							new_pos.x = i+1;
 							new_pos.y = j-1;
+							new_positions.add(new Point(i+1, j-1));
 						}
 						else if(validPosition(new Point(i-1,j-1)) && tab.getPoint(i-1,j) == Constants.EMPTY
-								&& tab.getPoint(i-1,j-1) == Constants.EMPTY){
+								&& (tab.getPoint(i-1,j-1) == Constants.EMPTY || new_positions.contains(new Point(i-1,j-1)))){
 
 							tab.change(i,j, Constants.EMPTY);
 							tab.change(i-1, j-1, Constants.ROCK);
 							new_pos.x = i-1;
 							new_pos.y = j-1;
+							new_positions.add(new Point(i-1, j-1));
 						}
 					}
 					
