@@ -111,6 +111,12 @@ public class Map {
 					else if(below instanceof Robot && rock.isFalling()) { // robot destroyed
 						throw new RobotDestroyedException("The robot was destroyed!");
 					}
+					else if(below instanceof Rock && y > 1) { // rock can slip
+						if((getXY(x + 1, y) instanceof Empty) && (getXY(x + 1, y - 1) instanceof Empty)) { // slip right
+							// TODO
+						}
+						// TODO
+					}
 					else {
 						rock.setFalling(false);
 					}
