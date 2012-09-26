@@ -63,15 +63,20 @@ public class MineTest {
 
 	@Test
 	public void testLevelUp() {
-		String mine = "###\n#*#\n# #\n###";
+		String mine = "###\n#*#\n# #\nL##";
 		String mine2 = "######\n#.  R#\n#  x.#\n#x * #\nL  .x#\n######";
 		
 		Mine m = new Mine(mine);
 		Mine m2 = new Mine(mine2);
 		
 		assertEquals(m.levelUp(), true);
+		assertEquals(Character.toString(m.getCell(3,0)), "O");
 		assertEquals(m2.levelUp(), false);
-		
+
 	}
+	
+	
+	
+	
 
 }
