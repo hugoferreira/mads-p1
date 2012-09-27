@@ -44,7 +44,7 @@ public class Main {
 	// perform an undo or a redo command
 	public static boolean undoRedo(String command) {
 		
-		if(command.toLowerCase().charAt(0) == 'z') {
+		if(command.toLowerCase().charAt(0) == 'u') {
 			if(!(actual_map == 0)) {
 				actual_map--;
 				mine = new Mine(history.get(actual_map));
@@ -52,7 +52,7 @@ public class Main {
 			}
 		}
 		
-		if(command.toLowerCase().charAt(0) == 'y') {
+		if(command.toLowerCase().charAt(0) == 'r') {
 			if(!(actual_map == (history.size()-1))) {
 				actual_map++;
 				mine = new Mine(history.get(actual_map));
