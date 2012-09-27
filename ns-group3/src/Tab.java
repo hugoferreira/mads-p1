@@ -25,17 +25,15 @@ public class Tab {
 				nDiam--;
 			if(getPoint(x,y)==Constants.ROCK){
 
-				System.out.println("ROCK");
 				if(x > robotPos.x){
-					System.out.println("esquerda");
+					
 					if(((x+1) <= Xmax) && getPoint(x+1,y)==Constants.EMPTY)
-						map.put(new Point(x+1,y), '*');
+						map.put(new Point(x+1,y), Constants.ROCK);
 				}
 				if(x < robotPos.x){
 
-					System.out.println("direita");
 					if(((x-1) > 1) && getPoint(x-1,y)==Constants.EMPTY)
-						map.put(new Point(x-1,y), '*');
+						map.put(new Point(x-1,y), Constants.ROCK);
 				}
 			}
 			robotPos = position;
