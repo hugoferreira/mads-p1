@@ -39,6 +39,9 @@ public class Canvas extends javax.swing.JPanel {
         try {
             map.loadMap("fusion_rocks2.map");
             map.printmsp();
+            GobbleDiamonds gd = new GobbleDiamonds();
+            gd.lazyPlay(map.map, 4,1);
+            
             last = new Date();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
