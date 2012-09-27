@@ -74,16 +74,6 @@ public class TestMap {
 		assertEquals(m.getMap()[2][3], '*');
 	}
 	
-	@Test
-	public void testEndByRockSmash() {
-		Map m = new Map();
-		m.readMap("textfile2.txt");
-		
-		m.checkRocks();
-		
-		assertEquals(m.isPlayerDead(), true);
-		
-	}
 	
 	@Test
 	public void testSlipperyRocks() {
