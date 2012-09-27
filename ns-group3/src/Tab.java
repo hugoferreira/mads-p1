@@ -17,6 +17,10 @@ public class Tab {
 		return map;
 	}
 	
+	public char getPoint(int x, int y){
+		return map.get(new Point(x,y));
+	}
+	
 	public void printTab(){
 		for(int i=1; i<=6;i++){
 			for(int j=6;j>0;j--)
