@@ -1,17 +1,27 @@
 package main;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class Map {
+public class Map implements Cloneable {
 
 	public Pos[][] map;
 	
 	public Map() {
 		
+	}
+	
+	public Map clone()
+	{
+		Map cm = new Map();
+		cm.map = new Pos[map.length][map[0].length];
+
+		for(int i = 0; i < map.length; ++i)
+		for(int j = 0; j < map[0].length; ++j)
+		cm.map[i][j] = this.map[i][j];
+
+		return cm;	
 	}
 	
 	public Map(String filename) throws Exception {
@@ -69,4 +79,17 @@ public class Map {
 		}
 		
 	}
+	public int getRobotX(){
+		for(int i=0; i<map.length; i++)
+		for(int j=0; j<map[i].length; j++)
+		if(map[i][j] == Pos.ROBOT)
+		return j;
+		return -1;
+		}
+		public int getRobotY(){
+		for(int i=0; i<map.length; i++)
+		for(int j=0; j<map[i].length; j++)
+		if(map[i][j] == Pos.ROBOT)
+		return i;
+		return -1;}
 }
