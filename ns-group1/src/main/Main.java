@@ -1,6 +1,9 @@
 package main;
 
+import java.util.ArrayList;
+
 import layout.Input;
+import main.PathFinder.Node;
 import map.Map;
 import map.Player;
 import map.Pair;
@@ -18,6 +21,16 @@ public class Main {
 		Player p = new Player(player.getSecond(), player.getFirst());
 		m.countDiamonds();
 		boolean validMove = true;
+		
+		PathFinder p = new PathFinder(null);
+		Node n;
+		int score = 100000;
+		for(Pair<Integer,Integer> pair : m.diamondsposition) {
+			Node temp = new Node(pair.getFirst(), pair.getSecond());
+						
+		}
+	
+			
 		
 		m.back.add(new Pair<Map, Player>(new Map(m), new Player(p)));
 		

@@ -24,6 +24,7 @@ public class Map {
 	private boolean end = false;
 	private int diamonds = 0;
 	private boolean emptySpace = false;
+	public ArrayList<Pair<Integer,Integer>> diamondsposition = new ArrayList<Pair<Integer,Integer>>();
 	private ArrayList<Pair> visitedRocks = new ArrayList<Pair>();
 	public Stack<Pair<Map, Player>> back = new Stack<Pair<Map, Player>>();
 	public Stack<Pair<Map, Player>> forward = new Stack<Pair<Map, Player>>();
@@ -77,6 +78,12 @@ public class Map {
 			String line;
 			while ((line = br.readLine()) != null)   {
 				while(line.length() > j) {	
+					
+					if (line.charAt(j) == DIAMOND) {
+						diamondsposition.add(new Pair<Integer,Integer>(i,j));
+					}
+						
+					
 					if (line.charAt(j) == LIFT)
 						lift = new Pair<Integer, Integer>(i,j);
 
