@@ -59,6 +59,14 @@ public class MineTest {
 		
 		assertEquals(Character.toString(m.getCell(1,1)), " ");
 		assertEquals(Character.toString(m.getCell(2,1)), "*");
+		
+		String mine2 = "######\n#.  R#\n#  *.#\n#x * #\nL  .x#\n######";
+		
+		Mine m2 = new Mine(mine2);
+		m2.updateMap();
+		
+		assertEquals(m2.toString(), "######\n#.  R#\n#  *.#\n#x * #\nL  .x#\n######"); 
+		//assertEquals(Character.toString(m2.getCell(3, 4)), "*"); 
 	}
 
 	@Test
@@ -74,6 +82,8 @@ public class MineTest {
 		assertEquals(m2.levelUp(), false);
 
 	}
+	
+	
 	
 	
 	
