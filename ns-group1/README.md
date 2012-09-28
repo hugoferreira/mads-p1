@@ -76,7 +76,7 @@
 - Check game status (3)
 
 #### Human in the loop
-- Loop de jogo (5)
+- Game Loop (5)
 
 #### To err is human, to undo divine
 - Create undo stack (3)
@@ -207,7 +207,7 @@ Nota: neste sprint o número de pontos estimados devia ter sido 12. Daí estar r
 - Demo funcional com todas as stories feitas até ao momento
 
 #### Did bad
-- Dividir story complexa em tarefas simples (Autobot)
+- Dividir story complexa em tarefas simples (Autopilot)
 
 #### Challenges/Puzzles
 - "Inteligência Artificial"
