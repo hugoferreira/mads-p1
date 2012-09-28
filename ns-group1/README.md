@@ -26,7 +26,7 @@
 
 ## Backlog Status
 
-#####Proposed to do to / Status at the end of sprint
+#####Proposed to do / Status at the end of sprint
 - Display Map (2) / UNDONE
 - Read Map (5) / COMPLETED
 - Move Object (5) / COMPLETED
@@ -91,7 +91,7 @@
 #### Falling rocks hurts a lot
 - Add game end to game status (1)
 
-#####Proposed to do to / Status at the end of sprint
+#####Proposed to do / Status at the end of sprint
 - Display Map (2) / COMPLETED
 - Check Rocks Position (2) / COMPLETED
 - Check Valid Position (1) / COMPLETED
@@ -129,7 +129,7 @@
 ## Backlog (com estimativas)
 
 #### Human in the loop
-- Loop de jogo (5)
+- Loop de jogo (3)
 
 #### To err is human, to undo divine
 - Create undo stack (3)
@@ -150,8 +150,8 @@
 #### Rock Fusion
 - Change move rock to allow rock fusion (1)
 
-#####Proposed to do to / Status at the end of sprint
-- Loop de jogo (5) / COMPLETED
+#####Proposed to do / Status at the end of sprint
+- Loop de jogo (3) / COMPLETED
 - Create undo stack (3) / COMPLETED
 - Create redo stack (1) / COMPLETED
 - Change move object to allow rock pushes (2) / COMPLETED
@@ -162,6 +162,7 @@
 ## Burndown Chart
 
 ![Sprint 3 Burndown Chart](https://dl.dropbox.com/u/5120407/3.jpg)
+Nota: neste sprint o número de pontos estimados devia ter sido 12. Daí estar riscada a linha dos últimos 15 minutos, pois foi necessário ajustar o gráfico nessa altura, tendo em conta que fizemos todos os pontos propostos
 
 ## Retrospectiva
 
@@ -191,7 +192,7 @@
 #### Finding the best contractor
 - Finding the best contractor (5)
 
-#####Proposed to do to / Status at the end of sprint
+#####Proposed to do / Status at the end of sprint
 - Autopilot (8) / UNDONE
 - Austerity Measures (5) / UNDONE
 - Finding the best contractor (5) / UNDONE
