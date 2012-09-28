@@ -26,7 +26,7 @@
 
 ## Backlog Status
 
-#####Propose to do to / Status at the end of sprint
+#####Proposed to do to / Status at the end of sprint
 - Display Map (2) / UNDONE
 - Read Map (5) / COMPLETED
 - Move Object (5) / COMPLETED
@@ -47,8 +47,7 @@
 ## Retrospectiva
 
 #### Did good
-- Planeamento
-- Comunicação
+- Comunicação da equipa
 
 #### Did bad
 - Burndown (não recolhemos pontos suficientes)
@@ -60,42 +59,52 @@
 
 # Sprint 2
 
-## Horas
-
-- Início: 
-- Fim: 
-
 ## Backlog (com estimativas)
 
 #### Where there are mines and robots and things
-- Display Map (2) - COMPLETED
+- Display Map (2)
 
 #### Time passes and rock falls
-- Check Rocks Position (2) - COMPLETED
+- Check Rocks Position (2) 
 
 #### Where the robot can´t move everywhere it wants
-- Check Valid Position (1) - COMPLETED
+- Check Valid Position (1)
 
 #### Where the robots escavates and picks up diamonds and lifts open
-- Change Terrain (1) - COMPLETED
-- Pick diamond (1) - COMPLETED
-- Check game status (3) - COMPLETED
+- Change Terrain (1)
+- Pick diamond (1)
+- Check game status (3)
 
 #### Human in the loop
-- Loop de jogo (5) - HALF-COMPLETED
+- Loop de jogo (5)
 
 #### To err is human, to undo divine
-- Create undo stack (3) - UNDONE
-- Create redo stack (1) - UNDONE
+- Create undo stack (3)
+- Create redo stack (1)
 
 #### Slippery Rocks
-- Change move rock (3) - COMPLETED
+- Change move rock (3)
 
 #### Where the robot gains arms
-- Change move object to allow rock pushes (2) - UNDONE
+- Change move object to allow rock pushes (2)
 
 #### Falling rocks hurts a lot
-- Add game end to game status (1) - UNDONE
+- Add game end to game status (1)
+
+#####Proposed to do to / Status at the end of sprint
+- Display Map (2) / COMPLETED
+- Check Rocks Position (2) / COMPLETED
+- Check Valid Position (1) / COMPLETED
+- Change Terrain (1) / COMPLETED
+- Pick diamond (1) / COMPLETED
+- Check game status (3) / COMPLETED
+- Loop de jogo (5) / HALF-COMPLETED
+- Create undo stack (3) / UNDONE
+- Create redo stack (1) / UNDONE
+- Change move rock (3) / COMPLETED
+- Change move object to allow rock pushes (2) / UNDONE
+- Add game end to game status (1) / UNDONE
+
 
 ## Burndown Chart
 
@@ -117,38 +126,38 @@
 
 # Sprint 3
 
-## Horas
-
-- Início: 
-- Fim: 
-
 ## Backlog (com estimativas)
 
 #### Human in the loop
-- Loop de jogo (5) - COMPLETED
+- Loop de jogo (5)
 
 #### To err is human, to undo divine
-- Create undo stack (3) - DONE
-- Create redo stack (1) - UNDONE
-
-#### Slippery Rocks
-- Change move object to allow rock pushes (2) - DONE
+- Create undo stack (3)
+- Create redo stack (1)
 
 #### Where the robot gains arms
-- Change move object to allow rock pushes (2) - DONE
+- Change move object to allow rock pushes (2)
 
 #### Falling rocks hurts a lot
-- Add game end to game status (1) - DONE
+- Add game end to game status (1)
 
 #### Where autopilot was invented
-- Autopilot (8) - UNDONE
+- Autopilot (8)
 
 #### Really Slippery Rocks
-- Change move rock to allow slip on diamonds (1) - COMPLETED
+- Change move rock to allow slip on diamonds (1)
 
 #### Rock Fusion
-- Change move rock to allow rock fusion (1) - COMPLETED
+- Change move rock to allow rock fusion (1)
 
+#####Proposed to do to / Status at the end of sprint
+- Loop de jogo (5) / COMPLETED
+- Create undo stack (3) / COMPLETED
+- Create redo stack (1) / COMPLETED
+- Change move object to allow rock pushes (2) / COMPLETED
+- Add game end to game status (1) / COMPLETED
+- Change move rock to allow slip on diamonds (1) / COMPLETED
+- Change move rock to allow rock fusion (1) / COMPLETED
 
 ## Burndown Chart
 
@@ -171,24 +180,21 @@
 
 # Sprint 4
 
-## Horas
-
-- Início: 
-- Fim: 
-
 ## Backlog (com estimativas)
 
-#### To err is human, to undo divine
-- Create redo stack (1) - DONE
-
 #### Where autopilot was invented
-- Autopilot (8) - UNDONE
+- Autopilot (8)
 
 #### Austerity Measures
-- Austerity Measures (5) - UNDONE
+- Austerity Measures (5)
 
 #### Finding the best contractor
-- Finding the best contractor (5) - UNDONE
+- Finding the best contractor (5)
+
+#####Proposed to do to / Status at the end of sprint
+- Autopilot (8) / UNDONE
+- Austerity Measures (5) / UNDONE
+- Finding the best contractor (5) / UNDONE
 
 ## Burndown Chart
 
