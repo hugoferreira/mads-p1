@@ -27,16 +27,16 @@
 ## Backlog Status
 
 #####Propose to do to / Status at the of sprint
-Display Map (2) / UNDONE
-Read Map (5) / COMPLETED
-Move Object (5) / COMPLETED
-Check Rocks Position (2) / UNDONE
-Read User Input (3) / COMPLETED
-Check Valid Position (1) / UNDONE
-Change Terrain (1) / UNDONE
-Pick diamond (1) / UNDONE
-Check game status (3) / UNDONE
-Improve reading input (2) / COMPLETED
+- Display Map (2) / UNDONE
+- Read Map (5) / COMPLETED
+- Move Object (5) / COMPLETED
+- Check Rocks Position (2) / UNDONE
+- Read User Input (3) / COMPLETED
+- Check Valid Position (1) / UNDONE
+- Change Terrain (1) / UNDONE
+- Pick diamond (1) / UNDONE
+- Check game status (3) / UNDONE
+- Improve reading input (2) / COMPLETED
 
 
 
