@@ -26,7 +26,7 @@
 
 ## Backlog Status
 
-#####Propose to do to / Status at the of sprint
+#####Propose to do to / Status at the end of sprint
 - Display Map (2) / UNDONE
 - Read Map (5) / COMPLETED
 - Move Object (5) / COMPLETED
