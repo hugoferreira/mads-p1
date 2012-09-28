@@ -27,16 +27,16 @@
 ## Backlog Status
 
 #####Proposed to do / Status at the end of sprint
-- Display Map (2) / UNDONE
-- Read Map (5) / COMPLETED
-- Move Object (5) / COMPLETED
-- Check Rocks Position (2) / UNDONE
-- Read User Input (3) / COMPLETED
-- Check Valid Position (1) / UNDONE
-- Change Terrain (1) / UNDONE
-- Pick diamond (1) / UNDONE
-- Check game status (3) / UNDONE
-- Improve reading input (2) / COMPLETED
+- Display Map (2) / NOT DONE
+- Read Map (5) / DONE
+- Move Object (5) / DONE
+- Check Rocks Position (2) / NOT DONE
+- Read User Input (3) / DONE
+- Check Valid Position (1) / NOT DONE
+- Change Terrain (1) / NOT DONE
+- Pick diamond (1) / NOT DONE
+- Check game status (3) / NOT DONE
+- Improve reading input (2) / DONE
 
 
 
@@ -92,18 +92,18 @@
 - Add game end to game status (1)
 
 #####Proposed to do / Status at the end of sprint
-- Display Map (2) / COMPLETED
-- Check Rocks Position (2) / COMPLETED
-- Check Valid Position (1) / COMPLETED
-- Change Terrain (1) / COMPLETED
-- Pick diamond (1) / COMPLETED
-- Check game status (3) / COMPLETED
-- Loop de jogo (5) / HALF-COMPLETED
-- Create undo stack (3) / UNDONE
-- Create redo stack (1) / UNDONE
-- Change move rock (3) / COMPLETED
-- Change move object to allow rock pushes (2) / UNDONE
-- Add game end to game status (1) / UNDONE
+- Display Map (2) / DONE
+- Check Rocks Position (2) / DONE
+- Check Valid Position (1) / DONE
+- Change Terrain (1) / DONE
+- Pick diamond (1) / DONE
+- Check game status (3) / DONE
+- Loop de jogo (5) / NOT DONE
+- Create undo stack (3) / NOT DONE
+- Create redo stack (1) / NOT DONE
+- Change move rock (3) / DONE
+- Change move object to allow rock pushes (2) / NOT DONE
+- Add game end to game status (1) / NOT DONE
 
 
 ## Burndown Chart
@@ -151,13 +151,13 @@
 - Change move rock to allow rock fusion (1)
 
 #####Proposed to do / Status at the end of sprint
-- Loop de jogo (3) / COMPLETED
-- Create undo stack (3) / COMPLETED
-- Create redo stack (1) / COMPLETED
-- Change move object to allow rock pushes (2) / COMPLETED
-- Add game end to game status (1) / COMPLETED
-- Change move rock to allow slip on diamonds (1) / COMPLETED
-- Change move rock to allow rock fusion (1) / COMPLETED
+- Loop de jogo (3) / DONE
+- Create undo stack (3) / DONE
+- Create redo stack (1) / DONE
+- Change move object to allow rock pushes (2) / DONE
+- Add game end to game status (1) / DONE
+- Change move rock to allow slip on diamonds (1) / DONE
+- Change move rock to allow rock fusion (1) / DONE
 
 ## Burndown Chart
 
@@ -193,9 +193,9 @@ Nota: neste sprint o número de pontos estimados devia ter sido 12. Daí estar r
 - Finding the best contractor (5)
 
 #####Proposed to do / Status at the end of sprint
-- Autopilot (8) / UNDONE
-- Austerity Measures (5) / UNDONE
-- Finding the best contractor (5) / UNDONE
+- Autopilot (8) / NOT DONE
+- Austerity Measures (5) / NOT DONE
+- Finding the best contractor (5) / NOT DONE
 
 ## Burndown Chart
 
